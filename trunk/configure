@@ -1,0 +1,60 @@
+#!/bin/bash
+SIGSEGV_DIR=libsigsegv-2.6
+TECLA_DIR=libtecla
+BUDDY_DIR=buddy-2.4
+GMP_DIR=gmp-5.0.2
+CVC3_DIR=$(basename cvc3-*)
+SMTA_DIR=smta-0.1
+MAUDE_DIR=Maude-2.6
+
+sed -i -e "s|^CVC3_DIR=.*$|CVC3_DIR=${CVC3_DIR}|" Makefile
+sed -i -e "s|^PREFIX=.*$|PREFIX=${PREFIX}|" Makefile
+sed -i -e "s|^MAUDE_BIN=.*$|MAUDE_BIN=${MAUDE_BIN}|" Makefile
+
+# libsigsegv
+cd ${SIGSEGV_DIR}
+./configure --prefix=${PREFIX} \
+    CC=${CC} CXX=${CXX} \
+    CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}"
+cd -
+
+# libtecla
+cd ${TECLA_DIR}
+./configure --prefix=${PREFIX} --build=${BUILD} \
+    --with-man-pages=no \
+    CC=${CC} CXX=${CXX} \
+    CFLAGS="${CFLAGS} -D_POSIX_C_SOURCE=1" CXXFLAGS="${CXXFLAGS}"
+cd -
+
+# buddy
+cd ${BUDDY_DIR}
+./configure --prefix=${PREFIX} --build=${BUILD} \
+    --disable-shared \
+    CC=${CC} CXX=${CXX} \
+    CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}"
+cd -
+
+# gmp
+cd ${GMP_DIR}
+./configure --prefix=${PREFIX} --build=${BUILD} \
+    --enable-cxx --disable-shared \
+    CC=${CC} CXX=${CXX} \
+    CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}"
+cd -
+
+# cvc3
+cd ${CVC3_DIR}
+./configure --prefix=${PREFIX} --build=${BUILD} \
+    CC=${CC} CXX=${CXX} \
+    CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" CPPFLAGS="${CPPFLAGS}" \
+    LDFLAGS="${LDFLAGS}" LIBS="-lgmp"
+cd -
+
+# maude
+cd ${MAUDE_DIR}
+./configure --prefix=${PREFIX} --build=${BUILD} \
+    CC=${CC} CXX=${CXX} \
+    CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" CPPFLAGS="${CPPFLAGS}" \
+    LDFLAGS="${LDFLAGS}" LIBS="-lsmta -lcvc3 -lgmp"
+cd -
+

@@ -2,13 +2,17 @@ SIGSEGV_DIR=libsigsegv-2.6
 TECLA_DIR=libtecla
 BUDDY_DIR=buddy-2.4
 GMP_DIR=gmp-5.0.2
-CVC3_DIR=cvc3-2011-05-13
+CVC3_DIR=
 SMTA_DIR=smta-0.1
 MAUDE_DIR=Maude-2.6
-PREFIX=local
+PREFIX=
+MAUDE_BIN=
 
 
 all: build
+
+install: build
+	cp $(MAUDE_DIR)/src/Main/maude $(MAUDE_BIN)
 
 build:
 	# libsigsegv
