@@ -1,0 +1,34 @@
+#!/bin/bash
+DOWNLOAD_DIR=.downloads
+SIGSEGV_TAR=libsigsegv-2.6.tar.gz
+TECLA_TAR=libtecla-1.6.1.tar.gz
+BUDDY_TAR=buddy-2.4.tar.gz
+GMP_TAR=gmp-5.0.2.tar.gz
+CVC3_TAR=cvc3-latest.tar.gz
+
+# fetch the archives
+rm -rf ${DOWNLOAD_DIR}
+mkdir ${DOWNLOAD_DIR}
+cd ${DOWNLOAD_DIR}
+
+BUDDY_MIRROR="http://downloads.sourceforge.net/project/buddy/buddy/BuDDy%202.4/buddy-2.4.tar.gz?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fbuddy%2F&ts=1305827031&use_mirror=voxel"
+
+WGET=wget
+${WGET} http://ftp.gnu.org/gnu/libsigsegv/${SIGSEGV_TAR}
+${WGET} http://www.astro.caltech.edu/~mcs/tecla/${TECLA_TAR}
+${WGET} -O ${BUDDY_TAR} ${BUDDY_MIRROR}
+${WGET} ftp://ftp.gnu.org/gnu/gmp/${GMP_TAR}
+${WGET} -O ${CVC3_TAR} http://goedel.cims.nyu.edu/cvc3-builds/latest.tar.gz
+
+cd -
+
+# unpack the achives
+TAR="tar --recursive-unlink --extract --gunzip --verbose"
+${TAR} --file=${DOWNLOAD_DIR}/${SIGSEGV_TAR}
+${TAR} --file=${DOWNLOAD_DIR}/${TECLA_TAR}
+${TAR} --file=${DOWNLOAD_DIR}/${BUDDY_TAR}
+${TAR} --file=${DOWNLOAD_DIR}/${GMP_TAR}
+${TAR} --file=${DOWNLOAD_DIR}/${CVC3_TAR}
+
+rm -rf ${DOWNLOAD_DIR}
+
