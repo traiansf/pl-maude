@@ -1,9 +1,8 @@
 SMTA=smta
 PREFIX=../local
-CXXFLAGS=-O2 -Wall -m32 -mtune=i386 -march=i386
 CPPFLAGS=-I$(PREFIX)/include -I$(PREFIX)/include/cvc3
-LDFLAGS=-L$(PREFIX)/lib -L.
-LIBS=-l$(SMTA) -lcvc3 -lgmp
+LDFLAGS=-static -L$(PREFIX)/lib -L.
+LIBS=-lcvc3 -lgmp
 
 
 all: libraries
@@ -24,8 +23,8 @@ $(SMTA).o: $(SMTA).cpp $(SMTA).h
 check: test
 	./test
 
-test: test.cpp 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o $@ $< $(LIBS) 
+test: test.cpp libraries
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o $@ $< lib$(SMTA).a $(LIBS) 
 
 
 clean:

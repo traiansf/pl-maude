@@ -1,12 +1,12 @@
 #!/bin/bash
-./configure \
-    PREFIX=$(pwd)/local \
-    MAUDE_BIN=maude.linux \
-    BUILD=i386-apple-darwin \
-    CC=gcc \
-    CXX=g++ \
-    CFLAGS="-O2 -m32 -mtune=i386 -march=i386" \
-    CXXFLAGS="${CFLAGS}" \
-    CPPFLAGS="-I${PREFIX}/include -I${PREFIX}/include/cvc3" \
-    LDFLAGS="-L${PREFIX}/lib"
+PREFIX=$(pwd)/local \
+MAUDE_BIN=maude.linux \
+BUILD=i686-pc-linux-gnu \
+CC=gcc \
+CXX=g++ \
+CFLAGS="-O2 -m32 -mtune=i686 -march=i686" \
+CXXFLAGS="${CFLAGS}" \
+CPPFLAGS="-I${PREFIX}/include -I${PREFIX}/include/cvc3" \
+LDFLAGS="-L${PREFIX}/lib" \
+./configure 
 
