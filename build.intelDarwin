@@ -1,0 +1,13 @@
+#!/bin/bash
+PREFIX=$(pwd)/local
+PREFIX=${PREFIX} \
+BUILD=x86_64-apple-darwin \
+CC=gcc-4.2 \
+CXX=g++-4.2 \
+#CFLAGS="-O2 -m64 -mtune=core2 -march=core2 --sysroot=/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -no_compact_linkedit"
+CFLAGS="-O2 -m64 -mtune=core2 -march=core2 -mmacosx-version-min=10.4"
+CXXFLAGS="${CFLAGS}" \
+CPPFLAGS="-I${PREFIX}/include -I${PREFIX}/include/cvc3" \
+LDFLAGS="-L${PREFIX}/lib" \
+./build
+
