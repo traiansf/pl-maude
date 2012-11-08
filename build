@@ -1,4 +1,8 @@
 #!/bin/bash
+PL_PREFIX=$(pwd)/local
+PL_CPPFLAGS="$PL_PREFIX -I$PL_PREFIX/include -I$PL_PREFIX/include/cvc3"
+PL_LDFLAGS="$PL_LDFLAGS -L$PL_PREFIX/lib"
+
 SIGSEGV_DIR=libsigsegv
 TECLA_DIR=libtecla
 BUDDY_DIR=buddy-2.4
@@ -10,47 +14,60 @@ MAUDE_DIR=Maude-2.6
 
 JOBS="-j 9"
 
-# download all sources
-if [ -n ${D_DOWNLOAD} ] ; then
 
-rm -rf ${PL_PREFIX}
-mkdir ${PL_PREFIX}
-cd ${PL_PREFIX}
+download=false
+while :; do
+  case "$1" in
+    --download) download=true; shift;;
+    *) break ;;
+  esac
+done
+
+
+# download all sources
+if [ $download ] ; then
+
+set -x
+rm -rf $PL_PREFIX
+mkdir $PL_PREFIX
+cd $PL_PREFIX
 
 WGET=wget
 HG="hg clone"
 GIT="git clone"
-TAR="tar --recursive-unlink --extract --gunzip --verbose"
-#TAR="tar xvfz"
+#TAR="tar --recursive-unlink --extract --gunzip --verbose"
+TAR="tar xvfz"
 
 TECLA_TAR=libtecla.tar.gz
 BUDDY_TAR=buddy-2.4.tar.gz
 CVC3_TAR=cvc3-latest.tar.gz
 
+BUDDY_MIRROR="http://downloads.sourceforge.net/project/buddy/buddy/BuDDy%202.4/buddy-2.4.tar.gz?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fbuddy%2F&ts=1305827031&use_mirror=voxel"
+
 # libsigsegv
-${GIT} git://git.savannah.gnu.org/libsigsegv.git ${SIGSEGV_DIR}
+$GIT git://git.savannah.gnu.org/libsigsegv.git $SIGSEGV_DIR
 
 # libtecla
-${WGET} http://www.astro.caltech.edu/~mcs/tecla/${TECLA_TAR}
-${TAR} ${TECLA_TAR}
-rm ${TECLA_TAR}
+$WGET http://www.astro.caltech.edu/~mcs/tecla/$TECLA_TAR
+$TAR $TECLA_TAR
+rm $TECLA_TAR
 
 # buddy
-${WGET} -O ${BUDDY_TAR} ${BUDDY_MIRROR}
-${TAR} ${BUDDY_TAR}
-rm ${BUDDY_TAR}
+$WGET -O $BUDDY_TAR $BUDDY_MIRROR
+$TAR $BUDDY_TAR
+rm $BUDDY_TAR
 
 # gmp
-${HG} http://gmplib.org:8000/gmp-5.0 ${GMP_DIR}
+$HG http://gmplib.org:8000/gmp-5.0 $GMP_DIR
 
 # cvc3
-${WGET} -O ${CVC3_TAR} http://goedel.cims.nyu.edu/cvc3-builds/latest.tar.gz
-${TAR} ${CVC3_TAR}
-mv $(basename cvc3-*) ${CVC3_DIR}
-rm ${CVC3_TAR}
+$WGET -O $CVC3_TAR http://goedel.cims.nyu.edu/cvc3-builds/latest.tar.gz
+$TAR $CVC3_TAR
+mv $(basename cvc3-*) $CVC3_DIR
+rm $CVC3_TAR
 
 # z3
-${GIT} clone https://git01.codeplex.com/z3 ${Z3_DIR}
+$GIT https://git01.codeplex.com/z3 $Z3_DIR
 
 cd -
 
@@ -59,10 +76,19 @@ fi
 
 # run configure for all sources
 # libsigsegv
-cd ${SIGSEGV_DIR}
-./configure --prefix=${PL_PREFIX} \
-    CC=${PL_CC} CXX=${PL_CXX} \
-    CFLAGS="${PL_CFLAGS}" CXXFLAGS="${PL_CXXFLAGS}"
+cd $PL_PREFIX/$SIGSEGV_DIR
+# generate aclocal.m4
+aclocal -I m4
+# generate configure
+autoconf
+# generate config.h.in
+autoheader && touch config.h.in
+# generate Makefile.in, src/Makefile.in, tests/Makefile.in, and some build-aux/*
+# files
+automake --add-missing --copy
+./configure --prefix=$PL_PREFIX \
+    CC=$PL_CC CXX=$PL_CXX \
+    CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS"
 exit_code=$?
 cd -
 if [ $exit_code -ne 0 ] ; then
@@ -70,11 +96,11 @@ if [ $exit_code -ne 0 ] ; then
 fi
 
 # libtecla
-cd ${TECLA_DIR}
-./configure --prefix=${PL_PREFIX} --build=${PL_BUILD} \
+cd $PL_PREFIX/$TECLA_DIR
+./configure --prefix=$PL_PREFIX --build=$PL_BUILD \
     --with-man-pages=no \
-    CC=${PL_CC} CXX=${PL_CXX} \
-    CFLAGS="${PL_CFLAGS} -D_POSIX_C_SOURCE=1" CXXFLAGS="${PL_CXXFLAGS}"
+    CC=$PL_CC CXX=$PL_CXX \
+    CFLAGS="$PL_CFLAGS -D_POSIX_C_SOURCE=1" CXXFLAGS="$PL_CXXFLAGS"
 exit_code=$?
 cd -
 if [ $exit_code -ne 0 ] ; then
@@ -82,11 +108,11 @@ if [ $exit_code -ne 0 ] ; then
 fi
 
 # buddy
-cd ${BUDDY_DIR}
-./configure --prefix=${PL_PREFIX} --build=${PL_BUILD} \
+cd $PL_PREFIX/$BUDDY_DIR
+./configure --prefix=$PL_PREFIX --build=$PL_BUILD \
     --disable-shared \
-    CC=${PL_CC} CXX=${PL_CXX} \
-    CFLAGS="${PL_CFLAGS}" CXXFLAGS="${PL_CXXFLAGS}"
+    CC=$PL_CC CXX=$PL_CXX \
+    CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS"
 exit_code=$?
 cd -
 if [ $exit_code -ne 0 ] ; then
@@ -94,11 +120,12 @@ if [ $exit_code -ne 0 ] ; then
 fi
 
 # gmp
-cd ${GMP_DIR}
-./configure --prefix=${PL_PREFIX} --build=${PL_BUILD} \
+cd $PL_PREFIX/$GMP_DIR
+./.bootstrap
+./configure --prefix=$PL_PREFIX --build=$PL_BUILD \
     --enable-cxx --disable-shared \
-    CC=${PL_CC} CXX=${PL_CXX} \
-    CFLAGS="${PL_CFLAGS}" CXXFLAGS="${PL_CXXFLAGS}"
+    CC=$PL_CC CXX=$PL_CXX \
+    CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS"
 exit_code=$?
 cd -
 if [ $exit_code -ne 0 ] ; then
@@ -106,11 +133,11 @@ if [ $exit_code -ne 0 ] ; then
 fi
 
 # cvc3
-cd ${CVC3_DIR}
-./configure --prefix=${PL_PREFIX} --build=${PL_BUILD} \
-    CC=${PL_CC} CXX=${PL_CXX} \
-    CFLAGS="${PL_CFLAGS}" CXXFLAGS="${PL_CXXFLAGS}" CPPFLAGS="${PL_CPPFLAGS}" \
-    LDFLAGS="${PL_LDFLAGS}" LIBS="-lgmp"
+cd $PL_PREFIX/$CVC3_DIR
+./configure --prefix=$PL_PREFIX --build=$PL_BUILD \
+    CC=$PL_CC CXX=$PL_CXX \
+    CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS" CPPFLAGS="$PL_CPPFLAGS" \
+    LDFLAGS="$PL_LDFLAGS" LIBS="-lgmp"
 exit_code=$?
 cd -
 if [ $exit_code -ne 0 ] ; then
@@ -119,21 +146,17 @@ fi
 
 # maude
 cd ${MAUDE_DIR}
-./configure --prefix=${PL_PREFIX} --build=${PL_BUILD} \
-    CC=${PL_CC} CXX=${PL_CXX} \
-    CFLAGS="${PL_CFLAGS}" CXXFLAGS="${PL_CXXFLAGS}" CPPFLAGS="${PL_CPPFLAGS}" \
-    LDFLAGS="${PL_LDFLAGS}" LIBS="-lsmta -lcvc3 -lgmp"
+./configure --prefix=$PL_PREFIX --build=$PL_BUILD \
+    CC=$PL_CC CXX=$PL_CXX \
+    CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS" CPPFLAGS="$PL_CPPFLAGS" \
+    LDFLAGS="$PL_LDFLAGS" LIBS="-lsmta -lcvc3 -lgmp"
 exit_code=$?
 cd -
 if [ $exit_code -ne 0 ] ; then
   exit $exit_code
 fi
 
-
-
-
 exit 0
-
 
 make -C ${SIGSEGV_DIR} ${JOBS} install
 exit_code=$?

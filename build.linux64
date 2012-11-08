@@ -1,50 +1,9 @@
 #!/bin/bash
-PL_PREFIX=$(pwd)/local
-
-PL_PREFIX=${PL_PREFIX} \
 PL_BUILD=x86_64-pc-linux-gnu \
 PL_CC=gcc \
 PL_CXX=g++ \
 PL_CFLAGS="-O2 -m64 -mtune=k8 -march=k8" \
-PL_CXXFLAGS="${PL_CFLAGS}" \
-PL_CPPFLAGS="-I${PL_PREFIX}/include -I${PL_PREFIX}/include/cvc3" \
-PL_LDFLAGS="-static -L${PL_PREFIX}/lib" \
-./build
-
-exit 0
-
-TARGET=i486-linux-gnu
-COLLECT2_PATH=/usr/lib/gcc/${TARGET}/4.4.5
-COLLECT2_FLAGS="--eh-frame-hdr -m elf_i386 -dynamic-linker /lib/ld-linux.so.2"
-LIB_PATH="-L${PREFIX}/lib -L${COLLECT2_PATH} -L${COLLECT2_PATH}/../../../../lib -L/lib -L/usr/lib -L${COLLECT2_PATH}/../../.. -L/usr/lib/${TARGET}"
-LIBS="-lsmta -lcvc3 -lgmpxx -lgmp -lbdd -ltecla -lcurses -lsigsegv"
-
-MAUDE_MAIN_OBJ=maude-main.o
-MAUDE_LIBS="../Mixfix/libmixfix.a
-           ../StrategyLanguage/libstrategyLanguage.a
-           ../Meta/libmeta.a
-           ../ObjectSystem/libobjectSystem.a
-           ../BuiltIn/libbuiltIn.a
-           ../Higher/libhigher.a
-           ../FreeTheory/libfreeTheory.a
-           ../AU_Theory/libAU_Theory.a
-           ../AU_Persistent/libAU_Persistent.a
-           ../ACU_Theory/libACU_Theory.a
-           ../ACU_Persistent/libACU_Persistent.a
-           ../CUI_Theory/libCUI_Theory.a
-           ../S_Theory/libS_Theory.a
-           ../NA_Theory/libNA_Theory.a
-           ../Variable/libvariable.a
-           ../Interface/libinterface.a
-           ../Core/libcore.a
-           ../MSCP10/libmscp10.a
-           ../Temporal/libtemporal.a
-           ../IO_Stuff/libIO_Stuff.a
-           ../Utility/libutility.a"
-MALLOC_LIB=../3rdParty/libdlmalloc.a
-
-set -x
-cd Maude-2.6/src/Main/
-${COLLECT2_PATH}/collect2 ${COLLECT2_FLAGS} -o maude ${COLLECT2_PATH}/../../../../lib/crt1.o ${COLLECT2_PATH}/../../../../lib/crti.o ${COLLECT2_PATH}/crtbegin.o ${LIB_PATH} ${MAUDE_MAIN_OBJ} ${MAUDE_LIBS} ${LIBS} ${MALLOC_LIB} -lnsl -Bstatic -lstdc++ -Bdynamic -lm -lc -lgcc_s -lgcc ${COLLECT2_PATH}/crtend.o ${COLLECT2_PATH}/../../../../lib/crtn.o
-cd -
+PL_CXXFLAGS="$PL_CFLAGS" \
+PL_LDFLAGS="-static" \
+./build $*
 
