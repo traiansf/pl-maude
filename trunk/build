@@ -1,7 +1,9 @@
 #!/bin/bash
 PL_PREFIX=$(pwd)/local
-PL_CPPFLAGS="$PL_CPPFLAGS -I$PL_PREFIX/include -I$PL_PREFIX/include/cvc3"
-PL_LDFLAGS="$PL_LDFLAGS -L$PL_PREFIX/lib"
+PL_CPPFLAGS="$PL_CPPFLAGS -I$PL_PREFIX/include \
+  -I$PL_PREFIX/include/cvc3 \
+  -I$PL_PREFIX/z3/lib -I$PL_PREFIX/z3/c++"
+PL_LDFLAGS="$PL_LDFLAGS -L$PL_PREFIX/lib -L$PL_PREFIX/z3/bin/external"
 
 SIGSEGV_DIR=libsigsegv
 TECLA_DIR=libtecla
@@ -178,10 +180,10 @@ exit_code=$?
 if [ $exit_code -ne 0 ] ; then
   exit $exit_code
 fi
-Z3_HEADER_FILES="z3.h z3_api.h z3_macros.h"
+#Z3_HEADER_FILES="z3.h z3_api.h z3_macros.h"
 #cd $PL_PREFIX/$Z3_DIR
-cp $PL_PREFIX/$Z3_DIR/lib/z3_api.h $PL_PREFIX/include
-cp $PL_PREFIX/$Z3_DIR/bin/libz3.a $PL_PREFIX/lib
+#cp $PL_PREFIX/$Z3_DIR/lib/z3_api.h $PL_PREFIX/include
+#cp $PL_PREFIX/$Z3_DIR/bin/libz3.a $PL_PREFIX/lib
 #cd -
 
 
@@ -194,7 +196,7 @@ fi
 
 
 # maude
-cd $PL_PREFIX/$MAUDE_DIR
+cd $MAUDE_DIR
 ./configure --prefix=$PL_PREFIX --build=$PL_BUILD \
     CC=$PL_CC CXX=$PL_CXX \
     CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS" CPPFLAGS="$PL_CPPFLAGS" \
@@ -204,7 +206,7 @@ cd -
 if [ $exit_code -ne 0 ] ; then
   exit $exit_code
 fi
-make -C $PL_PREFIX/$MAUDE_DIR
+make -C $MAUDE_DIR
 exit_code=$?
 if [ $exit_code -ne 0 ] ; then
   exit $exit_code
