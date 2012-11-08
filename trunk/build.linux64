@@ -1,13 +1,14 @@
 #!/bin/bash
-PREFIX=$(pwd)/local
-PREFIX=${PREFIX} \
-BUILD=x86_64-pc-linux-gnu \
-CC=gcc \
-CXX=g++ \
-CFLAGS="-O2 -m64 -mtune=k8 -march=k8" \
-CXXFLAGS="${CFLAGS}" \
-CPPFLAGS="-I${PREFIX}/include -I${PREFIX}/include/cvc3" \
-LDFLAGS="-static -L${PREFIX}/lib" \
+PL_PREFIX=$(pwd)/local
+
+PL_PREFIX=${PL_PREFIX} \
+PL_BUILD=x86_64-pc-linux-gnu \
+PL_CC=gcc \
+PL_CXX=g++ \
+PL_CFLAGS="-O2 -m64 -mtune=k8 -march=k8" \
+PL_CXXFLAGS="${PL_CFLAGS}" \
+PL_CPPFLAGS="-I${PL_PREFIX}/include -I${PL_PREFIX}/include/cvc3" \
+PL_LDFLAGS="-static -L${PL_PREFIX}/lib" \
 ./build
 
 exit 0
