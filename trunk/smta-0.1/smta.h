@@ -9,10 +9,9 @@
 #include<vc.h>
 #include<command_line_flags.h>
 
-//#include<z3.h>
+#include<z3++.h>
 
-#define SMTA_TIMEOUT 50
-
+#define SMTA_TIMEOUT 5000 // in milliseconds
 
 using namespace __gnu_cxx;
 
@@ -25,3 +24,4 @@ class SMTLibAdaptor {
 };
 
 #endif
+

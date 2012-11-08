@@ -1,6 +1,6 @@
 #!/bin/bash
 PL_PREFIX=$(pwd)/local
-PL_CPPFLAGS="$PL_PREFIX -I$PL_PREFIX/include -I$PL_PREFIX/include/cvc3"
+PL_CPPFLAGS="$PL_CPPFLAGS -I$PL_PREFIX/include -I$PL_PREFIX/include/cvc3"
 PL_LDFLAGS="$PL_LDFLAGS -L$PL_PREFIX/lib"
 
 SIGSEGV_DIR=libsigsegv
@@ -23,9 +23,8 @@ while :; do
   esac
 done
 
-
 # download all sources
-if [ $download ] ; then
+if [ $download = true ] ; then
 
 set -x
 rm -rf $PL_PREFIX
@@ -74,23 +73,20 @@ cd -
 fi
 
 
-# run configure for all sources
 # libsigsegv
 cd $PL_PREFIX/$SIGSEGV_DIR
-# generate aclocal.m4
-aclocal -I m4
-# generate configure
-autoconf
-# generate config.h.in
-autoheader && touch config.h.in
-# generate Makefile.in, src/Makefile.in, tests/Makefile.in, and some build-aux/*
-# files
+aclocal -I m4 && autoconf && autoheader && touch config.h.in
 automake --add-missing --copy
 ./configure --prefix=$PL_PREFIX \
     CC=$PL_CC CXX=$PL_CXX \
     CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS"
 exit_code=$?
 cd -
+if [ $exit_code -ne 0 ] ; then
+  exit $exit_code
+fi
+make -C $PL_PREFIX/$SIGSEGV_DIR $JOBS install
+exit_code=$?
 if [ $exit_code -ne 0 ] ; then
   exit $exit_code
 fi
@@ -106,6 +102,11 @@ cd -
 if [ $exit_code -ne 0 ] ; then
   exit $exit_code
 fi
+make -C $PL_PREFIX/$TECLA_DIR TARGETS=normal TARGET_LIBS=static install
+exit_code=$?
+if [ $exit_code -ne 0 ] ; then
+  exit $exit_code
+fi
 
 # buddy
 cd $PL_PREFIX/$BUDDY_DIR
@@ -118,6 +119,12 @@ cd -
 if [ $exit_code -ne 0 ] ; then
   exit $exit_code
 fi
+make -C $PL_PREFIX/$BUDDY_DIR $JOBS install
+exit_code=$?
+if [ $exit_code -ne 0 ] ; then
+  exit $exit_code
+fi
+
 
 # gmp
 cd $PL_PREFIX/$GMP_DIR
@@ -131,6 +138,12 @@ cd -
 if [ $exit_code -ne 0 ] ; then
   exit $exit_code
 fi
+make -C $PL_PREFIX/$GMP_DIR $JOBS install
+exit_code=$?
+if [ $exit_code -ne 0 ] ; then
+  exit $exit_code
+fi
+
 
 # cvc3
 cd $PL_PREFIX/$CVC3_DIR
@@ -143,63 +156,55 @@ cd -
 if [ $exit_code -ne 0 ] ; then
   exit $exit_code
 fi
+make -C $PL_PREFIX/$CVC3_DIR $JOBS install
+exit_code=$?
+if [ $exit_code -ne 0 ] ; then
+  exit $exit_code
+fi
 
-# maude
-cd ${MAUDE_DIR}
+# z3
+cd $PL_PREFIX/$Z3_DIR
+autoconf
 ./configure --prefix=$PL_PREFIX --build=$PL_BUILD \
     CC=$PL_CC CXX=$PL_CXX \
-    CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS" CPPFLAGS="$PL_CPPFLAGS" \
-    LDFLAGS="$PL_LDFLAGS" LIBS="-lsmta -lcvc3 -lgmp"
+    CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS" \
 exit_code=$?
 cd -
 if [ $exit_code -ne 0 ] ; then
   exit $exit_code
 fi
-
-exit 0
-
-make -C ${SIGSEGV_DIR} ${JOBS} install
+make -C $PL_PREFIX/$Z3_DIR $JOBS a
 exit_code=$?
 if [ $exit_code -ne 0 ] ; then
   exit $exit_code
 fi
+Z3_HEADER_FILES="z3.h z3_api.h z3_macros.h"
+#cd $PL_PREFIX/$Z3_DIR
+cp $PL_PREFIX/$Z3_DIR/lib/z3_api.h $PL_PREFIX/include
+cp $PL_PREFIX/$Z3_DIR/bin/libz3.a $PL_PREFIX/lib
+#cd -
 
-
-make -C ${TECLA_DIR} TARGETS=normal TARGET_LIBS=static install
-exit_code=$?
-if [ $exit_code -ne 0 ] ; then
-  exit $exit_code
-fi
-
-
-make -C ${BUDDY_DIR} ${JOBS} install
-exit_code=$?
-if [ $exit_code -ne 0 ] ; then
-  exit $exit_code
-fi
-
-
-make -C ${GMP_DIR} ${JOBS} install
-exit_code=$?
-if [ $exit_code -ne 0 ] ; then
-  exit $exit_code
-fi
-
-
-make -C ${CVC3_DIR} ${JOBS} install
-exit_code=$?
-if [ $exit_code -ne 0 ] ; then
-  exit $exit_code
-fi
 
 # smta
-make -C ${SMTA_DIR} CXXFLAGS="-O3 -Wall ${PL_CXXFLAGS}" ${JOBS} install
+make -C $SMTA_DIR CXXFLAGS="-Wall $PL_CXXFLAGS" install
 exit_code=$?
 if [ $exit_code -ne 0 ] ; then
   exit $exit_code
 fi
 
-make -C ${MAUDE_DIR}
+
+# maude
+cd $PL_PREFIX/$MAUDE_DIR
+./configure --prefix=$PL_PREFIX --build=$PL_BUILD \
+    CC=$PL_CC CXX=$PL_CXX \
+    CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS" CPPFLAGS="$PL_CPPFLAGS" \
+    LDFLAGS="$PL_LDFLAGS" LIBS="-lsmta -lz3 -lcvc3 -lgmp"
+exit_code=$?
+cd -
+if [ $exit_code -ne 0 ] ; then
+  exit $exit_code
+fi
+make -C $PL_PREFIX/$MAUDE_DIR
 exit_code=$?
 if [ $exit_code -ne 0 ] ; then
   exit $exit_code
