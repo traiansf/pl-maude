@@ -1,8 +1,10 @@
 SMTA=smta
 PREFIX=../local
-CPPFLAGS=-I$(PREFIX)/include -I$(PREFIX)/include/cvc3
-LDFLAGS=-static -L$(PREFIX)/lib -L.
-LIBS=-lcvc3 -lgmp
+CPPFLAGS=-I$(PREFIX)/include \
+  -I$(PREFIX)/include/cvc3 \
+  -I$(PREFIX)/z3/lib -I$(PREFIX)/z3/c++
+LDFLAGS=-static -L. -L$(PREFIX)/lib -L$(PREFIX)/z3/bin/external
+LIBS=-lz3 -lcvc3 -lgmp
 
 
 all: libraries
@@ -24,7 +26,7 @@ check: test
 	./test
 
 test: test.cpp libraries
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o $@ $< lib$(SMTA).a $(LIBS) 
+	$(CXX) -fopenmp $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o $@ $< lib$(SMTA).a $(LIBS) 
 
 
 clean:
