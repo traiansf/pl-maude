@@ -59,6 +59,9 @@
 #include "stringOpSymbol.hh"
 #include "bindingMacros.hh"
 
+//	SMT support
+#include "smt.h"
+
 StringOpSymbol::StringOpSymbol(int id, int arity)
   : FreeSymbol(id, arity)
 {
@@ -146,6 +149,7 @@ StringOpSymbol::getDataAttachments(const Vector<Sort*>& opDeclaration,
     CODE_CASE(d, 's', 't', "string")
     CODE_CASE(d, 'd', 'e', "decFloat")
     CODE_CASE(d, 'c', 'h', "char")
+    CODE_CASE(d, 's', 'm', "smt")
     default:
       CantHappen("bad string op");
     }
@@ -260,6 +264,11 @@ StringOpSymbol::eqRewrite(DagNode* subject, RewritingContext& context)
 		  r = static_cast<unsigned char>(left[0]);
 		  break;
 		}
+	      case CODE('s', 'm'):  // smt 
+ 		{
+ 		  crope result = SMTLibAdaptor::query(left);
+ 		  return rewriteToString(subject, context, result);
+ 		}
 	      default:
 		CantHappen("bad string op");
 	      }
