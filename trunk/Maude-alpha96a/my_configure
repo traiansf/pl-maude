@@ -1,0 +1,5 @@
+./configure \
+CPPFLAGS="-I/home/andrei/pl-maude/local/include" \
+LDFLAGS="-static -L/home/andrei/pl-maude/local/lib" \
+#GMP_LIBS="/home/me/lib/libgmpxx.ap libgmp.a"
+
