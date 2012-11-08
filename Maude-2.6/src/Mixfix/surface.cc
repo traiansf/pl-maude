@@ -1,10 +1,8 @@
+/* A Bison parser, made by GNU Bison 2.5.  */
 
-/* A Bison parser, made by GNU Bison 2.4.1.  */
-
-/* Skeleton implementation for Bison's Yacc-like parsers in C
+/* Bison implementation for Yacc-like parsers in C
    
-      Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
-   Free Software Foundation, Inc.
+      Copyright (C) 1984, 1989-1990, 2000-2011 Free Software Foundation, Inc.
    
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -46,7 +44,7 @@
 #define YYBISON 1
 
 /* Bison version.  */
-#define YYBISON_VERSION "2.4.1"
+#define YYBISON_VERSION "2.5"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -67,7 +65,7 @@
 
 /* Copy the first part of user declarations.  */
 
-/* Line 189 of yacc.c  */
+/* Line 268 of yacc.c  */
 #line 27 "surface.yy"
 
 #include <string>
@@ -143,8 +141,8 @@ void cleanUpParser();
 void missingSpace(const Token& token);
 
 
-/* Line 189 of yacc.c  */
-#line 148 "surface.c"
+/* Line 268 of yacc.c  */
+#line 146 "surface.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -331,7 +329,7 @@ void missingSpace(const Token& token);
 typedef union YYSTYPE
 {
 
-/* Line 214 of yacc.c  */
+/* Line 293 of yacc.c  */
 #line 103 "surface.yy"
 
   bool yyBool;
@@ -345,8 +343,8 @@ typedef union YYSTYPE
 
 
 
-/* Line 214 of yacc.c  */
-#line 350 "surface.c"
+/* Line 293 of yacc.c  */
+#line 348 "surface.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -356,14 +354,14 @@ typedef union YYSTYPE
 
 /* Copy the second part of user declarations.  */
 
-/* Line 264 of yacc.c  */
+/* Line 343 of yacc.c  */
 #line 114 "surface.yy"
 
 int yylex(YYSTYPE* lvalp);
 
 
-/* Line 264 of yacc.c  */
-#line 367 "surface.c"
+/* Line 343 of yacc.c  */
+#line 365 "surface.c"
 
 #ifdef short
 # undef short
@@ -413,7 +411,7 @@ typedef short int yytype_int16;
 #define YYSIZE_MAXIMUM ((YYSIZE_T) -1)
 
 #ifndef YY_
-# if YYENABLE_NLS
+# if defined YYENABLE_NLS && YYENABLE_NLS
 #  if ENABLE_NLS
 #   include <libintl.h> /* INFRINGES ON USER NAME SPACE */
 #   define YY_(msgid) dgettext ("bison-runtime", msgid)
@@ -466,11 +464,11 @@ YYID (yyi)
 #    define alloca _alloca
 #   else
 #    define YYSTACK_ALLOC alloca
-#    if ! defined _ALLOCA_H && ! defined _STDLIB_H && (defined __STDC__ || defined __C99__FUNC__ \
+#    if ! defined _ALLOCA_H && ! defined EXIT_SUCCESS && (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 #     include <stdlib.h> /* INFRINGES ON USER NAME SPACE */
-#     ifndef _STDLIB_H
-#      define _STDLIB_H 1
+#     ifndef EXIT_SUCCESS
+#      define EXIT_SUCCESS 0
 #     endif
 #    endif
 #   endif
@@ -493,24 +491,24 @@ YYID (yyi)
 #  ifndef YYSTACK_ALLOC_MAXIMUM
 #   define YYSTACK_ALLOC_MAXIMUM YYSIZE_MAXIMUM
 #  endif
-#  if (defined __cplusplus && ! defined _STDLIB_H \
+#  if (defined __cplusplus && ! defined EXIT_SUCCESS \
        && ! ((defined YYMALLOC || defined malloc) \
 	     && (defined YYFREE || defined free)))
 #   include <stdlib.h> /* INFRINGES ON USER NAME SPACE */
-#   ifndef _STDLIB_H
-#    define _STDLIB_H 1
+#   ifndef EXIT_SUCCESS
+#    define EXIT_SUCCESS 0
 #   endif
 #  endif
 #  ifndef YYMALLOC
 #   define YYMALLOC malloc
-#   if ! defined malloc && ! defined _STDLIB_H && (defined __STDC__ || defined __C99__FUNC__ \
+#   if ! defined malloc && ! defined EXIT_SUCCESS && (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 void *malloc (YYSIZE_T); /* INFRINGES ON USER NAME SPACE */
 #   endif
 #  endif
 #  ifndef YYFREE
 #   define YYFREE free
-#   if ! defined free && ! defined _STDLIB_H && (defined __STDC__ || defined __C99__FUNC__ \
+#   if ! defined free && ! defined EXIT_SUCCESS && (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 void free (void *); /* INFRINGES ON USER NAME SPACE */
 #   endif
@@ -539,23 +537,7 @@ union yyalloc
      ((N) * (sizeof (yytype_int16) + sizeof (YYSTYPE)) \
       + YYSTACK_GAP_MAXIMUM)
 
-/* Copy COUNT objects from FROM to TO.  The source and destination do
-   not overlap.  */
-# ifndef YYCOPY
-#  if defined __GNUC__ && 1 < __GNUC__
-#   define YYCOPY(To, From, Count) \
-      __builtin_memcpy (To, From, (Count) * sizeof (*(From)))
-#  else
-#   define YYCOPY(To, From, Count)		\
-      do					\
-	{					\
-	  YYSIZE_T yyi;				\
-	  for (yyi = 0; yyi < (Count); yyi++)	\
-	    (To)[yyi] = (From)[yyi];		\
-	}					\
-      while (YYID (0))
-#  endif
-# endif
+# define YYCOPY_NEEDED 1
 
 /* Relocate STACK from its old location to the new one.  The
    local variables YYSIZE and YYSTACKSIZE give the old and new number of
@@ -574,6 +556,26 @@ union yyalloc
     while (YYID (0))
 
 #endif
+
+#if defined YYCOPY_NEEDED && YYCOPY_NEEDED
+/* Copy COUNT objects from FROM to TO.  The source and destination do
+   not overlap.  */
+# ifndef YYCOPY
+#  if defined __GNUC__ && 1 < __GNUC__
+#   define YYCOPY(To, From, Count) \
+      __builtin_memcpy (To, From, (Count) * sizeof (*(From)))
+#  else
+#   define YYCOPY(To, From, Count)		\
+      do					\
+	{					\
+	  YYSIZE_T yyi;				\
+	  for (yyi = 0; yyi < (Count); yyi++)	\
+	    (To)[yyi] = (From)[yyi];		\
+	}					\
+      while (YYID (0))
+#  endif
+# endif
+#endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  111
@@ -1176,8 +1178,8 @@ static const yytype_uint8 yyr2[] =
        1,     1,     1,     1,     1,     1,     1,     1,     1,     1
 };
 
-/* YYDEFACT[STATE-NAME] -- Default rule to reduce with in state
-   STATE-NUM when YYTABLE doesn't specify something else to do.  Zero
+/* YYDEFACT[STATE-NAME] -- Default reduction number in state STATE-NUM.
+   Performed when YYTABLE doesn't specify something else to do.  Zero
    means the default is an error.  */
 static const yytype_uint16 yydefact[] =
 {
@@ -1436,8 +1438,7 @@ static const yytype_int16 yypgoto[] =
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
    positive, shift that token.  If negative, reduce the rule which
-   number is the opposite.  If zero, do what YYDEFACT says.
-   If YYTABLE_NINF, syntax error.  */
+   number is the opposite.  If YYTABLE_NINF, syntax error.  */
 #define YYTABLE_NINF -486
 static const yytype_int16 yytable[] =
 {
@@ -1674,6 +1675,12 @@ static const yytype_int16 yytable[] =
        0,     0,     0,     0,   480,   481,   482,   282,     0,     0,
        0,     0,     0,   343,   344,   345,   363
 };
+
+#define yypact_value_is_default(yystate) \
+  ((yystate) == (-725))
+
+#define yytable_value_is_error(yytable_value) \
+  YYID (0)
 
 static const yytype_int16 yycheck[] =
 {
@@ -2021,9 +2028,18 @@ static const yytype_uint16 yystos[] =
 
 /* Like YYERROR except do call yyerror.  This remains here temporarily
    to ease the transition to the new meaning of YYERROR, for GCC.
-   Once GCC version 2 has supplanted version 1, this can go.  */
+   Once GCC version 2 has supplanted version 1, this can go.  However,
+   YYFAIL appears to be in use.  Nevertheless, it is formally deprecated
+   in Bison 2.4.2's NEWS entry, where a plan to phase it out is
+   discussed.  */
 
 #define YYFAIL		goto yyerrlab
+#if defined YYFAIL
+  /* This is here to suppress warnings from the GCC cpp's
+     -Wunused-macros.  Normally we don't worry about that warning, but
+     some users do, and we want to make it easy for users to remove
+     YYFAIL uses, which will produce warnings from Bison 2.5.  */
+#endif
 
 #define YYRECOVERING()  (!!yyerrstatus)
 
@@ -2033,7 +2049,6 @@ do								\
     {								\
       yychar = (Token);						\
       yylval = (Value);						\
-      yytoken = YYTRANSLATE (yychar);				\
       YYPOPSTACK (1);						\
       goto yybackup;						\
     }								\
@@ -2075,19 +2090,10 @@ while (YYID (0))
 #endif
 
 
-/* YY_LOCATION_PRINT -- Print the location on the stream.
-   This macro was not mandated originally: define only if we know
-   we won't break user code: when these are the locations we know.  */
+/* This macro is provided for backward compatibility. */
 
 #ifndef YY_LOCATION_PRINT
-# if YYLTYPE_IS_TRIVIAL
-#  define YY_LOCATION_PRINT(File, Loc)			\
-     fprintf (File, "%d.%d-%d.%d",			\
-	      (Loc).first_line, (Loc).first_column,	\
-	      (Loc).last_line,  (Loc).last_column)
-# else
-#  define YY_LOCATION_PRINT(File, Loc) ((void) 0)
-# endif
+# define YY_LOCATION_PRINT(File, Loc) ((void) 0)
 #endif
 
 
@@ -2279,7 +2285,6 @@ int yydebug;
 # define YYMAXDEPTH 10000
 #endif
 
-
 
 #if YYERROR_VERBOSE
 
@@ -2382,115 +2387,142 @@ yytnamerr (char *yyres, const char *yystr)
 }
 # endif
 
-/* Copy into YYRESULT an error message about the unexpected token
-   YYCHAR while in state YYSTATE.  Return the number of bytes copied,
-   including the terminating null byte.  If YYRESULT is null, do not
-   copy anything; just return the number of bytes that would be
-   copied.  As a special case, return 0 if an ordinary "syntax error"
-   message will do.  Return YYSIZE_MAXIMUM if overflow occurs during
-   size calculation.  */
-static YYSIZE_T
-yysyntax_error (char *yyresult, int yystate, int yychar)
+/* Copy into *YYMSG, which is of size *YYMSG_ALLOC, an error message
+   about the unexpected token YYTOKEN for the state stack whose top is
+   YYSSP.
+
+   Return 0 if *YYMSG was successfully written.  Return 1 if *YYMSG is
+   not large enough to hold the message.  In that case, also set
+   *YYMSG_ALLOC to the required number of bytes.  Return 2 if the
+   required number of bytes is too large to store.  */
+static int
+yysyntax_error (YYSIZE_T *yymsg_alloc, char **yymsg,
+                yytype_int16 *yyssp, int yytoken)
 {
-  int yyn = yypact[yystate];
+  YYSIZE_T yysize0 = yytnamerr (0, yytname[yytoken]);
+  YYSIZE_T yysize = yysize0;
+  YYSIZE_T yysize1;
+  enum { YYERROR_VERBOSE_ARGS_MAXIMUM = 5 };
+  /* Internationalized format string. */
+  const char *yyformat = 0;
+  /* Arguments of yyformat. */
+  char const *yyarg[YYERROR_VERBOSE_ARGS_MAXIMUM];
+  /* Number of reported tokens (one for the "unexpected", one per
+     "expected"). */
+  int yycount = 0;
 
-  if (! (YYPACT_NINF < yyn && yyn <= YYLAST))
-    return 0;
-  else
+  /* There are many possibilities here to consider:
+     - Assume YYFAIL is not used.  It's too flawed to consider.  See
+       <http://lists.gnu.org/archive/html/bison-patches/2009-12/msg00024.html>
+       for details.  YYERROR is fine as it does not invoke this
+       function.
+     - If this state is a consistent state with a default action, then
+       the only way this function was invoked is if the default action
+       is an error action.  In that case, don't check for expected
+       tokens because there are none.
+     - The only way there can be no lookahead present (in yychar) is if
+       this state is a consistent state with a default action.  Thus,
+       detecting the absence of a lookahead is sufficient to determine
+       that there is no unexpected or expected token to report.  In that
+       case, just report a simple "syntax error".
+     - Don't assume there isn't a lookahead just because this state is a
+       consistent state with a default action.  There might have been a
+       previous inconsistent state, consistent state with a non-default
+       action, or user semantic action that manipulated yychar.
+     - Of course, the expected token list depends on states to have
+       correct lookahead information, and it depends on the parser not
+       to perform extra reductions after fetching a lookahead from the
+       scanner and before detecting a syntax error.  Thus, state merging
+       (from LALR or IELR) and default reductions corrupt the expected
+       token list.  However, the list is correct for canonical LR with
+       one exception: it will still contain any token that will not be
+       accepted due to an error action in a later state.
+  */
+  if (yytoken != YYEMPTY)
     {
-      int yytype = YYTRANSLATE (yychar);
-      YYSIZE_T yysize0 = yytnamerr (0, yytname[yytype]);
-      YYSIZE_T yysize = yysize0;
-      YYSIZE_T yysize1;
-      int yysize_overflow = 0;
-      enum { YYERROR_VERBOSE_ARGS_MAXIMUM = 5 };
-      char const *yyarg[YYERROR_VERBOSE_ARGS_MAXIMUM];
-      int yyx;
+      int yyn = yypact[*yyssp];
+      yyarg[yycount++] = yytname[yytoken];
+      if (!yypact_value_is_default (yyn))
+        {
+          /* Start YYX at -YYN if negative to avoid negative indexes in
+             YYCHECK.  In other words, skip the first -YYN actions for
+             this state because they are default actions.  */
+          int yyxbegin = yyn < 0 ? -yyn : 0;
+          /* Stay within bounds of both yycheck and yytname.  */
+          int yychecklim = YYLAST - yyn + 1;
+          int yyxend = yychecklim < YYNTOKENS ? yychecklim : YYNTOKENS;
+          int yyx;
 
-# if 0
-      /* This is so xgettext sees the translatable formats that are
-	 constructed on the fly.  */
-      YY_("syntax error, unexpected %s");
-      YY_("syntax error, unexpected %s, expecting %s");
-      YY_("syntax error, unexpected %s, expecting %s or %s");
-      YY_("syntax error, unexpected %s, expecting %s or %s or %s");
-      YY_("syntax error, unexpected %s, expecting %s or %s or %s or %s");
-# endif
-      char *yyfmt;
-      char const *yyf;
-      static char const yyunexpected[] = "syntax error, unexpected %s";
-      static char const yyexpecting[] = ", expecting %s";
-      static char const yyor[] = " or %s";
-      char yyformat[sizeof yyunexpected
-		    + sizeof yyexpecting - 1
-		    + ((YYERROR_VERBOSE_ARGS_MAXIMUM - 2)
-		       * (sizeof yyor - 1))];
-      char const *yyprefix = yyexpecting;
-
-      /* Start YYX at -YYN if negative to avoid negative indexes in
-	 YYCHECK.  */
-      int yyxbegin = yyn < 0 ? -yyn : 0;
-
-      /* Stay within bounds of both yycheck and yytname.  */
-      int yychecklim = YYLAST - yyn + 1;
-      int yyxend = yychecklim < YYNTOKENS ? yychecklim : YYNTOKENS;
-      int yycount = 1;
-
-      yyarg[0] = yytname[yytype];
-      yyfmt = yystpcpy (yyformat, yyunexpected);
-
-      for (yyx = yyxbegin; yyx < yyxend; ++yyx)
-	if (yycheck[yyx + yyn] == yyx && yyx != YYTERROR)
-	  {
-	    if (yycount == YYERROR_VERBOSE_ARGS_MAXIMUM)
-	      {
-		yycount = 1;
-		yysize = yysize0;
-		yyformat[sizeof yyunexpected - 1] = '\0';
-		break;
-	      }
-	    yyarg[yycount++] = yytname[yyx];
-	    yysize1 = yysize + yytnamerr (0, yytname[yyx]);
-	    yysize_overflow |= (yysize1 < yysize);
-	    yysize = yysize1;
-	    yyfmt = yystpcpy (yyfmt, yyprefix);
-	    yyprefix = yyor;
-	  }
-
-      yyf = YY_(yyformat);
-      yysize1 = yysize + yystrlen (yyf);
-      yysize_overflow |= (yysize1 < yysize);
-      yysize = yysize1;
-
-      if (yysize_overflow)
-	return YYSIZE_MAXIMUM;
-
-      if (yyresult)
-	{
-	  /* Avoid sprintf, as that infringes on the user's name space.
-	     Don't have undefined behavior even if the translation
-	     produced a string with the wrong number of "%s"s.  */
-	  char *yyp = yyresult;
-	  int yyi = 0;
-	  while ((*yyp = *yyf) != '\0')
-	    {
-	      if (*yyp == '%' && yyf[1] == 's' && yyi < yycount)
-		{
-		  yyp += yytnamerr (yyp, yyarg[yyi++]);
-		  yyf += 2;
-		}
-	      else
-		{
-		  yyp++;
-		  yyf++;
-		}
-	    }
-	}
-      return yysize;
+          for (yyx = yyxbegin; yyx < yyxend; ++yyx)
+            if (yycheck[yyx + yyn] == yyx && yyx != YYTERROR
+                && !yytable_value_is_error (yytable[yyx + yyn]))
+              {
+                if (yycount == YYERROR_VERBOSE_ARGS_MAXIMUM)
+                  {
+                    yycount = 1;
+                    yysize = yysize0;
+                    break;
+                  }
+                yyarg[yycount++] = yytname[yyx];
+                yysize1 = yysize + yytnamerr (0, yytname[yyx]);
+                if (! (yysize <= yysize1
+                       && yysize1 <= YYSTACK_ALLOC_MAXIMUM))
+                  return 2;
+                yysize = yysize1;
+              }
+        }
     }
+
+  switch (yycount)
+    {
+# define YYCASE_(N, S)                      \
+      case N:                               \
+        yyformat = S;                       \
+      break
+      YYCASE_(0, YY_("syntax error"));
+      YYCASE_(1, YY_("syntax error, unexpected %s"));
+      YYCASE_(2, YY_("syntax error, unexpected %s, expecting %s"));
+      YYCASE_(3, YY_("syntax error, unexpected %s, expecting %s or %s"));
+      YYCASE_(4, YY_("syntax error, unexpected %s, expecting %s or %s or %s"));
+      YYCASE_(5, YY_("syntax error, unexpected %s, expecting %s or %s or %s or %s"));
+# undef YYCASE_
+    }
+
+  yysize1 = yysize + yystrlen (yyformat);
+  if (! (yysize <= yysize1 && yysize1 <= YYSTACK_ALLOC_MAXIMUM))
+    return 2;
+  yysize = yysize1;
+
+  if (*yymsg_alloc < yysize)
+    {
+      *yymsg_alloc = 2 * yysize;
+      if (! (yysize <= *yymsg_alloc
+             && *yymsg_alloc <= YYSTACK_ALLOC_MAXIMUM))
+        *yymsg_alloc = YYSTACK_ALLOC_MAXIMUM;
+      return 1;
+    }
+
+  /* Avoid sprintf, as that infringes on the user's name space.
+     Don't have undefined behavior even if the translation
+     produced a string with the wrong number of "%s"s.  */
+  {
+    char *yyp = *yymsg;
+    int yyi = 0;
+    while ((*yyp = *yyformat) != '\0')
+      if (*yyp == '%' && yyformat[1] == 's' && yyi < yycount)
+        {
+          yyp += yytnamerr (yyp, yyarg[yyi++]);
+          yyformat += 2;
+        }
+      else
+        {
+          yyp++;
+          yyformat++;
+        }
+  }
+  return 0;
 }
 #endif /* YYERROR_VERBOSE */
-
 
 /*-----------------------------------------------.
 | Release the memory associated to this symbol.  |
@@ -2523,6 +2555,7 @@ yydestruct (yymsg, yytype, yyvaluep)
     }
 }
 
+
 /* Prevent warnings from -Wmissing-prototypes.  */
 #ifdef YYPARSE_PARAM
 #if defined __STDC__ || defined __cplusplus
@@ -2539,12 +2572,9 @@ int yyparse ();
 #endif /* ! YYPARSE_PARAM */
 
 
-
-
-
-/*-------------------------.
-| yyparse or yypush_parse.  |
-`-------------------------*/
+/*----------.
+| yyparse.  |
+`----------*/
 
 #ifdef YYPARSE_PARAM
 #if (defined __STDC__ || defined __C99__FUNC__ \
@@ -2731,7 +2761,7 @@ yybackup:
 
   /* First try to decide what to do without reference to lookahead token.  */
   yyn = yypact[yystate];
-  if (yyn == YYPACT_NINF)
+  if (yypact_value_is_default (yyn))
     goto yydefault;
 
   /* Not known => get a lookahead token if don't already have one.  */
@@ -2762,8 +2792,8 @@ yybackup:
   yyn = yytable[yyn];
   if (yyn <= 0)
     {
-      if (yyn == 0 || yyn == YYTABLE_NINF)
-	goto yyerrlab;
+      if (yytable_value_is_error (yyn))
+        goto yyerrlab;
       yyn = -yyn;
       goto yyreduce;
     }
@@ -2818,30 +2848,30 @@ yyreduce:
     {
         case 2:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 232 "surface.yy"
-    { YYACCEPT; ;}
+    { YYACCEPT; }
     break;
 
   case 3:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 234 "surface.yy"
     {
 			  PARSE_RESULT = UserLevelRewritingContext::QUIT;
-			;}
+			}
     break;
 
   case 8:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 248 "surface.yy"
-    { lexerFileNameMode(); ;}
+    { lexerFileNameMode(); }
     break;
 
   case 9:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 250 "surface.yy"
     {
 			  int lineNr = lineNumber;
@@ -2850,19 +2880,19 @@ yyreduce:
 			  string fileName;
 			  if (findFile((yyvsp[(3) - (3)].yyString), directory, fileName, lineNr))
 			    includeFile(directory, fileName, false, lineNr);
-			;}
+			}
     break;
 
   case 10:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 258 "surface.yy"
-    { lexerFileNameMode(); ;}
+    { lexerFileNameMode(); }
     break;
 
   case 11:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 260 "surface.yy"
     {
 			  int lineNr = lineNumber;
@@ -2871,28 +2901,28 @@ yyreduce:
 			  string fileName;
 			  if (findFile((yyvsp[(3) - (3)].yyString), directory, fileName, lineNr))
 			    includeFile(directory, fileName, true, lineNr);
-			;}
+			}
     break;
 
   case 12:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 269 "surface.yy"
     {
 			  cout << directoryManager.getCwd() << '\n';
-			;}
+			}
     break;
 
   case 13:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 272 "surface.yy"
-    { lexerFileNameMode(); ;}
+    { lexerFileNameMode(); }
     break;
 
   case 14:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 274 "surface.yy"
     {
 			  string directory;
@@ -2902,19 +2932,19 @@ yyreduce:
 			      IssueWarning(LineNumber(lineNumber) <<
 					   ": cd failed");
 			    }
-			;}
+			}
     break;
 
   case 15:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 283 "surface.yy"
-    { lexerFileNameMode(); ;}
+    { lexerFileNameMode(); }
     break;
 
   case 16:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 285 "surface.yy"
     {
 			  string directory;
@@ -2924,12 +2954,12 @@ yyreduce:
 			      IssueWarning(LineNumber(lineNumber) <<
 					   ": pushd failed");
 			    }
-			;}
+			}
     break;
 
   case 17:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 295 "surface.yy"
     {
 			  const char* path = directoryManager.popd();
@@ -2940,68 +2970,68 @@ yyreduce:
 			      IssueWarning(LineNumber(lineNumber) <<
 					   ": popd failed");
 			    }
-			;}
+			}
     break;
 
   case 18:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 305 "surface.yy"
-    { lexerStringMode(); ;}
+    { lexerStringMode(); }
     break;
 
   case 19:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 307 "surface.yy"
     {
 			  system((string("ls") + (yyvsp[(3) - (3)].yyString)).c_str());
-			;}
+			}
     break;
 
   case 20:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 311 "surface.yy"
     {
 			  PARSE_RESULT = UserLevelRewritingContext::QUIT;
 			  YYACCEPT;
-			;}
+			}
     break;
 
   case 21:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 316 "surface.yy"
     {
 			  if(!handleEof())
 			    {
 			      PARSE_RESULT = UserLevelRewritingContext::QUIT;
 			    }
-			;}
+			}
     break;
 
   case 22:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 349 "surface.yy"
     {
                           moduleExpressions.push(new ModuleExpression((yyvsp[(1) - (2)].yyToken)));
-                        ;}
+                        }
     break;
 
   case 23:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 353 "surface.yy"
     {
                           moduleExpressions.push(new ModuleExpression((yyvsp[(1) - (2)].yyToken)));
-                        ;}
+                        }
     break;
 
   case 27:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 360 "surface.yy"
     {
 			  ModuleExpression* m1 = moduleExpressions.top();
@@ -3009,24 +3039,24 @@ yyreduce:
 			  ModuleExpression* m2 = moduleExpressions.top();
 			  moduleExpressions.pop();
 			  moduleExpressions.push(new ModuleExpression(m1, m2));
-			;}
+			}
     break;
 
   case 28:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 368 "surface.yy"
     {
 			  Token t;
 			  t.dropChar((yyvsp[(1) - (1)].yyToken));
 			  missingSpace(t);
 			  moduleExpressions.push(new ModuleExpression(t));
-			;}
+			}
     break;
 
   case 30:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 378 "surface.yy"
     {
 			  ModuleExpression* m1 = moduleExpressions.top();
@@ -3034,228 +3064,228 @@ yyreduce:
 			  ModuleExpression* m2 = moduleExpressions.top();
 			  moduleExpressions.pop();
 			  moduleExpressions.push(new ModuleExpression(m1, m2));
-			;}
+			}
     break;
 
   case 35:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 394 "surface.yy"
     {
                           moduleExpressions.push(new ModuleExpression((yyvsp[(1) - (1)].yyToken)));
-                        ;}
+                        }
     break;
 
   case 36:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 401 "surface.yy"
     {
 			  ModuleExpression* m = moduleExpressions.top();
 			  moduleExpressions.pop();
 			  moduleExpressions.push(new ModuleExpression(m, currentRenaming));
 			  currentRenaming = 0;
-			;}
+			}
     break;
 
   case 37:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 409 "surface.yy"
-    { clear(); ;}
+    { clear(); }
     break;
 
   case 38:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 411 "surface.yy"
     {
 			  ModuleExpression* m = moduleExpressions.top();
 			  moduleExpressions.pop();
 			  moduleExpressions.push(new ModuleExpression(m, tokenSequence));
-			;}
+			}
     break;
 
   case 39:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 418 "surface.yy"
-    {;}
+    {}
     break;
 
   case 40:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 421 "surface.yy"
-    { store((yyvsp[(3) - (3)].yyToken)); ;}
+    { store((yyvsp[(3) - (3)].yyToken)); }
     break;
 
   case 41:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 422 "surface.yy"
-    { store((yyvsp[(1) - (1)].yyToken)); ;}
+    { store((yyvsp[(1) - (1)].yyToken)); }
     break;
 
   case 42:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 429 "surface.yy"
     {
 			  oldSyntaxContainer = currentSyntaxContainer;
 			  currentSyntaxContainer = currentRenaming = new Renaming;
-			;}
+			}
     break;
 
   case 43:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 434 "surface.yy"
     {
 			  currentSyntaxContainer = oldSyntaxContainer;
-			;}
+			}
     break;
 
   case 49:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 449 "surface.yy"
     {
 			  currentRenaming->addSortMapping((yyvsp[(2) - (4)].yyToken), (yyvsp[(4) - (4)].yyToken));
-			;}
+			}
     break;
 
   case 50:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 453 "surface.yy"
     {
 			  currentRenaming->addLabelMapping((yyvsp[(2) - (4)].yyToken), (yyvsp[(4) - (4)].yyToken));
-			;}
+			}
     break;
 
   case 51:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 456 "surface.yy"
-    { lexBubble(BAR_COLON | BAR_TO, 1); ;}
+    { lexBubble(BAR_COLON | BAR_TO, 1); }
     break;
 
   case 52:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 457 "surface.yy"
-    { lexBubble(BAR_COMMA | BAR_LEFT_BRACKET | BAR_RIGHT_PAREN, 1); ;}
+    { lexBubble(BAR_COMMA | BAR_LEFT_BRACKET | BAR_RIGHT_PAREN, 1); }
     break;
 
   case 53:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 458 "surface.yy"
-    {;}
+    {}
     break;
 
   case 54:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 463 "surface.yy"
-    { Token::peelParens(lexerBubble); currentRenaming->addOpMapping(lexerBubble); ;}
+    { Token::peelParens(lexerBubble); currentRenaming->addOpMapping(lexerBubble); }
     break;
 
   case 55:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 464 "surface.yy"
-    {;}
+    {}
     break;
 
   case 56:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 465 "surface.yy"
-    { Token::peelParens(lexerBubble); currentRenaming->addOpMapping(lexerBubble); ;}
+    { Token::peelParens(lexerBubble); currentRenaming->addOpMapping(lexerBubble); }
     break;
 
   case 57:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 471 "surface.yy"
-    { Token::peelParens(lexerBubble); currentRenaming->addOpTarget(lexerBubble); ;}
+    { Token::peelParens(lexerBubble); currentRenaming->addOpTarget(lexerBubble); }
     break;
 
   case 58:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 472 "surface.yy"
-    {;}
+    {}
     break;
 
   case 59:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 473 "surface.yy"
-    { Token::peelParens(lexerBubble); currentRenaming->addOpTarget(lexerBubble); ;}
+    { Token::peelParens(lexerBubble); currentRenaming->addOpTarget(lexerBubble); }
     break;
 
   case 62:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 480 "surface.yy"
-    { currentRenaming->setPrec((yyvsp[(2) - (2)].yyToken)); ;}
+    { currentRenaming->setPrec((yyvsp[(2) - (2)].yyToken)); }
     break;
 
   case 63:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 481 "surface.yy"
-    { clear(); ;}
+    { clear(); }
     break;
 
   case 64:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 482 "surface.yy"
-    { currentRenaming->setGather(tokenSequence); ;}
+    { currentRenaming->setGather(tokenSequence); }
     break;
 
   case 65:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 483 "surface.yy"
-    { clear(); ;}
+    { clear(); }
     break;
 
   case 66:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 484 "surface.yy"
-    { currentRenaming->setFormat(tokenSequence); ;}
+    { currentRenaming->setFormat(tokenSequence); }
     break;
 
   case 67:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 485 "surface.yy"
-    { lexerLatexMode(); ;}
+    { lexerLatexMode(); }
     break;
 
   case 68:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 486 "surface.yy"
-    { currentRenaming->setLatexMacro((yyvsp[(4) - (5)].yyString)); ;}
+    { currentRenaming->setLatexMacro((yyvsp[(4) - (5)].yyString)); }
     break;
 
   case 69:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 492 "surface.yy"
-    { lexerIdMode(); ;}
+    { lexerIdMode(); }
     break;
 
   case 70:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 494 "surface.yy"
     {
 			  fileTable.beginModule((yyvsp[(1) - (5)].yyToken), (yyvsp[(3) - (5)].yyToken));
@@ -3263,86 +3293,86 @@ yyreduce:
 			  currentSyntaxContainer = CV;
 			  CV->addFrom(moduleExpressions.top());
 			  moduleExpressions.pop();
-			;}
+			}
     break;
 
   case 71:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 502 "surface.yy"
     {
 			  CV->addTo(moduleExpressions.top());
 			  moduleExpressions.pop();
-			;}
+			}
     break;
 
   case 72:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 507 "surface.yy"
     {
 			  lexerInitialMode();
 			  fileTable.endModule(lineNumber);
 			  interpreter.insertView(((yyvsp[(3) - (12)].yyToken)).code(), CV);
 			  CV->finishView();
-			;}
+			}
     break;
 
   case 75:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 520 "surface.yy"
     {
 			  IssueWarning(LineNumber((yyvsp[(1) - (1)].yyToken).lineNumber()) <<
 				       ": skipping " << QUOTE("->") << " in variable declaration.");
-			;}
+			}
     break;
 
   case 77:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 528 "surface.yy"
     {
 			  CV->addSortMapping((yyvsp[(2) - (4)].yyToken), (yyvsp[(4) - (4)].yyToken));
-			;}
+			}
     break;
 
   case 78:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 531 "surface.yy"
-    {;}
+    {}
     break;
 
   case 79:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 532 "surface.yy"
-    { lexBubble(BAR_COLON | BAR_TO, 1); ;}
+    { lexBubble(BAR_COLON | BAR_TO, 1); }
     break;
 
   case 82:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 537 "surface.yy"
-    { (yyval.yyToken) = (yyvsp[(1) - (2)].yyToken); ;}
+    { (yyval.yyToken) = (yyvsp[(1) - (2)].yyToken); }
     break;
 
   case 83:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 539 "surface.yy"
     {
 			  Token t;
 			  t.dropChar((yyvsp[(1) - (1)].yyToken));
 			  missingSpace(t);
 			  (yyval.yyToken) = t;
-			;}
+			}
     break;
 
   case 84:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 548 "surface.yy"
     {
 			  //
@@ -3350,31 +3380,31 @@ yyreduce:
 			  //
 			  Token::peelParens(lexerBubble);  // remove any enclosing parens from op name
 			  CV->addOpMapping(lexerBubble);
-			;}
+			}
     break;
 
   case 85:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 556 "surface.yy"
     {
 			  lexBubble(END_STATEMENT, 1);
-			;}
+			}
     break;
 
   case 86:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 560 "surface.yy"
     {
 			  Token::peelParens(lexerBubble);  // remove any enclosing parens from op name
 			  CV->addOpTarget(lexerBubble);
-			;}
+			}
     break;
 
   case 87:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 565 "surface.yy"
     {
 			  //
@@ -3389,7 +3419,7 @@ yyreduce:
 
   case 88:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 575 "surface.yy"
     {
 			  if (lexerBubble[0].code() == Token::encode("term"))
@@ -3409,429 +3439,429 @@ yyreduce:
 			      Token::peelParens(lexerBubble);  // remove any enclosing parens from op name
 			      CV->addOpTarget(lexerBubble);
 			    }
-			;}
+			}
     break;
 
   case 89:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 597 "surface.yy"
-    {;}
+    {}
     break;
 
   case 90:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 599 "surface.yy"
     {
 			  Token t;
 			  t.dropChar((yyvsp[(1) - (1)].yyToken));
 			  missingSpace(t);
 			  lexerBubble.append(t);
-			;}
+			}
     break;
 
   case 91:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 607 "surface.yy"
-    { lexBubble(BAR_RIGHT_PAREN, 1); ;}
+    { lexBubble(BAR_RIGHT_PAREN, 1); }
     break;
 
   case 92:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 608 "surface.yy"
-    {;}
+    {}
     break;
 
   case 93:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 614 "surface.yy"
-    { lexerIdMode(); ;}
+    { lexerIdMode(); }
     break;
 
   case 94:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 616 "surface.yy"
     {
 			  interpreter.setCurrentModule(new SyntacticPreModule((yyvsp[(1) - (3)].yyToken), (yyvsp[(3) - (3)].yyToken)));
 			  currentSyntaxContainer = CM;
 			  fileTable.beginModule((yyvsp[(1) - (3)].yyToken), (yyvsp[(3) - (3)].yyToken));
-			;}
+			}
     break;
 
   case 95:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 622 "surface.yy"
     {
 			  lexerInitialMode();
 			  fileTable.endModule(lineNumber);
 			  CM->finishModule((yyvsp[(8) - (8)].yyToken));
-			;}
+			}
     break;
 
   case 96:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 629 "surface.yy"
-    {;}
+    {}
     break;
 
   case 97:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 631 "surface.yy"
     {
 			  Token t;
 			  t.dropChar((yyvsp[(1) - (1)].yyToken));
 			  missingSpace(t);
 			  store(t);
-			;}
+			}
     break;
 
   case 98:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 639 "surface.yy"
-    {;}
+    {}
     break;
 
   case 102:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 648 "surface.yy"
     {
 			  ModuleExpression* me = moduleExpressions.top();
 			  moduleExpressions.pop();
 			  CM->addParameter((yyvsp[(1) - (3)].yyToken), me);
-			;}
+			}
     break;
 
   case 103:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 655 "surface.yy"
-    {;}
+    {}
     break;
 
   case 104:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 657 "surface.yy"
     {
 			  IssueWarning(LineNumber((yyvsp[(1) - (1)].yyToken).lineNumber()) <<
 			    ": saw " << QUOTE(':') << " instead of " <<
 			    QUOTE("::") << " in parameter declaration.");
-			;}
+			}
     break;
 
   case 105:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 665 "surface.yy"
     {
 			  singleton[0].dropChar((yyvsp[(1) - (1)].yyToken));
 			  missingSpace(singleton[0]);
 			  currentSyntaxContainer->addType(false, singleton);
 			  (yyval.yyToken) = (yyvsp[(1) - (1)].yyToken);  // needed for line number
-			;}
+			}
     break;
 
   case 107:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 674 "surface.yy"
-    {;}
+    {}
     break;
 
   case 112:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 685 "surface.yy"
     {
 			  ModuleExpression* me = moduleExpressions.top();
 			  moduleExpressions.pop();
 			  CM->addImport((yyvsp[(1) - (2)].yyToken), me);
-			;}
+			}
     break;
 
   case 113:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 691 "surface.yy"
-    { clear(); ;}
+    { clear(); }
     break;
 
   case 114:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 692 "surface.yy"
-    { CM->addSortDecl(tokenSequence); ;}
+    { CM->addSortDecl(tokenSequence); }
     break;
 
   case 115:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 694 "surface.yy"
-    { clear(); ;}
+    { clear(); }
     break;
 
   case 116:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 695 "surface.yy"
-    { CM->addSubsortDecl(tokenSequence); ;}
+    { CM->addSubsortDecl(tokenSequence); }
     break;
 
   case 117:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 697 "surface.yy"
-    { lexBubble(BAR_COLON, 1); ;}
+    { lexBubble(BAR_COLON, 1); }
     break;
 
   case 118:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 698 "surface.yy"
-    { Token::peelParens(lexerBubble); CM->addOpDecl(lexerBubble); ;}
+    { Token::peelParens(lexerBubble); CM->addOpDecl(lexerBubble); }
     break;
 
   case 119:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 699 "surface.yy"
-    {;}
+    {}
     break;
 
   case 120:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 701 "surface.yy"
-    {;}
+    {}
     break;
 
   case 121:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 703 "surface.yy"
-    {;}
+    {}
     break;
 
   case 122:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 705 "surface.yy"
-    { lexBubble((yyvsp[(1) - (1)].yyToken), BAR_COLON, 1); ;}
+    { lexBubble((yyvsp[(1) - (1)].yyToken), BAR_COLON, 1); }
     break;
 
   case 123:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 706 "surface.yy"
-    { lexContinueBubble((yyvsp[(3) - (3)].yyToken), END_STATEMENT, 1); ;}
+    { lexContinueBubble((yyvsp[(3) - (3)].yyToken), END_STATEMENT, 1); }
     break;
 
   case 124:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 707 "surface.yy"
-    { CM->addStatement(lexerBubble); ;}
+    { CM->addStatement(lexerBubble); }
     break;
 
   case 125:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 709 "surface.yy"
-    { lexBubble((yyvsp[(1) - (1)].yyToken), BAR_COLON, 1);  ;}
+    { lexBubble((yyvsp[(1) - (1)].yyToken), BAR_COLON, 1);  }
     break;
 
   case 126:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 710 "surface.yy"
-    { lexContinueBubble((yyvsp[(3) - (3)].yyToken), BAR_IF, 1); ;}
+    { lexContinueBubble((yyvsp[(3) - (3)].yyToken), BAR_IF, 1); }
     break;
 
   case 127:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 711 "surface.yy"
-    { lexContinueBubble((yyvsp[(5) - (5)].yyToken), END_STATEMENT, 1); ;}
+    { lexContinueBubble((yyvsp[(5) - (5)].yyToken), END_STATEMENT, 1); }
     break;
 
   case 128:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 712 "surface.yy"
-    { CM->addStatement(lexerBubble); ;}
+    { CM->addStatement(lexerBubble); }
     break;
 
   case 129:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 714 "surface.yy"
-    { lexBubble((yyvsp[(1) - (1)].yyToken), BAR_EQUALS, 1); ;}
+    { lexBubble((yyvsp[(1) - (1)].yyToken), BAR_EQUALS, 1); }
     break;
 
   case 130:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 715 "surface.yy"
-    { lexContinueBubble((yyvsp[(3) - (3)].yyToken), END_STATEMENT, 1); ;}
+    { lexContinueBubble((yyvsp[(3) - (3)].yyToken), END_STATEMENT, 1); }
     break;
 
   case 131:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 716 "surface.yy"
-    { CM->addStatement(lexerBubble); ;}
+    { CM->addStatement(lexerBubble); }
     break;
 
   case 132:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 718 "surface.yy"
-    { lexBubble((yyvsp[(1) - (1)].yyToken), BAR_EQUALS, 1); ;}
+    { lexBubble((yyvsp[(1) - (1)].yyToken), BAR_EQUALS, 1); }
     break;
 
   case 133:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 719 "surface.yy"
-    { lexContinueBubble((yyvsp[(3) - (3)].yyToken), BAR_IF, 1); ;}
+    { lexContinueBubble((yyvsp[(3) - (3)].yyToken), BAR_IF, 1); }
     break;
 
   case 134:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 720 "surface.yy"
-    { lexContinueBubble((yyvsp[(5) - (5)].yyToken), END_STATEMENT, 1); ;}
+    { lexContinueBubble((yyvsp[(5) - (5)].yyToken), END_STATEMENT, 1); }
     break;
 
   case 135:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 721 "surface.yy"
-    { CM->addStatement(lexerBubble); ;}
+    { CM->addStatement(lexerBubble); }
     break;
 
   case 136:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 723 "surface.yy"
-    { lexBubble((yyvsp[(1) - (1)].yyToken), BAR_ARROW2, 1); ;}
+    { lexBubble((yyvsp[(1) - (1)].yyToken), BAR_ARROW2, 1); }
     break;
 
   case 137:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 724 "surface.yy"
-    { lexContinueBubble((yyvsp[(3) - (3)].yyToken), END_STATEMENT, 1); ;}
+    { lexContinueBubble((yyvsp[(3) - (3)].yyToken), END_STATEMENT, 1); }
     break;
 
   case 138:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 725 "surface.yy"
-    { CM->addStatement(lexerBubble); ;}
+    { CM->addStatement(lexerBubble); }
     break;
 
   case 139:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 727 "surface.yy"
-    { lexBubble((yyvsp[(1) - (1)].yyToken), BAR_ARROW2, 1); ;}
+    { lexBubble((yyvsp[(1) - (1)].yyToken), BAR_ARROW2, 1); }
     break;
 
   case 140:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 728 "surface.yy"
-    { lexContinueBubble((yyvsp[(3) - (3)].yyToken), BAR_IF, 1); ;}
+    { lexContinueBubble((yyvsp[(3) - (3)].yyToken), BAR_IF, 1); }
     break;
 
   case 141:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 729 "surface.yy"
-    { lexContinueBubble((yyvsp[(5) - (5)].yyToken), END_STATEMENT, 1); ;}
+    { lexContinueBubble((yyvsp[(5) - (5)].yyToken), END_STATEMENT, 1); }
     break;
 
   case 142:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 730 "surface.yy"
-    { CM->addStatement(lexerBubble); ;}
+    { CM->addStatement(lexerBubble); }
     break;
 
   case 143:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 732 "surface.yy"
-    { lexBubble(BAR_COLON, 1); ;}
+    { lexBubble(BAR_COLON, 1); }
     break;
 
   case 144:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 733 "surface.yy"
-    { Token::peelParens(lexerBubble); CM->addOpDecl(lexerBubble); ;}
+    { Token::peelParens(lexerBubble); CM->addOpDecl(lexerBubble); }
     break;
 
   case 145:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 734 "surface.yy"
-    { CM->setFlag(SymbolType::MESSAGE); ;}
+    { CM->setFlag(SymbolType::MESSAGE); }
     break;
 
   case 146:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 737 "surface.yy"
     {
 			  CM->setFlag(SymbolType::MESSAGE);
-			;}
+			}
     break;
 
   case 147:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 742 "surface.yy"
     {
-			;}
+			}
     break;
 
   case 148:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 745 "surface.yy"
     {
-			;}
+			}
     break;
 
   case 149:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 748 "surface.yy"
-    { clear(); ;}
+    { clear(); }
     break;
 
   case 150:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 749 "surface.yy"
-    { CM->addSubsortDecl(tokenSequence); ;}
+    { CM->addSubsortDecl(tokenSequence); }
     break;
 
   case 151:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 752 "surface.yy"
     {
 			  //
@@ -3840,539 +3870,539 @@ yyreduce:
 			  //
 			  cleanUpModuleExpression();
 			  CM->makeOpDeclsConsistent();
-			;}
+			}
     break;
 
   case 152:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 762 "surface.yy"
-    {;}
+    {}
     break;
 
   case 153:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 763 "surface.yy"
-    {;}
+    {}
     break;
 
   case 156:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 771 "surface.yy"
     {
-			;}
+			}
     break;
 
   case 157:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 775 "surface.yy"
-    { currentSyntaxContainer->addVarDecl((yyvsp[(2) - (2)].yyToken)); ;}
+    { currentSyntaxContainer->addVarDecl((yyvsp[(2) - (2)].yyToken)); }
     break;
 
   case 158:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 776 "surface.yy"
-    { currentSyntaxContainer->addVarDecl((yyvsp[(1) - (1)].yyToken)); ;}
+    { currentSyntaxContainer->addVarDecl((yyvsp[(1) - (1)].yyToken)); }
     break;
 
   case 161:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 783 "surface.yy"
-    { singleton[0] = (yyvsp[(1) - (1)].yyToken); CM->addOpDecl(singleton); ;}
+    { singleton[0] = (yyvsp[(1) - (1)].yyToken); CM->addOpDecl(singleton); }
     break;
 
   case 162:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 784 "surface.yy"
-    { CM->addOpDecl(lexerBubble); ;}
+    { CM->addOpDecl(lexerBubble); }
     break;
 
   case 165:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 790 "surface.yy"
     {
 			  IssueWarning(LineNumber(lineNumber) <<
 				       ": missing " << QUOTE("->") << " in constant declaration.");
-			;}
+			}
     break;
 
   case 166:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 797 "surface.yy"
     {
 			  IssueWarning(LineNumber((yyvsp[(1) - (1)].yyToken).lineNumber()) <<
 				       ": skipping stray " << QUOTE(":") << " in operator declaration.");
 
-			;}
+			}
     break;
 
   case 169:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 807 "surface.yy"
     {
 			  IssueWarning(LineNumber((yyvsp[(1) - (1)].yyToken).lineNumber()) <<
 			  ": missing " << QUOTE("->") << " in operator declaration.");
-			;}
+			}
     break;
 
   case 170:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 812 "surface.yy"
     {
 			  IssueWarning(LineNumber((yyvsp[(1) - (1)].yyToken).lineNumber()) <<
 			  ": missing " << QUOTE("->") << " in operator declaration.");
-			;}
+			}
     break;
 
   case 171:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 819 "surface.yy"
     {
 			  if ((yyvsp[(1) - (2)].yyBool))
 			    CM->convertSortsToKinds();
-			;}
+			}
     break;
 
   case 173:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 826 "surface.yy"
-    {;}
+    {}
     break;
 
   case 174:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 829 "surface.yy"
-    { (yyval.yyBool) = false; ;}
+    { (yyval.yyBool) = false; }
     break;
 
   case 175:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 830 "surface.yy"
-    { (yyval.yyBool) = true; ;}
+    { (yyval.yyBool) = true; }
     break;
 
   case 178:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 838 "surface.yy"
     {
 			  singleton[0] = (yyvsp[(1) - (1)].yyToken);
 			  currentSyntaxContainer->addType(false, singleton);
-			;}
+			}
     break;
 
   case 179:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 842 "surface.yy"
-    { clear(); ;}
+    { clear(); }
     break;
 
   case 180:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 844 "surface.yy"
     {
 			  currentSyntaxContainer->addType(true, tokenSequence);
-			;}
+			}
     break;
 
   case 181:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 849 "surface.yy"
-    { store((yyvsp[(3) - (3)].yyToken)); ;}
+    { store((yyvsp[(3) - (3)].yyToken)); }
     break;
 
   case 182:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 850 "surface.yy"
-    { store((yyvsp[(1) - (1)].yyToken)); ;}
+    { store((yyvsp[(1) - (1)].yyToken)); }
     break;
 
   case 183:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 853 "surface.yy"
-    {;}
+    {}
     break;
 
   case 187:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 862 "surface.yy"
     {
 			  CM->setFlag(SymbolType::LEFT_ID | SymbolType::RIGHT_ID);
-			;}
+			}
     break;
 
   case 188:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 866 "surface.yy"
     {
 			  CM->setFlag(SymbolType::LEFT_ID);
-			;}
+			}
     break;
 
   case 189:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 870 "surface.yy"
     {
 			  CM->setFlag(SymbolType::RIGHT_ID);
-			;}
+			}
     break;
 
   case 190:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 876 "surface.yy"
     {
 			  CM->setFlag(SymbolType::ASSOC);
-			;}
+			}
     break;
 
   case 191:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 880 "surface.yy"
     {
 			  CM->setFlag(SymbolType::COMM);
-			;}
+			}
     break;
 
   case 192:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 883 "surface.yy"
-    { lexBubble(BAR_RIGHT_BRACKET | BAR_OP_ATTRIBUTE, 1); ;}
+    { lexBubble(BAR_RIGHT_BRACKET | BAR_OP_ATTRIBUTE, 1); }
     break;
 
   case 193:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 884 "surface.yy"
-    { CM->setIdentity(lexerBubble); ;}
+    { CM->setIdentity(lexerBubble); }
     break;
 
   case 194:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 886 "surface.yy"
     {
 			  CM->setFlag(SymbolType::IDEM);
-			;}
+			}
     break;
 
   case 195:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 890 "surface.yy"
     {
 			  CM->setFlag(SymbolType::ITER);
-			;}
+			}
     break;
 
   case 196:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 893 "surface.yy"
-    { CM->setPrec((yyvsp[(2) - (2)].yyToken)); ;}
+    { CM->setPrec((yyvsp[(2) - (2)].yyToken)); }
     break;
 
   case 197:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 894 "surface.yy"
-    { clear(); ;}
+    { clear(); }
     break;
 
   case 198:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 895 "surface.yy"
-    { CM->setGather(tokenSequence); ;}
+    { CM->setGather(tokenSequence); }
     break;
 
   case 199:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 896 "surface.yy"
-    { clear(); ;}
+    { clear(); }
     break;
 
   case 200:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 897 "surface.yy"
-    { CM->setFormat(tokenSequence); ;}
+    { CM->setFormat(tokenSequence); }
     break;
 
   case 201:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 898 "surface.yy"
-    { clear(); ;}
+    { clear(); }
     break;
 
   case 202:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 899 "surface.yy"
-    { CM->setStrat(tokenSequence); ;}
+    { CM->setStrat(tokenSequence); }
     break;
 
   case 203:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 900 "surface.yy"
-    { clear(); ;}
+    { clear(); }
     break;
 
   case 204:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 901 "surface.yy"
-    { CM->setPoly(tokenSequence); ;}
+    { CM->setPoly(tokenSequence); }
     break;
 
   case 205:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 903 "surface.yy"
     {
 			  CM->setFlag(SymbolType::MEMO);
-			;}
+			}
     break;
 
   case 206:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 907 "surface.yy"
     {
 			  CM->setFlag(SymbolType::CTOR);
-			;}
+			}
     break;
 
   case 207:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 911 "surface.yy"
     {
 			  clear();
 			  CM->setFrozen(tokenSequence);
-			;}
+			}
     break;
 
   case 208:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 915 "surface.yy"
-    { clear(); ;}
+    { clear(); }
     break;
 
   case 209:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 916 "surface.yy"
-    { CM->setFrozen(tokenSequence); ;}
+    { CM->setFrozen(tokenSequence); }
     break;
 
   case 210:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 918 "surface.yy"
     {
 			  CM->setFlag(SymbolType::CONFIG);
-			;}
+			}
     break;
 
   case 211:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 922 "surface.yy"
     {
 			  CM->setFlag(SymbolType::OBJECT);
-			;}
+			}
     break;
 
   case 212:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 926 "surface.yy"
     {
 			  CM->setFlag(SymbolType::MESSAGE);
-			;}
+			}
     break;
 
   case 213:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 930 "surface.yy"
     {
 			  CM->setMetadata((yyvsp[(2) - (2)].yyToken));
-			;}
+			}
     break;
 
   case 214:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 933 "surface.yy"
-    { lexerLatexMode(); ;}
+    { lexerLatexMode(); }
     break;
 
   case 215:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 934 "surface.yy"
-    { CM->setLatexMacro((yyvsp[(4) - (5)].yyString)); ;}
+    { CM->setLatexMacro((yyvsp[(4) - (5)].yyString)); }
     break;
 
   case 216:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 935 "surface.yy"
-    {;}
+    {}
     break;
 
   case 217:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 937 "surface.yy"
     {
 			  CM->setFlag(SymbolType::DITTO);
-			;}
+			}
     break;
 
   case 220:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 950 "surface.yy"
-    { store((yyvsp[(2) - (2)].yyToken)); ;}
+    { store((yyvsp[(2) - (2)].yyToken)); }
     break;
 
   case 221:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 951 "surface.yy"
-    { store((yyvsp[(1) - (1)].yyToken)); ;}
+    { store((yyvsp[(1) - (1)].yyToken)); }
     break;
 
   case 224:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 958 "surface.yy"
-    { clear(); CM->addHook(SyntacticPreModule::ID_HOOK, (yyvsp[(2) - (2)].yyToken), tokenSequence); ;}
+    { clear(); CM->addHook(SyntacticPreModule::ID_HOOK, (yyvsp[(2) - (2)].yyToken), tokenSequence); }
     break;
 
   case 225:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 959 "surface.yy"
-    { CM->addHook(SyntacticPreModule::ID_HOOK, (yyvsp[(2) - (3)].yyToken), lexerBubble); ;}
+    { CM->addHook(SyntacticPreModule::ID_HOOK, (yyvsp[(2) - (3)].yyToken), lexerBubble); }
     break;
 
   case 226:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 960 "surface.yy"
-    { CM->addHook(SyntacticPreModule::OP_HOOK, (yyvsp[(2) - (3)].yyToken), lexerBubble); ;}
+    { CM->addHook(SyntacticPreModule::OP_HOOK, (yyvsp[(2) - (3)].yyToken), lexerBubble); }
     break;
 
   case 227:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 961 "surface.yy"
-    { CM->addHook(SyntacticPreModule::TERM_HOOK, (yyvsp[(2) - (3)].yyToken), lexerBubble); ;}
+    { CM->addHook(SyntacticPreModule::TERM_HOOK, (yyvsp[(2) - (3)].yyToken), lexerBubble); }
     break;
 
   case 228:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 967 "surface.yy"
-    {;}
+    {}
     break;
 
   case 229:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 969 "surface.yy"
     {
 			  IssueWarning(LineNumber(lineNumber) << ": missing " <<
 				       QUOTE("is") << " keyword.");
-			;}
+			}
     break;
 
   case 230:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 975 "surface.yy"
-    {;}
+    {}
     break;
 
   case 231:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 977 "surface.yy"
     {
 			  IssueWarning(LineNumber(lineNumber) << ": missing period.");
-			;}
+			}
     break;
 
   case 232:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 985 "surface.yy"
-    { store((yyvsp[(2) - (2)].yyToken)); ;}
+    { store((yyvsp[(2) - (2)].yyToken)); }
     break;
 
   case 234:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 989 "surface.yy"
-    { store((yyvsp[(2) - (2)].yyToken)); ;}
+    { store((yyvsp[(2) - (2)].yyToken)); }
     break;
 
   case 235:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 990 "surface.yy"
-    { store((yyvsp[(2) - (2)].yyToken)); ;}
+    { store((yyvsp[(2) - (2)].yyToken)); }
     break;
 
   case 236:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 991 "surface.yy"
-    { store((yyvsp[(1) - (1)].yyToken)); ;}
+    { store((yyvsp[(1) - (1)].yyToken)); }
     break;
 
   case 237:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 992 "surface.yy"
-    { store((yyvsp[(4) - (4)].yyToken)); ;}
+    { store((yyvsp[(4) - (4)].yyToken)); }
     break;
 
   case 238:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 999 "surface.yy"
     {
 			  Token t;
@@ -4382,1522 +4412,1533 @@ yyreduce:
 			    t.tokenize(Token::bubbleToPrefixNameCode(fragments), fragments[0].lineNumber());
 			  fragClear();
 			  (yyval.yyToken) = t;
-			;}
+			}
     break;
 
   case 239:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1010 "surface.yy"
-    { fragStore((yyvsp[(1) - (1)].yyToken)); ;}
+    { fragStore((yyvsp[(1) - (1)].yyToken)); }
     break;
 
   case 240:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1011 "surface.yy"
-    { fragStore((yyvsp[(2) - (2)].yyToken)); ;}
+    { fragStore((yyvsp[(2) - (2)].yyToken)); }
     break;
 
   case 241:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1012 "surface.yy"
-    { fragStore((yyvsp[(5) - (5)].yyToken)); ;}
+    { fragStore((yyvsp[(5) - (5)].yyToken)); }
     break;
 
   case 242:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1015 "surface.yy"
-    { fragStore((yyvsp[(2) - (2)].yyToken)); ;}
+    { fragStore((yyvsp[(2) - (2)].yyToken)); }
     break;
 
   case 243:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1016 "surface.yy"
-    {;}
+    {}
     break;
 
   case 244:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1017 "surface.yy"
-    {;}
+    {}
     break;
 
   case 347:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1097 "surface.yy"
     { lexBubble(END_COMMAND, 1) ;}
     break;
 
   case 348:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1099 "surface.yy"
     {
 			  interpreter.setCurrentModule(lexerBubble);
-			;}
+			}
     break;
 
   case 349:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1102 "surface.yy"
     { lexBubble(END_COMMAND, 1) ;}
     break;
 
   case 350:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1104 "surface.yy"
     {
 			  if (interpreter.setCurrentModule(lexerBubble))
 			    CM->dump();
-			;}
+			}
     break;
 
   case 351:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1109 "surface.yy"
     {
 			  lexerCmdMode();
 			  moduleExpr.contractTo(0);
-			;}
+			}
     break;
 
   case 352:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1114 "surface.yy"
     {
 			  lexerInitialMode();
 			  if (interpreter.setCurrentModule(moduleExpr, 1))
 			    interpreter.parse(lexerBubble);
-			;}
+			}
     break;
 
   case 353:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1121 "surface.yy"
     {
 			  lexerCmdMode();
 			  moduleExpr.contractTo(0);
-			;}
+			}
     break;
 
   case 354:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1126 "surface.yy"
     {
 			  lexerInitialMode();
 			  if (interpreter.setCurrentModule(moduleExpr, 1))
 			    interpreter.creduce(lexerBubble);
-			;}
+			}
     break;
 
   case 355:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1133 "surface.yy"
     {
 			  lexerCmdMode();
 			  moduleExpr.contractTo(0);
-			;}
+			}
     break;
 
   case 356:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1138 "surface.yy"
     {
 			  lexerInitialMode();
 			  if (interpreter.setCurrentModule(moduleExpr, 1))
 			    interpreter.sreduce(lexerBubble);
-			;}
+			}
     break;
 
   case 357:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1145 "surface.yy"
     {
 			  lexerCmdMode();
 			  moduleExpr.contractTo(0);
-			;}
+			}
     break;
 
   case 358:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1150 "surface.yy"
     {
 			  lexerInitialMode();
 			  if (interpreter.setCurrentModule(moduleExpr, 1))
 			    interpreter.reduce(lexerBubble, (yyvsp[(1) - (4)].yyBool));
-			;}
+			}
     break;
 
   case 359:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1157 "surface.yy"
     {
 			  lexerCmdMode();
 			  moduleExpr.contractTo(0);
 			  number = NONE;
-			;}
+			}
     break;
 
   case 360:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1163 "surface.yy"
     {
 			  lexerInitialMode();
 			  if (interpreter.setCurrentModule(moduleExpr, 1))
 			    interpreter.rewrite(lexerBubble, number, (yyvsp[(1) - (4)].yyBool));
-			;}
+			}
     break;
 
   case 361:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1169 "surface.yy"
     {
 			  lexerCmdMode();
 			  moduleExpr.contractTo(0);
 			  number = NONE;
 			  number2 = NONE;
-			;}
+			}
     break;
 
   case 362:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1176 "surface.yy"
     {
 			  lexerInitialMode();
 			  if (interpreter.setCurrentModule(moduleExpr, 1))
 			    interpreter.eRewrite(lexerBubble, number, number2, (yyvsp[(1) - (4)].yyBool));
-			;}
+			}
     break;
 
   case 363:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1182 "surface.yy"
     {
 			  lexerCmdMode();
 			  moduleExpr.contractTo(0);
 			  number = NONE;
 			  number2 = NONE;
-			;}
+			}
     break;
 
   case 364:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1189 "surface.yy"
     {
 			  lexerInitialMode();
 			  if (interpreter.setCurrentModule(moduleExpr, 1))
 			    interpreter.fRewrite(lexerBubble, number, number2, (yyvsp[(1) - (4)].yyBool));
-			;}
+			}
     break;
 
   case 365:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1195 "surface.yy"
     {
 			  lexerCmdMode();
 			  moduleExpr.contractTo(0);
 			  number = NONE;
-			;}
+			}
     break;
 
   case 366:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1201 "surface.yy"
     {
 			  lexerInitialMode();
 			  if (interpreter.setCurrentModule(moduleExpr, 1))
 			    interpreter.sRewrite(lexerBubble, number, (yyvsp[(1) - (4)].yyBool));
-			;}
+			}
     break;
 
   case 367:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1207 "surface.yy"
     {
 			  lexerCmdMode();
 			  moduleExpr.contractTo(0);
 			  number = NONE;
 			  number2 = NONE;
-			;}
+			}
     break;
 
   case 368:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1214 "surface.yy"
     {
 			  lexerInitialMode();
 			  if (interpreter.setCurrentModule(moduleExpr, 1))
 			    interpreter.search(lexerBubble, number, number2, (yyvsp[(1) - (3)].yySearchKind));
-			;}
+			}
     break;
 
   case 369:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1220 "surface.yy"
     {
 			  lexerCmdMode();
 			  moduleExpr.contractTo(0);
 			  number = NONE;
-			;}
+			}
     break;
 
   case 370:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1226 "surface.yy"
     {
 			  lexerInitialMode();
 			  if (interpreter.setCurrentModule(moduleExpr, 1))
 			    interpreter.match(lexerBubble, (yyvsp[(1) - (3)].yyBool), number);
-			;}
+			}
     break;
 
   case 371:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1232 "surface.yy"
     {
 			  lexerCmdMode();
 			  moduleExpr.contractTo(0);
 			  number = NONE;
-			;}
+			}
     break;
 
   case 372:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1238 "surface.yy"
     {
 			  lexerInitialMode();
 			  if (interpreter.setCurrentModule(moduleExpr, 1))
 			    interpreter.unify(lexerBubble, number);
-			;}
+			}
     break;
 
   case 373:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1244 "surface.yy"
     {
 			  interpreter.cont((yyvsp[(3) - (4)].yyInt64), (yyvsp[(1) - (4)].yyBool));
-			;}
+			}
     break;
 
   case 374:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1248 "surface.yy"
     {
 			  lexerCmdMode();
 			  moduleExpr.contractTo(0);
-			;}
+			}
     break;
 
   case 375:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1253 "surface.yy"
     {
 			  lexerInitialMode();
 			  if (interpreter.setCurrentModule(moduleExpr, 1))
 			    interpreter.loop(lexerBubble);
-			;}
+			}
     break;
 
   case 376:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1259 "surface.yy"
     {
 			  moduleExpr.contractTo(0);
 			  if (interpreter.setCurrentModule(moduleExpr))  // HACK
 			    interpreter.contLoop(lexerBubble);
-			;}
+			}
     break;
 
   case 377:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1264 "surface.yy"
-    { lexerCmdMode(); ;}
+    { lexerCmdMode(); }
     break;
 
   case 378:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1266 "surface.yy"
     {
 			  lexerInitialMode();
 			  interpreter.traceSelect((yyvsp[(2) - (4)].yyBool));
-			;}
+			}
     break;
 
   case 379:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1270 "surface.yy"
-    { lexerCmdMode(); ;}
+    { lexerCmdMode(); }
     break;
 
   case 380:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1272 "surface.yy"
     {
 			  lexerInitialMode();
 			  interpreter.traceExclude((yyvsp[(2) - (4)].yyBool));
-			;}
+			}
     break;
 
   case 381:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1276 "surface.yy"
-    { lexerCmdMode(); ;}
+    { lexerCmdMode(); }
     break;
 
   case 382:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1278 "surface.yy"
     {
 			  lexerInitialMode();
 			  interpreter.breakSelect((yyvsp[(2) - (4)].yyBool));
-			;}
+			}
     break;
 
   case 383:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1282 "surface.yy"
-    { lexerCmdMode(); ;}
+    { lexerCmdMode(); }
     break;
 
   case 384:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1284 "surface.yy"
     {
 			  lexerInitialMode();
 			  interpreter.printConceal((yyvsp[(2) - (4)].yyBool));
-			;}
+			}
     break;
 
   case 385:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1289 "surface.yy"
     {
 			  if (CM != 0)  // HACK
 			    CM->getFlatSignature()->clearMemo();
-			;}
+			}
     break;
 
   case 386:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1296 "surface.yy"
-    { lexBubble(END_COMMAND, 0); ;}
+    { lexBubble(END_COMMAND, 0); }
     break;
 
   case 387:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1298 "surface.yy"
     {
 			  if (interpreter.setCurrentModule(lexerBubble))
 			    CM->showModule();
-			;}
+			}
     break;
 
   case 388:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1302 "surface.yy"
-    { lexBubble(END_COMMAND, 0); ;}
+    { lexBubble(END_COMMAND, 0); }
     break;
 
   case 389:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1304 "surface.yy"
     {
 			  if (interpreter.setCurrentModule(lexerBubble))
 			    CM->showModule();
-			;}
+			}
     break;
 
   case 390:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1308 "surface.yy"
-    { lexBubble(END_COMMAND, 0); ;}
+    { lexBubble(END_COMMAND, 0); }
     break;
 
   case 391:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1310 "surface.yy"
     {
 			  if (interpreter.setCurrentModule(lexerBubble))
 			    interpreter.showModule(true);
-			;}
+			}
     break;
 
   case 392:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1314 "surface.yy"
-    { lexBubble(END_COMMAND, 0); ;}
+    { lexBubble(END_COMMAND, 0); }
     break;
 
   case 393:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1316 "surface.yy"
     {
 			  if (interpreter.setCurrentView(lexerBubble))
 			    interpreter.showView();
-			;}
+			}
     break;
 
   case 394:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1321 "surface.yy"
     {
 			  interpreter.showModules(true);
-			;}
+			}
     break;
 
   case 395:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1325 "surface.yy"
     {
 			  interpreter.showNamedViews();
-			;}
+			}
     break;
 
   case 396:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1328 "surface.yy"
-    { lexBubble(END_COMMAND, 0); ;}
+    { lexBubble(END_COMMAND, 0); }
     break;
 
   case 397:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1330 "surface.yy"
     {
 			  if (interpreter.setCurrentModule(lexerBubble))
 			    interpreter.showSortsAndSubsorts();
-			;}
+			}
     break;
 
   case 398:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1334 "surface.yy"
-    { lexBubble(END_COMMAND, 0); ;}
+    { lexBubble(END_COMMAND, 0); }
     break;
 
   case 399:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1336 "surface.yy"
     {
 			  if (interpreter.setCurrentModule(lexerBubble))
 			    interpreter.showOps();
-			;}
+			}
     break;
 
   case 400:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1340 "surface.yy"
-    { lexBubble(END_COMMAND, 0); ;}
+    { lexBubble(END_COMMAND, 0); }
     break;
 
   case 401:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1342 "surface.yy"
     {
 			  if (interpreter.setCurrentModule(lexerBubble))
 			    interpreter.showVars();
-			;}
+			}
     break;
 
   case 402:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1346 "surface.yy"
-    { lexBubble(END_COMMAND, 0); ;}
+    { lexBubble(END_COMMAND, 0); }
     break;
 
   case 403:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1348 "surface.yy"
     {
 			  if (interpreter.setCurrentModule(lexerBubble))
 			    interpreter.showMbs();
-			;}
+			}
     break;
 
   case 404:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1352 "surface.yy"
-    { lexBubble(END_COMMAND, 0); ;}
+    { lexBubble(END_COMMAND, 0); }
     break;
 
   case 405:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1354 "surface.yy"
     {
 			  if (interpreter.setCurrentModule(lexerBubble))
 			    interpreter.showEqs();
-			;}
+			}
     break;
 
   case 406:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1358 "surface.yy"
-    { lexBubble(END_COMMAND, 0); ;}
+    { lexBubble(END_COMMAND, 0); }
     break;
 
   case 407:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1360 "surface.yy"
     {
 			  if (interpreter.setCurrentModule(lexerBubble))
 			    interpreter.showRls();
-			;}
+			}
     break;
 
   case 408:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1364 "surface.yy"
-    { lexBubble(END_COMMAND, 0); ;}
+    { lexBubble(END_COMMAND, 0); }
     break;
 
   case 409:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1366 "surface.yy"
     {
 			  if (interpreter.setCurrentModule(lexerBubble))
 			    interpreter.showSummary();
-			;}
+			}
     break;
 
   case 410:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1370 "surface.yy"
-    { lexBubble(END_COMMAND, 0); ;}
+    { lexBubble(END_COMMAND, 0); }
     break;
 
   case 411:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1372 "surface.yy"
     {
 			  if (interpreter.setCurrentModule(lexerBubble))
 			    interpreter.showKinds();
-			;}
+			}
     break;
 
   case 412:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1377 "surface.yy"
     {
 			  interpreter.showSearchPath((yyvsp[(3) - (4)].yyInt64));
-			;}
+			}
     break;
 
   case 413:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1381 "surface.yy"
     {
 			  interpreter.showSearchPathLabels((yyvsp[(4) - (5)].yyInt64));
-			;}
+			}
     break;
 
   case 414:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1385 "surface.yy"
     {
 			  interpreter.showSearchGraph();
-			;}
+			}
     break;
 
   case 415:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1388 "surface.yy"
-    { lexBubble(END_COMMAND, 0); ;}
+    { lexBubble(END_COMMAND, 0); }
     break;
 
   case 416:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1390 "surface.yy"
     {
 			  if (interpreter.setCurrentModule(lexerBubble))
 			    interpreter.showProfile();
-			;}
+			}
     break;
 
   case 417:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1398 "surface.yy"
     {
 			  globalAdvisoryFlag = (yyvsp[(4) - (5)].yyBool);
-			;}
+			}
     break;
 
   case 418:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1402 "surface.yy"
     {
 			  interpreter.setFlag(Interpreter::SHOW_STATS, (yyvsp[(4) - (5)].yyBool));
-			;}
+			}
     break;
 
   case 419:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1406 "surface.yy"
     {
 			  interpreter.setFlag(Interpreter::SHOW_LOOP_STATS, (yyvsp[(5) - (6)].yyBool));
-			;}
+			}
     break;
 
   case 420:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1410 "surface.yy"
     {
 			  interpreter.setFlag(Interpreter::SHOW_TIMING, (yyvsp[(4) - (5)].yyBool));
-			;}
+			}
     break;
 
   case 421:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1414 "surface.yy"
     {
 			  interpreter.setFlag(Interpreter::SHOW_BREAKDOWN, (yyvsp[(4) - (5)].yyBool));
-			;}
+			}
     break;
 
   case 422:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1418 "surface.yy"
     {
 			  interpreter.setFlag(Interpreter::SHOW_LOOP_TIMING, (yyvsp[(5) - (6)].yyBool));
-			;}
+			}
     break;
 
   case 423:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1422 "surface.yy"
     {
 			  interpreter.setFlag(Interpreter::SHOW_COMMAND, (yyvsp[(4) - (5)].yyBool));
-			;}
+			}
     break;
 
   case 424:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1426 "surface.yy"
     {
 			  MemoryCell::setShowGC((yyvsp[(4) - (5)].yyBool));
-			;}
+			}
     break;
 
   case 425:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1430 "surface.yy"
     {
 			  interpreter.setPrintFlag((yyvsp[(3) - (5)].yyPrintFlags), (yyvsp[(4) - (5)].yyBool));
-			;}
+			}
     break;
 
   case 426:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1434 "surface.yy"
     {
 			  interpreter.setFlag(Interpreter::PRINT_ATTRIBUTE, (yyvsp[(4) - (5)].yyBool));
-			;}
+			}
     break;
 
   case 427:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1438 "surface.yy"
     {
 			  interpreter.setFlag(Interpreter::PRINT_ATTRIBUTE_NEWLINE, (yyvsp[(5) - (6)].yyBool));
-			;}
+			}
     break;
 
   case 428:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1442 "surface.yy"
     {
 			  interpreter.setFlag((yyvsp[(3) - (5)].yyFlags), (yyvsp[(4) - (5)].yyBool));
-			;}
+			}
     break;
 
   case 429:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1446 "surface.yy"
     {
 			  interpreter.setFlag(Interpreter::BREAK, (yyvsp[(3) - (4)].yyBool));
-			;}
+			}
     break;
 
   case 430:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1449 "surface.yy"
-    { lexerCmdMode(); ;}
+    { lexerCmdMode(); }
     break;
 
   case 431:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1450 "surface.yy"
-    { lexerInitialMode(); ;}
+    { lexerInitialMode(); }
     break;
 
   case 432:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1452 "surface.yy"
     {
 			  interpreter.setAutoImport((yyvsp[(2) - (7)].yyImportMode), (yyvsp[(4) - (7)].yyToken), (yyvsp[(6) - (7)].yyBool));
-			;}
+			}
     break;
 
   case 433:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1455 "surface.yy"
-    { lexerCmdMode(); ;}
+    { lexerCmdMode(); }
     break;
 
   case 434:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1456 "surface.yy"
-    { lexerInitialMode(); ;}
+    { lexerInitialMode(); }
     break;
 
   case 435:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1458 "surface.yy"
     {
 			  interpreter.setOmodInclude((yyvsp[(5) - (8)].yyToken), (yyvsp[(7) - (8)].yyBool));
-			;}
+			}
     break;
 
   case 436:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1462 "surface.yy"
     {
 			  globalVerboseFlag = (yyvsp[(3) - (4)].yyBool);
-			;}
+			}
     break;
 
   case 437:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1466 "surface.yy"
     {
 			  interpreter.setFlag(Interpreter::AUTO_CLEAR_MEMO, (yyvsp[(4) - (5)].yyBool));
-			;}
+			}
     break;
 
   case 438:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1470 "surface.yy"
     {
 			  interpreter.setFlag(Interpreter::AUTO_CLEAR_RULES, (yyvsp[(4) - (5)].yyBool));
-			;}
+			}
     break;
 
   case 439:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1474 "surface.yy"
     {
 			  interpreter.setFlag(Interpreter::COMPILE_COUNT, (yyvsp[(4) - (5)].yyBool));
-			;}
+			}
     break;
 
   case 440:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1478 "surface.yy"
     {
 			  interpreter.setFlag(Interpreter::PROFILE, (yyvsp[(3) - (4)].yyBool));
-			;}
+			}
     break;
 
   case 441:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1482 "surface.yy"
     {
 			  interpreter.setFlag(Interpreter::AUTO_CLEAR_PROFILE, (yyvsp[(4) - (5)].yyBool));
-			;}
+			}
     break;
 
   case 442:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1489 "surface.yy"
     {
 			  PARSE_RESULT = UserLevelRewritingContext::RESUME;
-			;}
+			}
     break;
 
   case 443:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1493 "surface.yy"
     {
 			  PARSE_RESULT = UserLevelRewritingContext::ABORT;
-			;}
+			}
     break;
 
   case 444:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1497 "surface.yy"
     {
 			  PARSE_RESULT = UserLevelRewritingContext::STEP;
-			;}
+			}
     break;
 
   case 445:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1501 "surface.yy"
     {
 			  PARSE_RESULT = UserLevelRewritingContext::WHERE;
-			;}
+			}
     break;
 
   case 446:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1508 "surface.yy"
     {
 			  MemoryCell::setShowGC((yyvsp[(4) - (5)].yyBool));
-			;}
+			}
     break;
 
   case 447:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1512 "surface.yy"
     {
 			  interpreter.setFlag(Interpreter::SHOW_STATS, (yyvsp[(3) - (4)].yyBool));
-			;}
+			}
     break;
 
   case 448:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1518 "surface.yy"
-    { lexerInitialMode(); ;}
+    { lexerInitialMode(); }
     break;
 
   case 450:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1525 "surface.yy"
-    { (yyval.yyPrintFlags) = Interpreter::PRINT_MIXFIX; ;}
+    { (yyval.yyPrintFlags) = Interpreter::PRINT_MIXFIX; }
     break;
 
   case 451:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1526 "surface.yy"
-    { (yyval.yyPrintFlags) = Interpreter::PRINT_FLAT; ;}
+    { (yyval.yyPrintFlags) = Interpreter::PRINT_FLAT; }
     break;
 
   case 452:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1527 "surface.yy"
-    { (yyval.yyPrintFlags) = Interpreter::PRINT_WITH_ALIASES; ;}
+    { (yyval.yyPrintFlags) = Interpreter::PRINT_WITH_ALIASES; }
     break;
 
   case 453:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1528 "surface.yy"
-    { (yyval.yyPrintFlags) = Interpreter::PRINT_WITH_PARENS; ;}
+    { (yyval.yyPrintFlags) = Interpreter::PRINT_WITH_PARENS; }
     break;
 
   case 454:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1529 "surface.yy"
-    { (yyval.yyPrintFlags) = Interpreter::PRINT_GRAPH; ;}
+    { (yyval.yyPrintFlags) = Interpreter::PRINT_GRAPH; }
     break;
 
   case 455:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1530 "surface.yy"
-    { (yyval.yyPrintFlags) = Interpreter::PRINT_CONCEAL; ;}
+    { (yyval.yyPrintFlags) = Interpreter::PRINT_CONCEAL; }
     break;
 
   case 456:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1531 "surface.yy"
-    { (yyval.yyPrintFlags) = Interpreter::PRINT_NUMBER; ;}
+    { (yyval.yyPrintFlags) = Interpreter::PRINT_NUMBER; }
     break;
 
   case 457:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1532 "surface.yy"
-    { (yyval.yyPrintFlags) = Interpreter::PRINT_RAT; ;}
+    { (yyval.yyPrintFlags) = Interpreter::PRINT_RAT; }
     break;
 
   case 458:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1533 "surface.yy"
-    { (yyval.yyPrintFlags) = Interpreter::PRINT_COLOR; ;}
+    { (yyval.yyPrintFlags) = Interpreter::PRINT_COLOR; }
     break;
 
   case 459:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1534 "surface.yy"
-    { (yyval.yyPrintFlags) = Interpreter::PRINT_FORMAT; ;}
+    { (yyval.yyPrintFlags) = Interpreter::PRINT_FORMAT; }
     break;
 
   case 460:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1537 "surface.yy"
-    { (yyval.yyFlags) = Interpreter::TRACE; ;}
+    { (yyval.yyFlags) = Interpreter::TRACE; }
     break;
 
   case 461:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1538 "surface.yy"
-    { (yyval.yyFlags) = Interpreter::TRACE_CONDITION; ;}
+    { (yyval.yyFlags) = Interpreter::TRACE_CONDITION; }
     break;
 
   case 462:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1539 "surface.yy"
-    { (yyval.yyFlags) = Interpreter::TRACE_WHOLE; ;}
+    { (yyval.yyFlags) = Interpreter::TRACE_WHOLE; }
     break;
 
   case 463:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1540 "surface.yy"
-    { (yyval.yyFlags) = Interpreter::TRACE_SUBSTITUTION; ;}
+    { (yyval.yyFlags) = Interpreter::TRACE_SUBSTITUTION; }
     break;
 
   case 464:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1541 "surface.yy"
-    { (yyval.yyFlags) = Interpreter::TRACE_SELECT; ;}
+    { (yyval.yyFlags) = Interpreter::TRACE_SELECT; }
     break;
 
   case 465:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1542 "surface.yy"
-    { (yyval.yyFlags) = Interpreter::TRACE_MB; ;}
+    { (yyval.yyFlags) = Interpreter::TRACE_MB; }
     break;
 
   case 466:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1543 "surface.yy"
-    { (yyval.yyFlags) = Interpreter::TRACE_EQ; ;}
+    { (yyval.yyFlags) = Interpreter::TRACE_EQ; }
     break;
 
   case 467:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1544 "surface.yy"
-    { (yyval.yyFlags) = Interpreter::TRACE_RL; ;}
+    { (yyval.yyFlags) = Interpreter::TRACE_RL; }
     break;
 
   case 468:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1545 "surface.yy"
-    { (yyval.yyFlags) = Interpreter::TRACE_REWRITE; ;}
+    { (yyval.yyFlags) = Interpreter::TRACE_REWRITE; }
     break;
 
   case 469:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1546 "surface.yy"
-    { (yyval.yyFlags) = Interpreter::TRACE_BODY; ;}
+    { (yyval.yyFlags) = Interpreter::TRACE_BODY; }
     break;
 
   case 470:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1547 "surface.yy"
-    { (yyval.yyFlags) = Interpreter::TRACE_BUILTIN; ;}
+    { (yyval.yyFlags) = Interpreter::TRACE_BUILTIN; }
     break;
 
   case 471:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1550 "surface.yy"
-    { (yyval.yyBool) = true; ;}
+    { (yyval.yyBool) = true; }
     break;
 
   case 472:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1551 "surface.yy"
-    { (yyval.yyBool) = false; ;}
+    { (yyval.yyBool) = false; }
     break;
 
   case 473:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1554 "surface.yy"
-    { (yyval.yyBool) = true; ;}
+    { (yyval.yyBool) = true; }
     break;
 
   case 474:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1555 "surface.yy"
-    { (yyval.yyBool) = false; ;}
+    { (yyval.yyBool) = false; }
     break;
 
   case 475:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1558 "surface.yy"
-    { (yyval.yyBool) = true; ;}
+    { (yyval.yyBool) = true; }
     break;
 
   case 476:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1559 "surface.yy"
-    { (yyval.yyBool) = false; ;}
+    { (yyval.yyBool) = false; }
     break;
 
   case 477:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1562 "surface.yy"
-    { (yyval.yyBool) = true; ;}
+    { (yyval.yyBool) = true; }
     break;
 
   case 478:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1563 "surface.yy"
-    { (yyval.yyBool) = false; ;}
+    { (yyval.yyBool) = false; }
     break;
 
   case 479:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1568 "surface.yy"
-    { (yyval.yySearchKind) = Interpreter::NARROW; ;}
+    { (yyval.yySearchKind) = Interpreter::NARROW; }
     break;
 
   case 480:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1569 "surface.yy"
-    { (yyval.yySearchKind) = Interpreter::XG_NARROW; ;}
+    { (yyval.yySearchKind) = Interpreter::XG_NARROW; }
     break;
 
   case 481:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1570 "surface.yy"
-    { (yyval.yySearchKind) = Interpreter::SEARCH; ;}
+    { (yyval.yySearchKind) = Interpreter::SEARCH; }
     break;
 
   case 482:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1573 "surface.yy"
-    { (yyval.yyBool) = true; ;}
+    { (yyval.yyBool) = true; }
     break;
 
   case 483:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1574 "surface.yy"
-    { (yyval.yyBool) = false; ;}
+    { (yyval.yyBool) = false; }
     break;
 
   case 484:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1577 "surface.yy"
-    { (yyval.yyBool) = true; ;}
+    { (yyval.yyBool) = true; }
     break;
 
   case 485:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1578 "surface.yy"
-    { (yyval.yyBool) = false; ;}
+    { (yyval.yyBool) = false; }
     break;
 
   case 486:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1581 "surface.yy"
-    { (yyval.yyInt64) = (yyvsp[(1) - (1)].yyInt64); ;}
+    { (yyval.yyInt64) = (yyvsp[(1) - (1)].yyInt64); }
     break;
 
   case 487:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1582 "surface.yy"
-    { (yyval.yyInt64) = NONE; ;}
+    { (yyval.yyInt64) = NONE; }
     break;
 
   case 488:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1585 "surface.yy"
-    { (yyval.yyImportMode) = ImportModule::PROTECTING; ;}
+    { (yyval.yyImportMode) = ImportModule::PROTECTING; }
     break;
 
   case 489:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1586 "surface.yy"
-    { (yyval.yyImportMode) = ImportModule::EXTENDING; ;}
+    { (yyval.yyImportMode) = ImportModule::EXTENDING; }
     break;
 
   case 490:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1587 "surface.yy"
-    { (yyval.yyImportMode) = ImportModule::INCLUDING; ;}
+    { (yyval.yyImportMode) = ImportModule::INCLUDING; }
     break;
 
   case 492:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1597 "surface.yy"
-    { lexBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0); ;}
+    { lexBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0); }
     break;
 
   case 494:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1601 "surface.yy"
-    { moduleExpr = lexerBubble; lexBubble(END_COMMAND, 1); ;}
+    { moduleExpr = lexerBubble; lexBubble(END_COMMAND, 1); }
     break;
 
   case 497:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1613 "surface.yy"
-    { lexSave((yyvsp[(1) - (1)].yyToken)); ;}
+    { lexSave((yyvsp[(1) - (1)].yyToken)); }
     break;
 
   case 500:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1616 "surface.yy"
-    { lexBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0);  ;}
+    { lexBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0);  }
     break;
 
   case 502:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1621 "surface.yy"
-    { lexContinueSave((yyvsp[(1) - (1)].yyToken)); ;}
+    { lexContinueSave((yyvsp[(1) - (1)].yyToken)); }
     break;
 
   case 504:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1623 "surface.yy"
-    { lexContinueBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0); ;}
+    { lexContinueBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0); }
     break;
 
   case 507:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1629 "surface.yy"
-    { number = Token::codeToInt64(lexerBubble[1].code()); ;}
+    { number = Token::codeToInt64(lexerBubble[1].code()); }
     break;
 
   case 509:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1631 "surface.yy"
-    { lexContinueBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0); ;}
+    { lexContinueBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0); }
     break;
 
   case 512:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1646 "surface.yy"
-    { lexSave((yyvsp[(1) - (1)].yyToken)); ;}
+    { lexSave((yyvsp[(1) - (1)].yyToken)); }
     break;
 
   case 515:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1649 "surface.yy"
-    { lexBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0); ;}
+    { lexBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0); }
     break;
 
   case 517:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1658 "surface.yy"
-    { lexContinueSave((yyvsp[(1) - (1)].yyToken)); ;}
+    { lexContinueSave((yyvsp[(1) - (1)].yyToken)); }
     break;
 
   case 519:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1660 "surface.yy"
-    { lexContinueSave((yyvsp[(1) - (1)].yyToken)); ;}
+    { lexContinueSave((yyvsp[(1) - (1)].yyToken)); }
     break;
 
   case 521:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1662 "surface.yy"
-    { lexContinueBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0); ;}
+    { lexContinueBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0); }
     break;
 
   case 524:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1672 "surface.yy"
-    { number = Token::codeToInt64(lexerBubble[1].code()); ;}
+    { number = Token::codeToInt64(lexerBubble[1].code()); }
     break;
 
   case 526:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1674 "surface.yy"
-    { lexContinueSave((yyvsp[(1) - (1)].yyToken)); ;}
+    { lexContinueSave((yyvsp[(1) - (1)].yyToken)); }
     break;
 
   case 528:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1676 "surface.yy"
-    { lexContinueBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0); ;}
+    { lexContinueBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0); }
     break;
 
   case 531:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1686 "surface.yy"
-    { lexContinueSave((yyvsp[(1) - (1)].yyToken)); ;}
+    { lexContinueSave((yyvsp[(1) - (1)].yyToken)); }
     break;
 
   case 533:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1688 "surface.yy"
-    { lexContinueBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0); ;}
+    { lexContinueBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0); }
     break;
 
   case 536:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1699 "surface.yy"
     {
 			  number = Token::codeToInt64(lexerBubble[1].code());
 			  number2 = Token::codeToInt64(lexerBubble[3].code());
 			  clear();
-			;}
+			}
     break;
 
   case 538:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1705 "surface.yy"
-    { lexContinueBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0); ;}
+    { lexContinueBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0); }
     break;
 
   case 541:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1715 "surface.yy"
-    { lexContinueSave((yyvsp[(1) - (1)].yyToken)); ;}
+    { lexContinueSave((yyvsp[(1) - (1)].yyToken)); }
     break;
 
   case 543:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1717 "surface.yy"
-    { lexContinueBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0); ;}
+    { lexContinueBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0); }
     break;
 
   case 546:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1727 "surface.yy"
-    { number2 = Token::codeToInt64(lexerBubble[2].code()); ;}
+    { number2 = Token::codeToInt64(lexerBubble[2].code()); }
     break;
 
   case 548:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1729 "surface.yy"
-    { lexContinueBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0); ;}
+    { lexContinueBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0); }
     break;
 
   case 551:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1734 "surface.yy"
-    { lexContinueBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0, 1); ;}
+    { lexContinueBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 0, 1); }
     break;
 
   case 554:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1740 "surface.yy"
-    { lexBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 1, 1); ;}
+    { lexBubble((yyvsp[(1) - (1)].yyToken), END_COMMAND, 1, 1); }
     break;
 
   case 556:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1742 "surface.yy"
-    { lexBubble((yyvsp[(1) - (1)].yyToken), BAR_COLON | END_COMMAND, 0); ;}
+    { lexBubble((yyvsp[(1) - (1)].yyToken), BAR_COLON | END_COMMAND, 0); }
     break;
 
   case 558:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1745 "surface.yy"
     {
 			  lexerBubble.resize(1);
 			  lexerBubble[0].dropChar((yyvsp[(1) - (1)].yyToken));
 			  missingSpace(lexerBubble[0]);
-			;}
+			}
     break;
 
   case 596:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1784 "surface.yy"
-    {;}
+    {}
     break;
 
   case 598:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1789 "surface.yy"
     {
 			  singleton[0].dropChar((yyvsp[(1) - (1)].yyToken));
 			  missingSpace(singleton[0]);
 			  interpreter.addSelected(singleton);
-			;}
+			}
     break;
 
   case 601:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1800 "surface.yy"
     {
 			  singleton[0] = (yyvsp[(1) - (1)].yyToken);
 			  interpreter.addSelected(singleton);
-			;}
+			}
     break;
 
   case 602:
 
-/* Line 1455 of yacc.c  */
+/* Line 1806 of yacc.c  */
 #line 1805 "surface.yy"
     {
 			  interpreter.addSelected(lexerBubble);
-			;}
+			}
     break;
 
 
 
-/* Line 1455 of yacc.c  */
-#line 5899 "surface.c"
+/* Line 1806 of yacc.c  */
+#line 5929 "surface.c"
       default: break;
     }
+  /* User semantic actions sometimes alter yychar, and that requires
+     that yytoken be updated with the new translation.  We take the
+     approach of translating immediately before every use of yytoken.
+     One alternative is translating here after every semantic action,
+     but that translation would be missed if the semantic action invokes
+     YYABORT, YYACCEPT, or YYERROR immediately after altering yychar or
+     if it invokes YYBACKUP.  In the case of YYABORT or YYACCEPT, an
+     incorrect destructor might then be invoked immediately.  In the
+     case of YYERROR or YYBACKUP, subsequent parser actions might lead
+     to an incorrect destructor call or verbose syntax error message
+     before the lookahead is translated.  */
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
 
   YYPOPSTACK (yylen);
@@ -5925,6 +5966,10 @@ yyreduce:
 | yyerrlab -- here on detecting error |
 `------------------------------------*/
 yyerrlab:
+  /* Make sure we have latest lookahead translation.  See comments at
+     user semantic actions for why this is necessary.  */
+  yytoken = yychar == YYEMPTY ? YYEMPTY : YYTRANSLATE (yychar);
+
   /* If not already recovering from an error, report this error.  */
   if (!yyerrstatus)
     {
@@ -5932,37 +5977,36 @@ yyerrlab:
 #if ! YYERROR_VERBOSE
       yyerror (YY_("syntax error"));
 #else
+# define YYSYNTAX_ERROR yysyntax_error (&yymsg_alloc, &yymsg, \
+                                        yyssp, yytoken)
       {
-	YYSIZE_T yysize = yysyntax_error (0, yystate, yychar);
-	if (yymsg_alloc < yysize && yymsg_alloc < YYSTACK_ALLOC_MAXIMUM)
-	  {
-	    YYSIZE_T yyalloc = 2 * yysize;
-	    if (! (yysize <= yyalloc && yyalloc <= YYSTACK_ALLOC_MAXIMUM))
-	      yyalloc = YYSTACK_ALLOC_MAXIMUM;
-	    if (yymsg != yymsgbuf)
-	      YYSTACK_FREE (yymsg);
-	    yymsg = (char *) YYSTACK_ALLOC (yyalloc);
-	    if (yymsg)
-	      yymsg_alloc = yyalloc;
-	    else
-	      {
-		yymsg = yymsgbuf;
-		yymsg_alloc = sizeof yymsgbuf;
-	      }
-	  }
-
-	if (0 < yysize && yysize <= yymsg_alloc)
-	  {
-	    (void) yysyntax_error (yymsg, yystate, yychar);
-	    yyerror (yymsg);
-	  }
-	else
-	  {
-	    yyerror (YY_("syntax error"));
-	    if (yysize != 0)
-	      goto yyexhaustedlab;
-	  }
+        char const *yymsgp = YY_("syntax error");
+        int yysyntax_error_status;
+        yysyntax_error_status = YYSYNTAX_ERROR;
+        if (yysyntax_error_status == 0)
+          yymsgp = yymsg;
+        else if (yysyntax_error_status == 1)
+          {
+            if (yymsg != yymsgbuf)
+              YYSTACK_FREE (yymsg);
+            yymsg = (char *) YYSTACK_ALLOC (yymsg_alloc);
+            if (!yymsg)
+              {
+                yymsg = yymsgbuf;
+                yymsg_alloc = sizeof yymsgbuf;
+                yysyntax_error_status = 2;
+              }
+            else
+              {
+                yysyntax_error_status = YYSYNTAX_ERROR;
+                yymsgp = yymsg;
+              }
+          }
+        yyerror (yymsgp);
+        if (yysyntax_error_status == 2)
+          goto yyexhaustedlab;
       }
+# undef YYSYNTAX_ERROR
 #endif
     }
 
@@ -6021,7 +6065,7 @@ yyerrlab1:
   for (;;)
     {
       yyn = yypact[yystate];
-      if (yyn != YYPACT_NINF)
+      if (!yypact_value_is_default (yyn))
 	{
 	  yyn += YYTERROR;
 	  if (0 <= yyn && yyn <= YYLAST && yycheck[yyn] == YYTERROR)
@@ -6080,8 +6124,13 @@ yyexhaustedlab:
 
 yyreturn:
   if (yychar != YYEMPTY)
-     yydestruct ("Cleanup: discarding lookahead",
-		 yytoken, &yylval);
+    {
+      /* Make sure we have latest lookahead translation.  See comments at
+         user semantic actions for why this is necessary.  */
+      yytoken = YYTRANSLATE (yychar);
+      yydestruct ("Cleanup: discarding lookahead",
+                  yytoken, &yylval);
+    }
   /* Do not reclaim the symbols of the rule which action triggered
      this YYABORT or YYACCEPT.  */
   YYPOPSTACK (yylen);
@@ -6106,7 +6155,7 @@ yyreturn:
 
 
 
-/* Line 1675 of yacc.c  */
+/* Line 2067 of yacc.c  */
 #line 1835 "surface.yy"
 
 

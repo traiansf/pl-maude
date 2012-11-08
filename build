@@ -1,67 +1,184 @@
 #!/bin/bash
-JOBS="-j 9"
-
-SIGSEGV_DIR=libsigsegv-2.6
+SIGSEGV_DIR=libsigsegv
 TECLA_DIR=libtecla
 BUDDY_DIR=buddy-2.4
-GMP_DIR=gmp-5.0.2
-CVC3_DIR=$(basename cvc3-*)
+GMP_DIR=gmp-5
+CVC3_DIR=cvc3
+Z3_DIR=z3
 SMTA_DIR=smta-0.1
 MAUDE_DIR=Maude-2.6
 
+JOBS="-j 9"
+
+# download all sources
+if [ -n ${D_DOWNLOAD} ] ; then
+
+rm -rf ${PL_PREFIX}
+mkdir ${PL_PREFIX}
+cd ${PL_PREFIX}
+
+WGET=wget
+HG="hg clone"
+GIT="git clone"
+TAR="tar --recursive-unlink --extract --gunzip --verbose"
+#TAR="tar xvfz"
+
+TECLA_TAR=libtecla.tar.gz
+BUDDY_TAR=buddy-2.4.tar.gz
+CVC3_TAR=cvc3-latest.tar.gz
+
+# libsigsegv
+${GIT} git://git.savannah.gnu.org/libsigsegv.git ${SIGSEGV_DIR}
+
+# libtecla
+${WGET} http://www.astro.caltech.edu/~mcs/tecla/${TECLA_TAR}
+${TAR} ${TECLA_TAR}
+rm ${TECLA_TAR}
+
+# buddy
+${WGET} -O ${BUDDY_TAR} ${BUDDY_MIRROR}
+${TAR} ${BUDDY_TAR}
+rm ${BUDDY_TAR}
+
+# gmp
+${HG} http://gmplib.org:8000/gmp-5.0 ${GMP_DIR}
+
+# cvc3
+${WGET} -O ${CVC3_TAR} http://goedel.cims.nyu.edu/cvc3-builds/latest.tar.gz
+${TAR} ${CVC3_TAR}
+mv $(basename cvc3-*) ${CVC3_DIR}
+rm ${CVC3_TAR}
+
+# z3
+${GIT} clone https://git01.codeplex.com/z3 ${Z3_DIR}
+
+cd -
+
+fi
+
+
+# run configure for all sources
 # libsigsegv
 cd ${SIGSEGV_DIR}
-./configure --prefix=${PREFIX} \
-    CC=${CC} CXX=${CXX} \
-    CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}"
+./configure --prefix=${PL_PREFIX} \
+    CC=${PL_CC} CXX=${PL_CXX} \
+    CFLAGS="${PL_CFLAGS}" CXXFLAGS="${PL_CXXFLAGS}"
+exit_code=$?
 cd -
-make -C ${SIGSEGV_DIR} ${JOBS} install
+if [ $exit_code -ne 0 ] ; then
+  exit $exit_code
+fi
 
 # libtecla
 cd ${TECLA_DIR}
-./configure --prefix=${PREFIX} --build=${BUILD} \
+./configure --prefix=${PL_PREFIX} --build=${PL_BUILD} \
     --with-man-pages=no \
-    CC=${CC} CXX=${CXX} \
-    CFLAGS="${CFLAGS} -D_POSIX_C_SOURCE=1" CXXFLAGS="${CXXFLAGS}"
+    CC=${PL_CC} CXX=${PL_CXX} \
+    CFLAGS="${PL_CFLAGS} -D_POSIX_C_SOURCE=1" CXXFLAGS="${PL_CXXFLAGS}"
+exit_code=$?
 cd -
-make -C ${TECLA_DIR} TARGETS=normal TARGET_LIBS=static install
+if [ $exit_code -ne 0 ] ; then
+  exit $exit_code
+fi
 
 # buddy
 cd ${BUDDY_DIR}
-./configure --prefix=${PREFIX} --build=${BUILD} \
+./configure --prefix=${PL_PREFIX} --build=${PL_BUILD} \
     --disable-shared \
-    CC=${CC} CXX=${CXX} \
-    CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}"
+    CC=${PL_CC} CXX=${PL_CXX} \
+    CFLAGS="${PL_CFLAGS}" CXXFLAGS="${PL_CXXFLAGS}"
+exit_code=$?
 cd -
-make -C ${BUDDY_DIR} ${JOBS} install
+if [ $exit_code -ne 0 ] ; then
+  exit $exit_code
+fi
 
 # gmp
 cd ${GMP_DIR}
-./configure --prefix=${PREFIX} --build=${BUILD} \
+./configure --prefix=${PL_PREFIX} --build=${PL_BUILD} \
     --enable-cxx --disable-shared \
-    CC=${CC} CXX=${CXX} \
-    CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}"
+    CC=${PL_CC} CXX=${PL_CXX} \
+    CFLAGS="${PL_CFLAGS}" CXXFLAGS="${PL_CXXFLAGS}"
+exit_code=$?
 cd -
-make -C ${GMP_DIR} ${JOBS} install
+if [ $exit_code -ne 0 ] ; then
+  exit $exit_code
+fi
 
 # cvc3
 cd ${CVC3_DIR}
-./configure --prefix=${PREFIX} --build=${BUILD} \
-    CC=${CC} CXX=${CXX} \
-    CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" CPPFLAGS="${CPPFLAGS}" \
-    LDFLAGS="${LDFLAGS}" LIBS="-lgmp"
+./configure --prefix=${PL_PREFIX} --build=${PL_BUILD} \
+    CC=${PL_CC} CXX=${PL_CXX} \
+    CFLAGS="${PL_CFLAGS}" CXXFLAGS="${PL_CXXFLAGS}" CPPFLAGS="${PL_CPPFLAGS}" \
+    LDFLAGS="${PL_LDFLAGS}" LIBS="-lgmp"
+exit_code=$?
 cd -
-make -C ${CVC3_DIR} ${JOBS} install
-
-# smta 
-make -C ${SMTA_DIR} CXXFLAGS="-O2 -Wall ${CXXFLAGS}" install
+if [ $exit_code -ne 0 ] ; then
+  exit $exit_code
+fi
 
 # maude
 cd ${MAUDE_DIR}
-./configure --prefix=${PREFIX} --build=${BUILD} \
-    CC=${CC} CXX=${CXX} \
-    CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" CPPFLAGS="${CPPFLAGS}" \
-    LDFLAGS="${LDFLAGS}" LIBS="-lsmta -lcvc3 -lgmp"
+./configure --prefix=${PL_PREFIX} --build=${PL_BUILD} \
+    CC=${PL_CC} CXX=${PL_CXX} \
+    CFLAGS="${PL_CFLAGS}" CXXFLAGS="${PL_CXXFLAGS}" CPPFLAGS="${PL_CPPFLAGS}" \
+    LDFLAGS="${PL_LDFLAGS}" LIBS="-lsmta -lcvc3 -lgmp"
+exit_code=$?
 cd -
-make -C ${MAUDE_DIR} ${JOBS} 
+if [ $exit_code -ne 0 ] ; then
+  exit $exit_code
+fi
+
+
+
+
+exit 0
+
+
+make -C ${SIGSEGV_DIR} ${JOBS} install
+exit_code=$?
+if [ $exit_code -ne 0 ] ; then
+  exit $exit_code
+fi
+
+
+make -C ${TECLA_DIR} TARGETS=normal TARGET_LIBS=static install
+exit_code=$?
+if [ $exit_code -ne 0 ] ; then
+  exit $exit_code
+fi
+
+
+make -C ${BUDDY_DIR} ${JOBS} install
+exit_code=$?
+if [ $exit_code -ne 0 ] ; then
+  exit $exit_code
+fi
+
+
+make -C ${GMP_DIR} ${JOBS} install
+exit_code=$?
+if [ $exit_code -ne 0 ] ; then
+  exit $exit_code
+fi
+
+
+make -C ${CVC3_DIR} ${JOBS} install
+exit_code=$?
+if [ $exit_code -ne 0 ] ; then
+  exit $exit_code
+fi
+
+# smta
+make -C ${SMTA_DIR} CXXFLAGS="-O3 -Wall ${PL_CXXFLAGS}" ${JOBS} install
+exit_code=$?
+if [ $exit_code -ne 0 ] ; then
+  exit $exit_code
+fi
+
+make -C ${MAUDE_DIR}
+exit_code=$?
+if [ $exit_code -ne 0 ] ; then
+  exit $exit_code
+fi
 
