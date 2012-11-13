@@ -1,4 +1,8 @@
 #!/bin/bash
+set -e
+set -o pipefail
+
+
 PL_BUILD=x86_64-apple-darwin \
 PL_CC=gcc-4.2 \
 PL_CXX=g++-4.2 \
