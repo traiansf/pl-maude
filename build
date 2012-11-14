@@ -76,10 +76,10 @@ rm $GMP_TAR
 
 
 # cvc3
-$WGET -O $CVC3_TAR http://goedel.cims.nyu.edu/cvc3-builds/latest.tar.gz
-$TAR $CVC3_TAR
-mv $(basename cvc3-*) $CVC3_DIR
-rm $CVC3_TAR
+#$WGET -O $CVC3_TAR http://goedel.cims.nyu.edu/cvc3-builds/latest.tar.gz
+#$TAR $CVC3_TAR
+#mv $(basename cvc3-*) $CVC3_DIR
+#rm $CVC3_TAR
 
 # z3
 # use unstable for now
@@ -132,16 +132,16 @@ make -C $PL_PREFIX/$GMP_DIR $JOBS install
 
 
 # cvc3
-set -x
-if [ $configure = true ] ; then
-  cd $PL_PREFIX/$CVC3_DIR
-  ./configure --prefix=$PL_PREFIX --build=$PL_BUILD \
-      CC=$PL_CC CXX=$PL_CXX \
-      CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS" CPPFLAGS="$PL_CPPFLAGS" \
-      LDFLAGS="$PL_LDFLAGS" LIBS="-lgmp"
-  cd -
-fi
-make -C $PL_PREFIX/$CVC3_DIR $JOBS install
+#set -x
+#if [ $configure = true ] ; then
+#  cd $PL_PREFIX/$CVC3_DIR
+#  ./configure --prefix=$PL_PREFIX --build=$PL_BUILD \
+#      CC=$PL_CC CXX=$PL_CXX \
+#      CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS" CPPFLAGS="$PL_CPPFLAGS" \
+#      LDFLAGS="$PL_LDFLAGS" LIBS="-lgmp"
+#  cd -
+#fi
+#make -C $PL_PREFIX/$CVC3_DIR $JOBS install
 
 # z3
 if [ $configure = true ] ; then
