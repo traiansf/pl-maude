@@ -6,8 +6,8 @@ set -o pipefail
 PL_PREFIX=$(pwd)/local
 PL_CPPFLAGS="$PL_CPPFLAGS -I$PL_PREFIX/include \
   -I$PL_PREFIX/include/cvc3 \
-  -I$PL_PREFIX/z3/lib -I$PL_PREFIX/z3/c++"
-PL_LDFLAGS="$PL_LDFLAGS -L$PL_PREFIX/lib -L$PL_PREFIX/z3/bin/external"
+  -I$PL_PREFIX/z3/src/api -I$PL_PREFIX/z3/src/api/c++"
+PL_LDFLAGS="$PL_LDFLAGS -L$PL_PREFIX/lib -L$PL_PREFIX/z3/build"
 
 SIGSEGV_DIR=libsigsegv-2.10
 TECLA_DIR=libtecla-1.6.1
@@ -16,7 +16,7 @@ GMP_DIR=gmp-5.0.5
 CVC3_DIR=cvc3
 Z3_DIR=z3
 SMTA_DIR=smta-0.1
-MAUDE_DIR=Maude-alpha96a
+MAUDE_DIR=Maude-alpha96b
 
 JOBS="-j 9"
 
@@ -82,7 +82,8 @@ mv $(basename cvc3-*) $CVC3_DIR
 rm $CVC3_TAR
 
 # z3
-$GIT https://git01.codeplex.com/z3 $Z3_DIR
+# use unstable for now
+$GIT --branch unstable https://git01.codeplex.com/z3 $Z3_DIR
 
 cd -
 
@@ -149,9 +150,11 @@ if [ $configure = true ] ; then
   ./configure --prefix=$PL_PREFIX --build=$PL_BUILD \
       CC=$PL_CC CXX=$PL_CXX \
       CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS"
+  python scripts/mk_make.py --staticlib
   cd -
 fi
-make -C $PL_PREFIX/$Z3_DIR $JOBS a
+make -C $PL_PREFIX/$Z3_DIR/build $JOBS
+#make -C $PL_PREFIX/$Z3_DIR/build $JOBS install
 
 
 # smta
