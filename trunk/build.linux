@@ -17,7 +17,7 @@ LIB_PATH="-L$PL_PREFIX/lib -L$COLLECT2_PATH -L$COLLECT2_PATH/../../../../lib
           -L/lib -L/usr/lib -L$COLLECT2_PATH/../../.. -L/usr/lib/$TARGET"
 LIBS="-lsmta -lcvc3 -lgmpxx -lgmp -lbdd -ltecla -lcurses -lsigsegv"
 
-MAUDE_PATH=Maude-2.6/src/Main/
+MAUDE_PATH=Maude-alpha96b/src/Main/
 MAUDE_MAIN_OBJ=maude-main.o
 MAUDE_LIBS="../Mixfix/libmixfix.a
             ../StrategyLanguage/libstrategyLanguage.a

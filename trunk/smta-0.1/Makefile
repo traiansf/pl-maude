@@ -2,8 +2,8 @@ SMTA=smta
 PREFIX=../local
 CPPFLAGS=-I$(PREFIX)/include \
   -I$(PREFIX)/include/cvc3 \
-  -I$(PREFIX)/z3/lib -I$(PREFIX)/z3/c++
-LDFLAGS=-static -L. -L$(PREFIX)/lib -L$(PREFIX)/z3/bin/external
+  -I$(PREFIX)/z3/src/api -I$(PREFIX)/z3/src/api/c++
+LDFLAGS=-static -L. -L$(PREFIX)/lib -L$(PREFIX)/z3/build
 LIBS=-lz3 -lcvc3 -lgmp
 
 
