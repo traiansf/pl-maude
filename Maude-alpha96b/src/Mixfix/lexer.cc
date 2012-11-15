@@ -2763,7 +2763,7 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "./lexer.ll"
+#line 1 "../../../src/Mixfix/lexer.ll"
 /*
 
     This file is part of the Maude 2 interpreter.
@@ -2788,7 +2788,7 @@ char *yytext;
 /*
 //	Lexical analyser
 */
-#line 27 "./lexer.ll"
+#line 27 "../../../src/Mixfix/lexer.ll"
 //      utility stuff
 #include "macros.hh"
 #include "vector.hh"
@@ -3076,7 +3076,7 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 119 "./lexer.ll"
+#line 119 "../../../src/Mixfix/lexer.ll"
 
 	if (UserLevelRewritingContext::interrupted())
 	  yyterminate();
@@ -3166,7 +3166,7 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 123 "./lexer.ll"
+#line 123 "../../../src/Mixfix/lexer.ll"
 {
 					  yyless(0);
 					  eatComment(false);
@@ -3174,7 +3174,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 127 "./lexer.ll"
+#line 127 "../../../src/Mixfix/lexer.ll"
 {
 					  yyless(3);
 					  eatComment(true);
@@ -3183,506 +3183,506 @@ YY_RULE_SETUP
 
 case 3:
 YY_RULE_SETUP
-#line 133 "./lexer.ll"
+#line 133 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_MEMO)
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 134 "./lexer.ll"
+#line 134 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_FORMAT)
 	YY_BREAK
 
 
 case 5:
 YY_RULE_SETUP
-#line 138 "./lexer.ll"
+#line 138 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_IN)
 	YY_BREAK
 
 
 case 6:
 YY_RULE_SETUP
-#line 142 "./lexer.ll"
+#line 142 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_MOD)  // need to know which one we saw
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 143 "./lexer.ll"
+#line 143 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_OMOD)
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 144 "./lexer.ll"
+#line 144 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_VIEW);
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 145 "./lexer.ll"
+#line 145 "../../../src/Mixfix/lexer.ll"
 return KW_LOAD;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 146 "./lexer.ll"
+#line 146 "../../../src/Mixfix/lexer.ll"
 return KW_PWD;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 147 "./lexer.ll"
+#line 147 "../../../src/Mixfix/lexer.ll"
 return KW_CD;
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 148 "./lexer.ll"
+#line 148 "../../../src/Mixfix/lexer.ll"
 return KW_PUSHD;
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 149 "./lexer.ll"
+#line 149 "../../../src/Mixfix/lexer.ll"
 return KW_POPD;
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 150 "./lexer.ll"
+#line 150 "../../../src/Mixfix/lexer.ll"
 return KW_LS;
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 151 "./lexer.ll"
+#line 151 "../../../src/Mixfix/lexer.ll"
 return KW_QUIT;
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 152 "./lexer.ll"
+#line 152 "../../../src/Mixfix/lexer.ll"
 return KW_EOF;
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 153 "./lexer.ll"
+#line 153 "../../../src/Mixfix/lexer.ll"
 return KW_PARSE;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 154 "./lexer.ll"
+#line 154 "../../../src/Mixfix/lexer.ll"
 return KW_NORMALIZE;
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 155 "./lexer.ll"
+#line 155 "../../../src/Mixfix/lexer.ll"
 return KW_REDUCE;
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 156 "./lexer.ll"
+#line 156 "../../../src/Mixfix/lexer.ll"
 return KW_CREDUCE;
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 157 "./lexer.ll"
+#line 157 "../../../src/Mixfix/lexer.ll"
 return KW_SREDUCE;
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 158 "./lexer.ll"
+#line 158 "../../../src/Mixfix/lexer.ll"
 return KW_REWRITE;
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 159 "./lexer.ll"
+#line 159 "../../../src/Mixfix/lexer.ll"
 return KW_EREWRITE;
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 160 "./lexer.ll"
+#line 160 "../../../src/Mixfix/lexer.ll"
 return KW_FREWRITE;
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 161 "./lexer.ll"
+#line 161 "../../../src/Mixfix/lexer.ll"
 return KW_SREWRITE;
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 162 "./lexer.ll"
+#line 162 "../../../src/Mixfix/lexer.ll"
 return KW_LOOP;
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 163 "./lexer.ll"
+#line 163 "../../../src/Mixfix/lexer.ll"
 return KW_CONTINUE;
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 164 "./lexer.ll"
+#line 164 "../../../src/Mixfix/lexer.ll"
 return KW_NARROW;
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 165 "./lexer.ll"
+#line 165 "../../../src/Mixfix/lexer.ll"
 return KW_XG_NARROW;
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 166 "./lexer.ll"
+#line 166 "../../../src/Mixfix/lexer.ll"
 return KW_GET;
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 167 "./lexer.ll"
+#line 167 "../../../src/Mixfix/lexer.ll"
 return KW_VARIANTS;
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 168 "./lexer.ll"
+#line 168 "../../../src/Mixfix/lexer.ll"
 return KW_VARIANT;
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 169 "./lexer.ll"
+#line 169 "../../../src/Mixfix/lexer.ll"
 return KW_MATCH;
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 170 "./lexer.ll"
+#line 170 "../../../src/Mixfix/lexer.ll"
 return KW_XMATCH;
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 171 "./lexer.ll"
+#line 171 "../../../src/Mixfix/lexer.ll"
 return KW_SEARCH;
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 172 "./lexer.ll"
+#line 172 "../../../src/Mixfix/lexer.ll"
 return KW_UNIFY;
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 173 "./lexer.ll"
+#line 173 "../../../src/Mixfix/lexer.ll"
 return KW_SET;
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 174 "./lexer.ll"
+#line 174 "../../../src/Mixfix/lexer.ll"
 return KW_SHOW;
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 175 "./lexer.ll"
+#line 175 "../../../src/Mixfix/lexer.ll"
 return KW_ON;
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 176 "./lexer.ll"
+#line 176 "../../../src/Mixfix/lexer.ll"
 return KW_OFF;
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 177 "./lexer.ll"
+#line 177 "../../../src/Mixfix/lexer.ll"
 return KW_TRACE;
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 178 "./lexer.ll"
+#line 178 "../../../src/Mixfix/lexer.ll"
 return KW_ADVISE;
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 179 "./lexer.ll"
+#line 179 "../../../src/Mixfix/lexer.ll"
 return KW_VERBOSE;
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 180 "./lexer.ll"
+#line 180 "../../../src/Mixfix/lexer.ll"
 return KW_DO;
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 181 "./lexer.ll"
+#line 181 "../../../src/Mixfix/lexer.ll"
 return KW_CLEAR;
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 182 "./lexer.ll"
+#line 182 "../../../src/Mixfix/lexer.ll"
 return KW_BODY;
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 183 "./lexer.ll"
+#line 183 "../../../src/Mixfix/lexer.ll"
 return KW_BUILTIN;
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 184 "./lexer.ll"
+#line 184 "../../../src/Mixfix/lexer.ll"
 return KW_WHOLE;
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 185 "./lexer.ll"
+#line 185 "../../../src/Mixfix/lexer.ll"
 return KW_SELECT;
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 186 "./lexer.ll"
+#line 186 "../../../src/Mixfix/lexer.ll"
 return KW_DESELECT;
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 187 "./lexer.ll"
+#line 187 "../../../src/Mixfix/lexer.ll"
 return KW_CONCEAL;
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 188 "./lexer.ll"
+#line 188 "../../../src/Mixfix/lexer.ll"
 return KW_REVEAL;
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 189 "./lexer.ll"
+#line 189 "../../../src/Mixfix/lexer.ll"
 return KW_CONDITION;
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 190 "./lexer.ll"
+#line 190 "../../../src/Mixfix/lexer.ll"
 return KW_SUBSTITUTION;
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 191 "./lexer.ll"
+#line 191 "../../../src/Mixfix/lexer.ll"
 return KW_PRINT;
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 192 "./lexer.ll"
+#line 192 "../../../src/Mixfix/lexer.ll"
 return KW_ATTRIBUTE;
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 193 "./lexer.ll"
+#line 193 "../../../src/Mixfix/lexer.ll"
 return KW_NEWLINE;
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 194 "./lexer.ll"
+#line 194 "../../../src/Mixfix/lexer.ll"
 return KW_COLOR;
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 195 "./lexer.ll"
+#line 195 "../../../src/Mixfix/lexer.ll"
 return KW_GRAPH;
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 196 "./lexer.ll"
+#line 196 "../../../src/Mixfix/lexer.ll"
 return KW_MIXFIX;
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 197 "./lexer.ll"
+#line 197 "../../../src/Mixfix/lexer.ll"
 return KW_FLAT;
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 198 "./lexer.ll"
+#line 198 "../../../src/Mixfix/lexer.ll"
 return KW_WITH;
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 199 "./lexer.ll"
+#line 199 "../../../src/Mixfix/lexer.ll"
 return KW_PARENS;
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 200 "./lexer.ll"
+#line 200 "../../../src/Mixfix/lexer.ll"
 return KW_ALIASES;
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 201 "./lexer.ll"
+#line 201 "../../../src/Mixfix/lexer.ll"
 return KW_GC;
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 202 "./lexer.ll"
+#line 202 "../../../src/Mixfix/lexer.ll"
 return KW_TIME;
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 203 "./lexer.ll"
+#line 203 "../../../src/Mixfix/lexer.ll"
 return KW_STATS;
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 204 "./lexer.ll"
+#line 204 "../../../src/Mixfix/lexer.ll"
 return KW_TIMING;
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 205 "./lexer.ll"
+#line 205 "../../../src/Mixfix/lexer.ll"
 return KW_CMD;
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 206 "./lexer.ll"
+#line 206 "../../../src/Mixfix/lexer.ll"
 return KW_ALL;
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 207 "./lexer.ll"
+#line 207 "../../../src/Mixfix/lexer.ll"
 return KW_MODULES;
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 208 "./lexer.ll"
+#line 208 "../../../src/Mixfix/lexer.ll"
 return KW_MODULE;
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 209 "./lexer.ll"
+#line 209 "../../../src/Mixfix/lexer.ll"
 return KW_VIEWS;
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
-#line 210 "./lexer.ll"
+#line 210 "../../../src/Mixfix/lexer.ll"
 return KW_SORTS;
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
-#line 211 "./lexer.ll"
+#line 211 "../../../src/Mixfix/lexer.ll"
 return KW_OPS2;
 	YY_BREAK
 case 76:
 YY_RULE_SETUP
-#line 212 "./lexer.ll"
+#line 212 "../../../src/Mixfix/lexer.ll"
 return KW_VARS;
 	YY_BREAK
 case 77:
 YY_RULE_SETUP
-#line 213 "./lexer.ll"
+#line 213 "../../../src/Mixfix/lexer.ll"
 return KW_MBS;
 	YY_BREAK
 case 78:
 YY_RULE_SETUP
-#line 214 "./lexer.ll"
+#line 214 "../../../src/Mixfix/lexer.ll"
 return KW_EQS;
 	YY_BREAK
 case 79:
 YY_RULE_SETUP
-#line 215 "./lexer.ll"
+#line 215 "../../../src/Mixfix/lexer.ll"
 return KW_RLS;
 	YY_BREAK
 case 80:
 YY_RULE_SETUP
-#line 216 "./lexer.ll"
+#line 216 "../../../src/Mixfix/lexer.ll"
 return KW_SUMMARY;
 	YY_BREAK
 case 81:
 YY_RULE_SETUP
-#line 217 "./lexer.ll"
+#line 217 "../../../src/Mixfix/lexer.ll"
 return KW_KINDS;
 	YY_BREAK
 case 82:
 YY_RULE_SETUP
-#line 218 "./lexer.ll"
+#line 218 "../../../src/Mixfix/lexer.ll"
 return KW_COMPILE;
 	YY_BREAK
 case 83:
 YY_RULE_SETUP
-#line 219 "./lexer.ll"
+#line 219 "../../../src/Mixfix/lexer.ll"
 return KW_COUNT;
 	YY_BREAK
 case 84:
 YY_RULE_SETUP
-#line 220 "./lexer.ll"
+#line 220 "../../../src/Mixfix/lexer.ll"
 return KW_PROTECT;
 	YY_BREAK
 case 85:
 YY_RULE_SETUP
-#line 221 "./lexer.ll"
+#line 221 "../../../src/Mixfix/lexer.ll"
 return KW_EXTEND;
 	YY_BREAK
 case 86:
 YY_RULE_SETUP
-#line 222 "./lexer.ll"
+#line 222 "../../../src/Mixfix/lexer.ll"
 return KW_INCLUDE;
 	YY_BREAK
 case 87:
 YY_RULE_SETUP
-#line 223 "./lexer.ll"
+#line 223 "../../../src/Mixfix/lexer.ll"
 return KW_EXCLUDE;
 	YY_BREAK
 case 88:
 YY_RULE_SETUP
-#line 224 "./lexer.ll"
+#line 224 "../../../src/Mixfix/lexer.ll"
 return KW_DEBUG;
 	YY_BREAK
 case 89:
 YY_RULE_SETUP
-#line 225 "./lexer.ll"
+#line 225 "../../../src/Mixfix/lexer.ll"
 return KW_RESUME;
 	YY_BREAK
 case 90:
 YY_RULE_SETUP
-#line 226 "./lexer.ll"
+#line 226 "../../../src/Mixfix/lexer.ll"
 return KW_ABORT;
 	YY_BREAK
 case 91:
 YY_RULE_SETUP
-#line 227 "./lexer.ll"
+#line 227 "../../../src/Mixfix/lexer.ll"
 return KW_STEP;
 	YY_BREAK
 case 92:
 YY_RULE_SETUP
-#line 228 "./lexer.ll"
+#line 228 "../../../src/Mixfix/lexer.ll"
 return KW_WHERE;
 	YY_BREAK
 case 93:
 YY_RULE_SETUP
-#line 229 "./lexer.ll"
+#line 229 "../../../src/Mixfix/lexer.ll"
 return KW_DUMP;
 	YY_BREAK
 case 94:
 YY_RULE_SETUP
-#line 230 "./lexer.ll"
+#line 230 "../../../src/Mixfix/lexer.ll"
 return KW_BREAK;
 	YY_BREAK
 case 95:
 YY_RULE_SETUP
-#line 231 "./lexer.ll"
+#line 231 "../../../src/Mixfix/lexer.ll"
 return KW_BREAKDOWN;
 	YY_BREAK
 case 96:
 YY_RULE_SETUP
-#line 232 "./lexer.ll"
+#line 232 "../../../src/Mixfix/lexer.ll"
 return KW_PATH;
 	YY_BREAK
 case 97:
 YY_RULE_SETUP
-#line 233 "./lexer.ll"
+#line 233 "../../../src/Mixfix/lexer.ll"
 return KW_LABEL;
 	YY_BREAK
 case 98:
 YY_RULE_SETUP
-#line 234 "./lexer.ll"
+#line 234 "../../../src/Mixfix/lexer.ll"
 return KW_PROFILE;
 	YY_BREAK
 case 99:
 YY_RULE_SETUP
-#line 235 "./lexer.ll"
+#line 235 "../../../src/Mixfix/lexer.ll"
 return KW_NUMBER;
 	YY_BREAK
 case 100:
 YY_RULE_SETUP
-#line 236 "./lexer.ll"
+#line 236 "../../../src/Mixfix/lexer.ll"
 return KW_RAT;
 	YY_BREAK
 case 101:
 YY_RULE_SETUP
-#line 237 "./lexer.ll"
+#line 237 "../../../src/Mixfix/lexer.ll"
 return *yytext;
 	YY_BREAK
 case 102:
 YY_RULE_SETUP
-#line 238 "./lexer.ll"
+#line 238 "../../../src/Mixfix/lexer.ll"
 {
 					  bool dummy;
 					  lvalp->yyInt64 = stringToInt64(yytext, dummy, 10);
@@ -3692,7 +3692,7 @@ YY_RULE_SETUP
 case 103:
 /* rule 103 can match eol */
 YY_RULE_SETUP
-#line 243 "./lexer.ll"
+#line 243 "../../../src/Mixfix/lexer.ll"
 {
 					  IssueWarning(LineNumber(lineNumber) <<
 					    ": skipped unexpected token: " <<
@@ -3710,7 +3710,7 @@ YY_RULE_SETUP
 case 104:
 /* rule 104 can match eol */
 YY_RULE_SETUP
-#line 257 "./lexer.ll"
+#line 257 "../../../src/Mixfix/lexer.ll"
 {
                                           yyless(1);
                                           RETURN('.')
@@ -3718,23 +3718,23 @@ YY_RULE_SETUP
 	YY_BREAK
 case 105:
 YY_RULE_SETUP
-#line 261 "./lexer.ll"
+#line 261 "../../../src/Mixfix/lexer.ll"
 RETURN(*yytext)
 	YY_BREAK
 case 106:
 YY_RULE_SETUP
-#line 262 "./lexer.ll"
+#line 262 "../../../src/Mixfix/lexer.ll"
 RETURN(NUMERIC_ID)
 	YY_BREAK
 case 107:
 YY_RULE_SETUP
-#line 263 "./lexer.ll"
+#line 263 "../../../src/Mixfix/lexer.ll"
 RETURN(IDENTIFIER)
 	YY_BREAK
 case 108:
 /* rule 108 can match eol */
 YY_RULE_SETUP
-#line 264 "./lexer.ll"
+#line 264 "../../../src/Mixfix/lexer.ll"
 {
 					  SAVE_FIX_UP(ENDS_IN_DOT)
 					  BEGIN(SEEN_DOT);
@@ -3743,7 +3743,7 @@ YY_RULE_SETUP
 case 109:
 /* rule 109 can match eol */
 YY_RULE_SETUP
-#line 268 "./lexer.ll"
+#line 268 "../../../src/Mixfix/lexer.ll"
 RETURN_FIX_UP(IDENTIFIER)
 	YY_BREAK
 
@@ -3751,7 +3751,7 @@ RETURN_FIX_UP(IDENTIFIER)
 case 110:
 /* rule 110 can match eol */
 YY_RULE_SETUP
-#line 272 "./lexer.ll"
+#line 272 "../../../src/Mixfix/lexer.ll"
 {
 					  yyless(0);
 					  BEGIN(CMD_MODE);
@@ -3760,7 +3760,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 111:
 YY_RULE_SETUP
-#line 277 "./lexer.ll"
+#line 277 "../../../src/Mixfix/lexer.ll"
 {
 					  yyless(0);
 					  BEGIN(CMD_MODE);
@@ -3775,264 +3775,264 @@ YY_RULE_SETUP
 
 case 112:
 YY_RULE_SETUP
-#line 289 "./lexer.ll"
+#line 289 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_TO)
 	YY_BREAK
 case 113:
 YY_RULE_SETUP
-#line 290 "./lexer.ll"
+#line 290 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_FROM)
 	YY_BREAK
 case 114:
 YY_RULE_SETUP
-#line 291 "./lexer.ll"
+#line 291 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_LABEL)
 	YY_BREAK
 case 115:
 YY_RULE_SETUP
-#line 292 "./lexer.ll"
+#line 292 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_ASSOC)
 	YY_BREAK
 case 116:
 YY_RULE_SETUP
-#line 293 "./lexer.ll"
+#line 293 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_COMM)
 	YY_BREAK
 case 117:
 YY_RULE_SETUP
-#line 294 "./lexer.ll"
+#line 294 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_ID)
 	YY_BREAK
 case 118:
 YY_RULE_SETUP
-#line 295 "./lexer.ll"
+#line 295 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_IDEM)
 	YY_BREAK
 case 119:
 YY_RULE_SETUP
-#line 296 "./lexer.ll"
+#line 296 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_ITER)
 	YY_BREAK
 case 120:
 YY_RULE_SETUP
-#line 297 "./lexer.ll"
+#line 297 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_LEFT)
 	YY_BREAK
 case 121:
 YY_RULE_SETUP
-#line 298 "./lexer.ll"
+#line 298 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_RIGHT)
 	YY_BREAK
 case 122:
 YY_RULE_SETUP
-#line 299 "./lexer.ll"
+#line 299 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_PREC)
 	YY_BREAK
 case 123:
 YY_RULE_SETUP
-#line 300 "./lexer.ll"
+#line 300 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_GATHER)
 	YY_BREAK
 case 124:
 YY_RULE_SETUP
-#line 301 "./lexer.ll"
+#line 301 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_METADATA)
 	YY_BREAK
 case 125:
 YY_RULE_SETUP
-#line 302 "./lexer.ll"
+#line 302 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_STRAT)
 	YY_BREAK
 case 126:
 YY_RULE_SETUP
-#line 303 "./lexer.ll"
+#line 303 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_FROZEN)
 	YY_BREAK
 case 127:
 YY_RULE_SETUP
-#line 304 "./lexer.ll"
+#line 304 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_POLY)
 	YY_BREAK
 case 128:
 YY_RULE_SETUP
-#line 305 "./lexer.ll"
+#line 305 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_CTOR)
 	YY_BREAK
 case 129:
 YY_RULE_SETUP
-#line 306 "./lexer.ll"
+#line 306 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_LATEX)
 	YY_BREAK
 case 130:
 YY_RULE_SETUP
-#line 307 "./lexer.ll"
+#line 307 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_SPECIAL)
 	YY_BREAK
 case 131:
 YY_RULE_SETUP
-#line 308 "./lexer.ll"
+#line 308 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_CONFIG)
 	YY_BREAK
 case 132:
 YY_RULE_SETUP
-#line 309 "./lexer.ll"
+#line 309 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_OBJ)
 	YY_BREAK
 case 133:
 YY_RULE_SETUP
-#line 310 "./lexer.ll"
+#line 310 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_MSG)
 	YY_BREAK
 case 134:
 YY_RULE_SETUP
-#line 311 "./lexer.ll"
+#line 311 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_DITTO)
 	YY_BREAK
 case 135:
 YY_RULE_SETUP
-#line 312 "./lexer.ll"
+#line 312 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_ID_HOOK)
 	YY_BREAK
 case 136:
 YY_RULE_SETUP
-#line 313 "./lexer.ll"
+#line 313 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_OP_HOOK)
 	YY_BREAK
 case 137:
 YY_RULE_SETUP
-#line 314 "./lexer.ll"
+#line 314 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_TERM_HOOK)
 	YY_BREAK
 case 138:
 YY_RULE_SETUP
-#line 315 "./lexer.ll"
+#line 315 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_IS)
 	YY_BREAK
 case 139:
 YY_RULE_SETUP
-#line 316 "./lexer.ll"
+#line 316 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_IF)
 	YY_BREAK
 case 140:
 YY_RULE_SETUP
-#line 317 "./lexer.ll"
+#line 317 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_IMPORT)
 	YY_BREAK
 case 141:
 YY_RULE_SETUP
-#line 318 "./lexer.ll"
+#line 318 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_SORT)
 	YY_BREAK
 case 142:
 YY_RULE_SETUP
-#line 319 "./lexer.ll"
+#line 319 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_SUBSORT)
 	YY_BREAK
 case 143:
 YY_RULE_SETUP
-#line 320 "./lexer.ll"
+#line 320 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_CLASS)
 	YY_BREAK
 case 144:
 YY_RULE_SETUP
-#line 321 "./lexer.ll"
+#line 321 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_SUBCLASS)
 	YY_BREAK
 case 145:
 YY_RULE_SETUP
-#line 322 "./lexer.ll"
+#line 322 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_OP)
 	YY_BREAK
 case 146:
 YY_RULE_SETUP
-#line 323 "./lexer.ll"
+#line 323 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_OPS)
 	YY_BREAK
 case 147:
 YY_RULE_SETUP
-#line 324 "./lexer.ll"
+#line 324 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_MSGS)
 	YY_BREAK
 case 148:
 YY_RULE_SETUP
-#line 325 "./lexer.ll"
+#line 325 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_VAR)
 	YY_BREAK
 case 149:
 YY_RULE_SETUP
-#line 326 "./lexer.ll"
+#line 326 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_MB)
 	YY_BREAK
 case 150:
 YY_RULE_SETUP
-#line 327 "./lexer.ll"
+#line 327 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_CMB)
 	YY_BREAK
 case 151:
 YY_RULE_SETUP
-#line 328 "./lexer.ll"
+#line 328 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_EQ)
 	YY_BREAK
 case 152:
 YY_RULE_SETUP
-#line 329 "./lexer.ll"
+#line 329 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_CEQ)
 	YY_BREAK
 case 153:
 YY_RULE_SETUP
-#line 330 "./lexer.ll"
+#line 330 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_RL)
 	YY_BREAK
 case 154:
 YY_RULE_SETUP
-#line 331 "./lexer.ll"
+#line 331 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_CRL)
 	YY_BREAK
 case 155:
 YY_RULE_SETUP
-#line 332 "./lexer.ll"
+#line 332 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_ENDM)
 	YY_BREAK
 case 156:
 YY_RULE_SETUP
-#line 333 "./lexer.ll"
+#line 333 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_ENDV)
 	YY_BREAK
 case 157:
 YY_RULE_SETUP
-#line 334 "./lexer.ll"
+#line 334 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_ARROW)
 	YY_BREAK
 case 158:
 YY_RULE_SETUP
-#line 335 "./lexer.ll"
+#line 335 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_ARROW2)
 	YY_BREAK
 case 159:
 YY_RULE_SETUP
-#line 336 "./lexer.ll"
+#line 336 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_PARTIAL)
 	YY_BREAK
 case 160:
 YY_RULE_SETUP
-#line 337 "./lexer.ll"
+#line 337 "../../../src/Mixfix/lexer.ll"
 RETURN(KW_COLON2)
 	YY_BREAK
 case 161:
 YY_RULE_SETUP
-#line 338 "./lexer.ll"
+#line 338 "../../../src/Mixfix/lexer.ll"
 RETURN(*yytext)
 	YY_BREAK
 case 162:
 /* rule 162 can match eol */
 YY_RULE_SETUP
-#line 339 "./lexer.ll"
+#line 339 "../../../src/Mixfix/lexer.ll"
 RETURN_FIX_UP(ENDS_IN_DOT)
 	YY_BREAK
 case 163:
 /* rule 163 can match eol */
 YY_RULE_SETUP
-#line 340 "./lexer.ll"
+#line 340 "../../../src/Mixfix/lexer.ll"
 RETURN_FIX_UP(IDENTIFIER)
 	YY_BREAK
 
@@ -4042,7 +4042,7 @@ RETURN_FIX_UP(IDENTIFIER)
 
 case 164:
 YY_RULE_SETUP
-#line 347 "./lexer.ll"
+#line 347 "../../../src/Mixfix/lexer.ll"
 {
 					  if (parenCount == 0 && (terminationSet & BAR_COLON) && lexerBubble.length() >= minLength)
 					    EXIT(*yytext)
@@ -4052,7 +4052,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 165:
 YY_RULE_SETUP
-#line 353 "./lexer.ll"
+#line 353 "../../../src/Mixfix/lexer.ll"
 {
 					  if (parenCount == 0 && (terminationSet & BAR_COMMA) && lexerBubble.length() >= minLength)
 					    EXIT(*yytext)
@@ -4062,7 +4062,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 166:
 YY_RULE_SETUP
-#line 359 "./lexer.ll"
+#line 359 "../../../src/Mixfix/lexer.ll"
 {
 					  if (parenCount == 0 && (terminationSet & BAR_LEFT_BRACKET) && lexerBubble.length() >= minLength)
 					    EXIT(*yytext)
@@ -4072,7 +4072,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 167:
 YY_RULE_SETUP
-#line 365 "./lexer.ll"
+#line 365 "../../../src/Mixfix/lexer.ll"
 {
 					  if (parenCount == 0 && (terminationSet & BAR_RIGHT_BRACKET) && lexerBubble.length() >= minLength)
 					    EXIT(*yytext)
@@ -4082,7 +4082,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 168:
 YY_RULE_SETUP
-#line 371 "./lexer.ll"
+#line 371 "../../../src/Mixfix/lexer.ll"
 {
 					  if (parenCount == 0 && (terminationSet & BAR_EQUALS) && lexerBubble.length() >= minLength)
 					    EXIT(*yytext)
@@ -4092,7 +4092,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 169:
 YY_RULE_SETUP
-#line 377 "./lexer.ll"
+#line 377 "../../../src/Mixfix/lexer.ll"
 {
 					  if (parenCount == 0 && (terminationSet & BAR_ARROW2) && lexerBubble.length() >= minLength)
 					    EXIT(KW_ARROW2)
@@ -4102,7 +4102,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 170:
 YY_RULE_SETUP
-#line 383 "./lexer.ll"
+#line 383 "../../../src/Mixfix/lexer.ll"
 {
 					  if (parenCount == 0 && (terminationSet & BAR_TO) && lexerBubble.length() >= minLength)
 					    EXIT(KW_TO)
@@ -4112,7 +4112,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 171:
 YY_RULE_SETUP
-#line 389 "./lexer.ll"
+#line 389 "../../../src/Mixfix/lexer.ll"
 {
 					  if (parenCount == 0 && (terminationSet & BAR_IF) && lexerBubble.length() >= minLength)
 					    EXIT(KW_IF)
@@ -4122,7 +4122,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 172:
 YY_RULE_SETUP
-#line 395 "./lexer.ll"
+#line 395 "../../../src/Mixfix/lexer.ll"
 {
 					  if (parenCount == 0 && (terminationSet & BAR_OP_ATTRIBUTE) && lexerBubble.length() >= minLength)
 					    {
@@ -4135,7 +4135,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 173:
 YY_RULE_SETUP
-#line 404 "./lexer.ll"
+#line 404 "../../../src/Mixfix/lexer.ll"
 {
 					  ++parenCount;
 					  STORE
@@ -4143,7 +4143,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 174:
 YY_RULE_SETUP
-#line 408 "./lexer.ll"
+#line 408 "../../../src/Mixfix/lexer.ll"
 {
 					  if (parenCount == 0)
 					    {
@@ -4158,12 +4158,12 @@ YY_RULE_SETUP
 	YY_BREAK
 case 175:
 YY_RULE_SETUP
-#line 419 "./lexer.ll"
+#line 419 "../../../src/Mixfix/lexer.ll"
 STORE
 	YY_BREAK
 case 176:
 YY_RULE_SETUP
-#line 420 "./lexer.ll"
+#line 420 "../../../src/Mixfix/lexer.ll"
 {
 					  if (parenCount == 0 &&
 					      lexerBubble.length() >= minLength &&
@@ -4179,7 +4179,7 @@ YY_RULE_SETUP
 case 177:
 /* rule 177 can match eol */
 YY_RULE_SETUP
-#line 431 "./lexer.ll"
+#line 431 "../../../src/Mixfix/lexer.ll"
 {
 					  if (parenCount == 0 &&
 					      lexerBubble.length() + 1 >= minLength  &&
@@ -4195,7 +4195,7 @@ YY_RULE_SETUP
 case 178:
 /* rule 178 can match eol */
 YY_RULE_SETUP
-#line 442 "./lexer.ll"
+#line 442 "../../../src/Mixfix/lexer.ll"
 STORE_FIX_UP
 	YY_BREAK
 
@@ -4207,7 +4207,7 @@ STORE_FIX_UP
 
 case 179:
 YY_RULE_SETUP
-#line 451 "./lexer.ll"
+#line 451 "../../../src/Mixfix/lexer.ll"
 {
 					  yyless(0);  // BUG - need to deal with white space and comments after the .
 					  yy_pop_state();
@@ -4219,7 +4219,7 @@ YY_RULE_SETUP
 case 180:
 /* rule 180 can match eol */
 YY_RULE_SETUP
-#line 459 "./lexer.ll"
+#line 459 "../../../src/Mixfix/lexer.ll"
 {
 					  yyless(0);
 					  yy_pop_state();
@@ -4230,7 +4230,7 @@ YY_RULE_SETUP
 
 case 181:
 YY_RULE_SETUP
-#line 467 "./lexer.ll"
+#line 467 "../../../src/Mixfix/lexer.ll"
 {
 					  lexerBubble.append(savedToken);
 					  SAVE(*yytext);
@@ -4239,7 +4239,7 @@ YY_RULE_SETUP
 case 182:
 /* rule 182 can match eol */
 YY_RULE_SETUP
-#line 471 "./lexer.ll"
+#line 471 "../../../src/Mixfix/lexer.ll"
 {
 					  lexerBubble.append(savedToken);
 					  SAVE_FIX_UP(ENDS_IN_DOT)
@@ -4248,7 +4248,7 @@ YY_RULE_SETUP
 case 183:
 /* rule 183 can match eol */
 YY_RULE_SETUP
-#line 475 "./lexer.ll"
+#line 475 "../../../src/Mixfix/lexer.ll"
 {
 	     				  //
 					  //	We need {maudeId} here so that an identifier such
@@ -4263,7 +4263,7 @@ YY_RULE_SETUP
 
 case 184:
 YY_RULE_SETUP
-#line 487 "./lexer.ll"
+#line 487 "../../../src/Mixfix/lexer.ll"
 {
 					  if (accumulator.empty())
 					    BEGIN(FILE_NAME_QUOTE_MODE);
@@ -4273,32 +4273,32 @@ YY_RULE_SETUP
 	YY_BREAK
 case 185:
 YY_RULE_SETUP
-#line 493 "./lexer.ll"
+#line 493 "../../../src/Mixfix/lexer.ll"
 accumulator += ' ';
 	YY_BREAK
 case 186:
 YY_RULE_SETUP
-#line 494 "./lexer.ll"
+#line 494 "../../../src/Mixfix/lexer.ll"
 accumulator += '"';
 	YY_BREAK
 case 187:
 YY_RULE_SETUP
-#line 495 "./lexer.ll"
+#line 495 "../../../src/Mixfix/lexer.ll"
 accumulator += '\\';
 	YY_BREAK
 case 188:
 YY_RULE_SETUP
-#line 496 "./lexer.ll"
+#line 496 "../../../src/Mixfix/lexer.ll"
 accumulator += '\\';
 	YY_BREAK
 case 189:
 YY_RULE_SETUP
-#line 497 "./lexer.ll"
+#line 497 "../../../src/Mixfix/lexer.ll"
 accumulator += yytext;
 	YY_BREAK
 case 190:
 YY_RULE_SETUP
-#line 498 "./lexer.ll"
+#line 498 "../../../src/Mixfix/lexer.ll"
 {
 					  if (!accumulator.empty())
 					    {
@@ -4312,7 +4312,7 @@ YY_RULE_SETUP
 case 191:
 /* rule 191 can match eol */
 YY_RULE_SETUP
-#line 507 "./lexer.ll"
+#line 507 "../../../src/Mixfix/lexer.ll"
 {
 			                  ++lineNumber;					
 					  yy_pop_state();
@@ -4324,7 +4324,7 @@ YY_RULE_SETUP
 
 case 192:
 YY_RULE_SETUP
-#line 516 "./lexer.ll"
+#line 516 "../../../src/Mixfix/lexer.ll"
 {
 					   yy_pop_state();
 					   lvalp->yyString = accumulator.c_str();
@@ -4334,13 +4334,13 @@ YY_RULE_SETUP
 	YY_BREAK
 case 193:
 YY_RULE_SETUP
-#line 522 "./lexer.ll"
+#line 522 "../../../src/Mixfix/lexer.ll"
 accumulator += yytext;
 	YY_BREAK
 case 194:
 /* rule 194 can match eol */
 YY_RULE_SETUP
-#line 523 "./lexer.ll"
+#line 523 "../../../src/Mixfix/lexer.ll"
 {
 			                  ++lineNumber;					
 					  yy_pop_state();
@@ -4352,7 +4352,7 @@ YY_RULE_SETUP
 
 case 195:
 YY_RULE_SETUP
-#line 532 "./lexer.ll"
+#line 532 "../../../src/Mixfix/lexer.ll"
 {
 					  yy_pop_state();
 					  lvalp->yyString = yytext;			  
@@ -4362,7 +4362,7 @@ YY_RULE_SETUP
 case 196:
 /* rule 196 can match eol */
 YY_RULE_SETUP
-#line 537 "./lexer.ll"
+#line 537 "../../../src/Mixfix/lexer.ll"
 {
 					  yyless(0);  // so that line numbers will be correct
 					  yy_pop_state();
@@ -4374,12 +4374,12 @@ YY_RULE_SETUP
 
 case 197:
 YY_RULE_SETUP
-#line 546 "./lexer.ll"
+#line 546 "../../../src/Mixfix/lexer.ll"
 accumulator += yytext;
 	YY_BREAK
 case 198:
 YY_RULE_SETUP
-#line 547 "./lexer.ll"
+#line 547 "../../../src/Mixfix/lexer.ll"
 {
 					  if (braceCount == 0)
 					    ++parenCount;
@@ -4388,7 +4388,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 199:
 YY_RULE_SETUP
-#line 552 "./lexer.ll"
+#line 552 "../../../src/Mixfix/lexer.ll"
 {
 					  if (braceCount == 0)
 					    {
@@ -4406,7 +4406,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 200:
 YY_RULE_SETUP
-#line 566 "./lexer.ll"
+#line 566 "../../../src/Mixfix/lexer.ll"
 {
 					  ++braceCount;
 					  accumulator += yytext;
@@ -4414,7 +4414,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 201:
 YY_RULE_SETUP
-#line 570 "./lexer.ll"
+#line 570 "../../../src/Mixfix/lexer.ll"
 {
 					  --braceCount;
 					  accumulator += yytext;
@@ -4423,7 +4423,7 @@ YY_RULE_SETUP
 case 202:
 /* rule 202 can match eol */
 YY_RULE_SETUP
-#line 574 "./lexer.ll"
+#line 574 "../../../src/Mixfix/lexer.ll"
 {
 			                  ++lineNumber;					
 					  accumulator += yytext;
@@ -4431,7 +4431,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 203:
 YY_RULE_SETUP
-#line 578 "./lexer.ll"
+#line 578 "../../../src/Mixfix/lexer.ll"
 yy_pop_state();  // mindless recovery
 	YY_BREAK
 
@@ -4446,7 +4446,7 @@ case YY_STATE_EOF(FILE_NAME_MODE):
 case YY_STATE_EOF(FILE_NAME_QUOTE_MODE):
 case YY_STATE_EOF(STRING_MODE):
 case YY_STATE_EOF(LATEX_MODE):
-#line 581 "./lexer.ll"
+#line 581 "../../../src/Mixfix/lexer.ll"
 {
 					  if (UserLevelRewritingContext::interrupted() ||
 					      !handleEof())
@@ -4455,18 +4455,18 @@ case YY_STATE_EOF(LATEX_MODE):
 	YY_BREAK
 case 204:
 YY_RULE_SETUP
-#line 587 "./lexer.ll"
+#line 587 "../../../src/Mixfix/lexer.ll"
 ;
 	YY_BREAK
 case 205:
 /* rule 205 can match eol */
 YY_RULE_SETUP
-#line 588 "./lexer.ll"
+#line 588 "../../../src/Mixfix/lexer.ll"
 ++lineNumber;
 	YY_BREAK
 case 206:
 YY_RULE_SETUP
-#line 589 "./lexer.ll"
+#line 589 "../../../src/Mixfix/lexer.ll"
 {
 					  IssueWarning(LineNumber(lineNumber) <<
 					    ": skipped: " << QUOTE(yytext));
@@ -4474,7 +4474,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 207:
 YY_RULE_SETUP
-#line 594 "./lexer.ll"
+#line 594 "../../../src/Mixfix/lexer.ll"
 ECHO;
 	YY_BREAK
 #line 4481 "<stdout>"
@@ -5518,7 +5518,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 594 "./lexer.ll"
+#line 594 "../../../src/Mixfix/lexer.ll"
 
 
 
