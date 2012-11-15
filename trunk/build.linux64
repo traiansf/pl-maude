@@ -3,11 +3,5 @@ set -e
 set -o pipefail
 
 
-PL_BUILD=x86_64-pc-linux-gnu \
-PL_CC=gcc \
-PL_CXX=g++ \
-PL_CFLAGS="-O2 -m64 -mtune=k8 -march=k8" \
-PL_CXXFLAGS="$PL_CFLAGS" \
-PL_LDFLAGS="-static" \
 ./build $*
 

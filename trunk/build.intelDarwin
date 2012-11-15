@@ -3,11 +3,5 @@ set -e
 set -o pipefail
 
 
-PL_BUILD=x86_64-apple-darwin \
-PL_CC=gcc-4.2 \
-PL_CXX=g++-4.2 \
-#PL_CFLAGS="-O2 -m64 -mtune=core2 -march=core2 --sysroot=/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -no_compact_linkedit" \
-PL_CFLAGS="-O2 -m64 -mtune=core2 -march=core2 -mmacosx-version-min=10.4" \
-PL_CXXFLAGS="$PL_CFLAGS" \
 ./build $*
 

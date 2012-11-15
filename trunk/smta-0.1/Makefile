@@ -1,11 +1,10 @@
 SMTA=smta
-LOCAL=..
-PREFIX=../local
-CPPFLAGS=-I$(PREFIX)/include \
-  -I$(PREFIX)/z3/src/api -I$(PREFIX)/z3/src/api/c++
-LDFLAGS=-static -L. -L$(PREFIX)/lib -L$(LOCAL)/z3/build
+PREFIX=..
+CPPFLAGS=-I$(PREFIX)/include
+LDFLAGS=-static -L. -L$(PREFIX)/lib
 #LIBS=-lz3 -lcvc3 -lgmp
-LIBS=libz3.a
+#LIBS=$(PREFIX)/lib/libz3.a
+LIBS=-lz3 -lgmp
 
 
 all: libraries
@@ -17,7 +16,8 @@ install: libraries
 libraries: lib$(SMTA).a
 
 lib$(SMTA).a: $(SMTA).o
-	ar rc $@ $< $(LIBS)
+	#ar rc $@ $< $(LIBS)
+	ar rc $@ $<
 	
 $(SMTA).o: $(SMTA).cpp $(SMTA).h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -fPIC -c -o $@ $(SMTA).cpp 
@@ -27,7 +27,7 @@ check: test
 	./test
 
 test: test.cpp libraries
-	$(CXX) -fopenmp $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o $@ $< lib$(SMTA).a
+	$(CXX) -fopenmp $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o $@ $< lib$(SMTA).a $(LIBS)
 
 
 clean:

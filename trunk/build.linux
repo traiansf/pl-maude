@@ -3,11 +3,6 @@ set -e
 set -o pipefail
 
 
-PL_BUILD=i686-pc-linux-gnu \
-PL_CC=gcc \
-PL_CXX=g++ \
-PL_CFLAGS="-O2 -m32 -mtune=i686 -march=i686" \
-PL_CXXFLAGS="$PL_CFLAGS" \
 ./build $*
 
 TARGET=i486-linux-gnu
