@@ -1,7 +1,9 @@
 #!/bin/bash
 set -e
 set -o pipefail
-set -x
+
+
+JOBS="-j 4"
 
 
 ROOT_DIR=$(pwd)
@@ -28,9 +30,6 @@ Z3_REPO=https://git01.codeplex.com/z3
 SMTA_DIR=smta-0.1
 
 MAUDE_DIR=Maude-alpha96b
-
-
-JOBS="-j 9"
 
 
 ############
@@ -77,7 +76,7 @@ case "$arch" in
     PL_ABI=64
     PL_CC=gcc
     PL_CXX=g++
-    PL_CFLAGS="-O2 -m64 -mtune=k8 -march=k8"
+    PL_CFLAGS="-O3 -m64 -mtune=k8 -march=k8"
     PL_CXXFLAGS="$PL_CFLAGS"
     PL_LDFLAGS="-static"
   ;;
@@ -203,7 +202,7 @@ case "$target" in
   maude)
     if [ $configure = true ] ; then
       cd $MAUDE_DIR
-      # if z3 is compiled with gmp, add -lgmp
+      # if z3 is not compiled with gmp then -lgmp is unnecessary
       ./configure --prefix=$PREFIX --build=$PL_BUILD \
           CC=$PL_CC CXX=$PL_CXX \
           CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS" CPPFLAGS="$PL_CPPFLAGS" \
@@ -216,13 +215,14 @@ case "$target" in
 esac
 
 
+ set -x
 if [ "$arch" = "linux" -a "$target" = "maude" ] ; then
   TARGET=i486-linux-gnu
   COLLECT2_PATH=/usr/lib/gcc/$TARGET/4.4.5
   COLLECT2_FLAGS="--eh-frame-hdr -m elf_i386 -dynamic-linker /lib/ld-linux.so.2"
   LIB_PATH="-L$PL_PREFIX/lib -L$COLLECT2_PATH -L$COLLECT2_PATH/../../../../lib
             -L/lib -L/usr/lib -L$COLLECT2_PATH/../../.. -L/usr/lib/$TARGET"
-  LIBS="-lsmta -lcvc3 -lgmpxx -lgmp -lbdd -ltecla -lcurses -lsigsegv"
+  LIBS="-lsmta -lz3 -lgmpxx -lgmp -lbdd -ltecla -lcurses -lsigsegv"
   
   MAUDE_PATH=$MAUDE_DIR/src/Main/
   MAUDE_MAIN_OBJ=maude-main.o
@@ -249,7 +249,6 @@ if [ "$arch" = "linux" -a "$target" = "maude" ] ; then
               ../Utility/libutility.a"
   MALLOC_LIB=../3rdParty/libdlmalloc.a
   
-  set -x
   cd $MAUDE_PATH
   $COLLECT2_PATH/collect2 $COLLECT2_FLAGS -o maude \
     $COLLECT2_PATH/../../../../lib/crt1.o \
