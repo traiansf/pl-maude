@@ -6,8 +6,8 @@
 #include<iostream>
 #include<fstream>
 
-#include<vc.h>
-#include<command_line_flags.h>
+//#include<vc.h>
+//#include<command_line_flags.h>
 
 #include<z3++.h>
 

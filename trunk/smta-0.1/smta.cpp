@@ -3,7 +3,7 @@
 
 using namespace std;
 using namespace z3;
-using namespace CVC3;
+//using namespace CVC3;
 
 
 crope SMTLibAdaptor::query(crope queryCrope)
@@ -16,27 +16,27 @@ crope SMTLibAdaptor::queryCVC3(crope queryCrope)
 {
   crope answerCrope;
 
-  // save cerr streambuf and set it to a dummy streambuf
-  streambuf *cerrbuf = cerr.rdbuf(new stringbuf(ios_base::out));
-
-  CLFlags flags = ValidityChecker::createFlags();
-  ValidityChecker* vc = ValidityChecker::create(flags);
-  vc->setTimeLimit(SMTA_TIMEOUT / 100); // not in milliseconds
-
-  vc->cmdsFromString(string(queryCrope.c_str()), SMTLIB_V2_LANG);
-  switch(vc->query(vc->falseExpr())) {
-    case UNSATISFIABLE:
-      answerCrope = "unsat";
-      break;
-    case SATISFIABLE:
-      answerCrope = "sat";
-      break;
-    default:
-      answerCrope = "unknown";
-  }
-
-  // restore the cerr streambuf and delete the dummy streambuf
-  delete cerr.rdbuf(cerrbuf);
+//  // save cerr streambuf and set it to a dummy streambuf
+//  streambuf *cerrbuf = cerr.rdbuf(new stringbuf(ios_base::out));
+//
+//  CLFlags flags = ValidityChecker::createFlags();
+//  ValidityChecker* vc = ValidityChecker::create(flags);
+//  vc->setTimeLimit(SMTA_TIMEOUT / 100); // not in milliseconds
+//
+//  vc->cmdsFromString(string(queryCrope.c_str()), SMTLIB_V2_LANG);
+//  switch(vc->query(vc->falseExpr())) {
+//    case UNSATISFIABLE:
+//      answerCrope = "unsat";
+//      break;
+//    case SATISFIABLE:
+//      answerCrope = "sat";
+//      break;
+//    default:
+//      answerCrope = "unknown";
+//  }
+//
+//  // restore the cerr streambuf and delete the dummy streambuf
+//  delete cerr.rdbuf(cerrbuf);
 
   return answerCrope;
 }
