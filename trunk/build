@@ -67,7 +67,7 @@ case "$arch" in
     PL_ABI=32
     PL_CC=gcc
     PL_CXX=g++
-    PL_CFLAGS="-O2 -m32 -mtune=i686 -march=i686"
+    PL_CFLAGS="-O3 -m32 -mtune=i686 -march=i686"
     PL_CXXFLAGS="$PL_CFLAGS"
   ;;
   linux64)
@@ -85,8 +85,8 @@ case "$arch" in
     PL_BUILD=x86_64-apple-darwin
     PL_CC=gcc-4.2
     PL_CXX=g++-4.2
-    #PL_CFLAGS="-O2 -m64 -mtune=core2 -march=core2 --sysroot=/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -no_compact_linkedit"
-    PL_CFLAGS="-O2 -m64 -mtune=core2 -march=core2 -mmacosx-version-min=10.4"
+    #PL_CFLAGS="-O3 -m64 -mtune=core2 -march=core2 --sysroot=/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -no_compact_linkedit"
+    PL_CFLAGS="-O3 -m64 -mtune=core2 -march=core2 -mmacosx-version-min=10.4"
     PL_CXXFLAGS="$PL_CFLAGS"
   ;;
 esac
@@ -193,6 +193,8 @@ case "$target" in
 
     make -C $LOCAL/$Z3_DIR/build $JOBS
     make -C $LOCAL/$Z3_DIR/build install
+    # hack for using libz3.a instead if libz3.so even when linking dynamically
+    rm $PREFIX/lib/libz3.so
   ;;
 
   smta)
@@ -220,9 +222,9 @@ if [ "$arch" = "linux" -a "$target" = "maude" ] ; then
   TARGET=i486-linux-gnu
   COLLECT2_PATH=/usr/lib/gcc/$TARGET/4.4.5
   COLLECT2_FLAGS="--eh-frame-hdr -m elf_i386 -dynamic-linker /lib/ld-linux.so.2"
-  LIB_PATH="-L$PL_PREFIX/lib -L$COLLECT2_PATH -L$COLLECT2_PATH/../../../../lib
+  LIB_PATH="-L$PREFIX/lib -L$COLLECT2_PATH -L$COLLECT2_PATH/../../../../lib
             -L/lib -L/usr/lib -L$COLLECT2_PATH/../../.. -L/usr/lib/$TARGET"
-  LIBS="-lsmta -lz3 -lgmpxx -lgmp -lbdd -ltecla -lcurses -lsigsegv"
+  LIBS="-lsmta -lz3 -lgmpxx -lgmp -lbdd -ltecla -lcurses -lsigsegv -lgomp"
   
   MAUDE_PATH=$MAUDE_DIR/src/Main/
   MAUDE_MAIN_OBJ=maude-main.o
@@ -255,7 +257,7 @@ if [ "$arch" = "linux" -a "$target" = "maude" ] ; then
     $COLLECT2_PATH/../../../../lib/crti.o \
     $COLLECT2_PATH/crtbegin.o \
     $LIB_PATH $MAUDE_MAIN_OBJ $MAUDE_LIBS $LIBS $MALLOC_LIB \
-    -lnsl -Bstatic -lstdc++ -Bdynamic -lm -lc -lgcc_s -lgcc \
+    -lnsl -Bstatic -lstdc++ -Bdynamic -lm -lc -lgcc_s -lgcc -lpthread \
     $COLLECT2_PATH/crtend.o \
     $COLLECT2_PATH/../../../../lib/crtn.o
   cd -
