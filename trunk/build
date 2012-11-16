@@ -224,7 +224,8 @@ if [ "$arch" = "linux" -a "$target" = "maude" ] ; then
   COLLECT2_FLAGS="--eh-frame-hdr -m elf_i386 -dynamic-linker /lib/ld-linux.so.2"
   LIB_PATH="-L$PREFIX/lib -L$COLLECT2_PATH -L$COLLECT2_PATH/../../../../lib
             -L/lib -L/usr/lib -L$COLLECT2_PATH/../../.. -L/usr/lib/$TARGET"
-  LIBS="-lsmta -lz3 -lgmpxx -lgmp -lbdd -ltecla -lcurses -lsigsegv -lgomp"
+  LIBS="-lsmta -lz3 -lgmpxx -lgmp -lbdd -ltecla -lcurses -lgomp"
+  LIB_SIGSEGV=/usr/lib/libsigsegv.a
   
   MAUDE_PATH=$MAUDE_DIR/src/Main/
   MAUDE_MAIN_OBJ=maude-main.o
@@ -256,7 +257,8 @@ if [ "$arch" = "linux" -a "$target" = "maude" ] ; then
     $COLLECT2_PATH/../../../../lib/crt1.o \
     $COLLECT2_PATH/../../../../lib/crti.o \
     $COLLECT2_PATH/crtbegin.o \
-    $LIB_PATH $MAUDE_MAIN_OBJ $MAUDE_LIBS $LIBS $MALLOC_LIB \
+    $LIB_PATH $MAUDE_MAIN_OBJ $MAUDE_LIBS $MALLOC_LIB \
+    $LIBS $LIB_SIGSEGV \
     -lnsl -Bstatic -lstdc++ -Bdynamic -lm -lc -lgcc_s -lgcc -lpthread \
     $COLLECT2_PATH/crtend.o \
     $COLLECT2_PATH/../../../../lib/crtn.o
