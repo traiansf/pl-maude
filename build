@@ -3,7 +3,7 @@ set -e
 set -o pipefail
 
 
-JOBS="-j 4"
+JOBS="-j 9"
 
 
 ROOT_DIR=$(pwd)
@@ -83,10 +83,12 @@ case "$arch" in
   darwin)
     PREFIX=$ROOT_DIR/darwin
     PL_BUILD=x86_64-apple-darwin
-    PL_CC=gcc
-    PL_CXX=g++
+    PL_ABI=64
+    PL_CC=gcc-mp-4.7
+    PL_CXX=g++-mp-4.7
     #PL_CFLAGS="-O3 -m64 -mtune=core2 -march=core2 --sysroot=/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -no_compact_linkedit"
-    PL_CFLAGS="-O3 -m64 -mtune=core2 -march=core2 -mmacosx-version-min=10.4"
+    #PL_CFLAGS="-O3 -m64 -mtune=core2 -march=core2 -mmacosx-version-min=10.4"
+    PL_CFLAGS="-O3 -m64 -mtune=core2 -march=core2"
     PL_CXXFLAGS="$PL_CFLAGS"
   ;;
 esac
@@ -187,7 +189,7 @@ case "$target" in
           CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS"
       python scripts/mk_make.py --staticlib
       # hack for install
-      sed -i '/python/d' build/Makefile
+      sed -i -e '/python/d' build/Makefile
       cd -
     fi
 
