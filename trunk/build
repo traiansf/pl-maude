@@ -44,7 +44,7 @@ while :; do
     --configure) configure=true; shift;;
     --linux) arch=linux; shift;;
     --linux64) arch=linux64; shift;;
-    --intelDarwin) arch=intelDarwin; shift;;
+    --darwin) arch=darwin; shift;;
     tecla) target=tecla; break ;;
     buddy) target=buddy; break ;;
     gmp) target=gmp; break ;;
@@ -57,7 +57,7 @@ done
 
 
 if [ "$arch" = "" ] ; then
-  echo "error: select on of --linux, --linux64, --intelDarwin" && exit 1
+  echo "error: select on of --linux, --linux64, --darwin" && exit 1
 fi
 
 case "$arch" in
@@ -80,11 +80,11 @@ case "$arch" in
     PL_CXXFLAGS="$PL_CFLAGS"
     PL_LDFLAGS="-static"
   ;;
-  intelDarwin)
-    PREFIX=$ROOT_DIR/intelDarwin
+  darwin)
+    PREFIX=$ROOT_DIR/darwin
     PL_BUILD=x86_64-apple-darwin
-    PL_CC=gcc-4.2
-    PL_CXX=g++-4.2
+    PL_CC=gcc
+    PL_CXX=g++
     #PL_CFLAGS="-O3 -m64 -mtune=core2 -march=core2 --sysroot=/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -no_compact_linkedit"
     PL_CFLAGS="-O3 -m64 -mtune=core2 -march=core2 -mmacosx-version-min=10.4"
     PL_CXXFLAGS="$PL_CFLAGS"
