@@ -84,8 +84,8 @@ case "$arch" in
     PREFIX=$ROOT_DIR/darwin
     PL_BUILD=x86_64-apple-darwin
     PL_ABI=64
-    PL_CC=gcc-mp-4.7
-    PL_CXX=g++-mp-4.7
+    PL_CC=gcc
+    PL_CXX=g++
     #PL_CFLAGS="-O3 -m64 -mtune=core2 -march=core2 --sysroot=/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -no_compact_linkedit"
     #PL_CFLAGS="-O3 -m64 -mtune=core2 -march=core2 -mmacosx-version-min=10.4"
     PL_CFLAGS="-O3 -m64 -mtune=core2 -march=core2"
@@ -219,7 +219,6 @@ case "$target" in
 esac
 
 
- set -x
 if [ "$arch" = "linux" -a "$target" = "maude" ] ; then
   TARGET=i486-linux-gnu
   COLLECT2_PATH=/usr/lib/gcc/$TARGET/4.4.5
