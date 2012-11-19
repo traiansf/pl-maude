@@ -186,7 +186,8 @@ case "$target" in
       autoconf
       ./configure --prefix=$PREFIX --build=$PL_BUILD \
           CC=$PL_CC CXX=$PL_CXX \
-          CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS"
+          CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS" \
+          LDFLAGS="$PL_CFLAGS"
       python scripts/mk_make.py --staticlib
       # hack for install
       sed -i -e '/python/d' build/Makefile
