@@ -4,7 +4,7 @@ CPPFLAGS=-I$(PREFIX)/include
 LDFLAGS=-static -L. -L$(PREFIX)/lib
 #LIBS=-lz3 -lcvc3 -lgmp
 #LIBS=$(PREFIX)/lib/libz3.a
-LIBS=-lz3 -lgmp
+LIBS=-lz3 #-lgmp
 
 
 all: libraries
