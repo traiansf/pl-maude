@@ -1,12 +1,12 @@
-#include "smta.h"
-
+#include<iostream>
+#include"smta.h"
 
 using namespace std;
 
 
 int main()
 {
-  crope queryCrope;
+  __gnu_cxx::crope queryCrope;
 
   queryCrope = "";
   queryCrope += "(set-logic AUFNIRA)";
