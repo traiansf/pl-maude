@@ -1,4 +1,13 @@
-#include "smta.h"
+#include<string>
+#include<iostream>
+#include<fstream>
+
+//#include<vc.h>
+//#include<command_line_flags.h>
+
+#include<z3++.h>
+
+#include"smta.h"
 
 
 using namespace std;
@@ -6,15 +15,15 @@ using namespace z3;
 //using namespace CVC3;
 
 
-crope SMTLibAdaptor::query(crope queryCrope)
+__gnu_cxx::crope SMTLibAdaptor::query(__gnu_cxx::crope queryCrope)
 {
   //return queryCVC3(queryCrope);
   return queryZ3(queryCrope);
 }
-
-crope SMTLibAdaptor::queryCVC3(crope queryCrope)
+  
+__gnu_cxx::crope SMTLibAdaptor::queryCVC3(__gnu_cxx::crope queryCrope)
 {
-  crope answerCrope;
+  __gnu_cxx::crope answerCrope;
 
 //  // save cerr streambuf and set it to a dummy streambuf
 //  streambuf *cerrbuf = cerr.rdbuf(new stringbuf(ios_base::out));
@@ -41,9 +50,9 @@ crope SMTLibAdaptor::queryCVC3(crope queryCrope)
   return answerCrope;
 }
 
-crope SMTLibAdaptor::queryZ3(crope queryCrope)
+__gnu_cxx::crope SMTLibAdaptor::queryZ3(__gnu_cxx::crope queryCrope)
 {
-  crope answerCrope;
+  __gnu_cxx::crope answerCrope;
 
   context c;
   solver s(c);
