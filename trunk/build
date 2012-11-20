@@ -9,6 +9,14 @@ JOBS="-j 9"
 ROOT_DIR=$(pwd)
 LOCAL=$ROOT_DIR/local
 
+AUTOCONF_DIR=autoconf-2.61
+AUTOCONF_TAR=$AUTOCONF_DIR.tar.bz2
+AUTOCONF_MIRROR=http://ftp.gnu.org/gnu/autoconf/$AUTOCONF_TAR
+
+SIGSEGV_DIR=libsigsegv-2.6
+SIGSEGV_TAR=$SIGSEGV_DIR.tar.gz
+SIGSEGV_MIRROR=http://ftp.gnu.org/gnu/libsigsegv/$SIGSEGV_TAR
+
 TECLA_DIR=libtecla-1.6.1
 TECLA_TAR=$TECLA_DIR.tar.gz
 TECLA_MIRROR=http://www.astro.caltech.edu/~mcs/tecla/$TECLA_TAR
@@ -23,10 +31,6 @@ GMP_MIRROR=ftp://ftp.gnu.org/gnu/gmp/$GMP_TAR
 
 #CVC3_DIR=cvc3
 #CVC3_TAR=cvc3-latest.tar.gz
-
-AUTOCONF_DIR=autoconf-2.61
-AUTOCONF_TAR=$AUTOCONF_DIR.tar.bz2
-AUTOCONF_MIRROR=http://ftp.gnu.org/gnu/autoconf/$AUTOCONF_TAR
 
 Z3_DIR=z3
 Z3_REPO=https://git01.codeplex.com/z3
@@ -50,6 +54,7 @@ while :; do
     --linux64) arch=linux64; shift;;
     --darwin) arch=darwin; shift;;
     autoconf) target=autoconf; break ;;
+    sigsegv) target=sigsegv; break ;;
     tecla) target=tecla; break ;;
     buddy) target=buddy; break ;;
     gmp) target=gmp; break ;;
@@ -92,10 +97,9 @@ case "$arch" in
     PL_CC=gcc #-mp-4.7
     PL_CXX=g++ #-mp-4.7
     #PL_CFLAGS="-O3 -m64 -mtune=core2 -march=core2 --sysroot=/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -no_compact_linkedit"
-    #PL_CFLAGS="-O3 -m64 -mtune=core2 -march=core2 -mmacosx-version-min=10.4"
-    PL_CFLAGS="-O3 -m64 -mtune=core2 -march=core2"
+    PL_CFLAGS="-O3 -m64 -mtune=core2 -march=core2 -mmacosx-version-min=10.6"
+    #PL_CFLAGS="-O3 -m64 -mtune=core2 -march=core2"
     PL_CXXFLAGS="$PL_CFLAGS"
-    PL_LDFLAGS="-L/opt/local/lib"
   ;;
 esac
 
@@ -130,6 +134,28 @@ case "$target" in
 
     make -C $LOCAL/$AUTOCONF_DIR
     make -C $LOCAL/$AUTOCONF_DIR install
+  ;;
+
+  sigsegv)
+    if [ $download = true ] ; then
+      cd $LOCAL
+      rm -rf $SIGSEGV_DIR
+      wget $SIGSEGV_MIRROR
+      tar xvfz $SIGSEGV_TAR
+      rm $SIGSEGV_TAR
+      cd -
+    fi
+
+    if [ $configure = true ] ; then
+      cd $LOCAL/$SIGSEGV_DIR
+      #./configure --prefix=$PREFIX --build=$PL_BUILD \
+      ./configure --prefix=$PREFIX \
+           CC=$PL_CC CXX=$PL_CXX \
+           CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS"
+      cd -
+    fi
+
+    make -C $LOCAL/$SIGSEGV_DIR $JOBS install
   ;;
 
   tecla)
