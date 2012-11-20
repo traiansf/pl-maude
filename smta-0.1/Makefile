@@ -1,7 +1,7 @@
 SMTA=smta
 PREFIX=..
 CPPFLAGS=-I$(PREFIX)/include
-LDFLAGS=-static -L. -L$(PREFIX)/lib
+LDFLAGS=-L. -L$(PREFIX)/lib
 #LIBS=-lz3 -lcvc3 -lgmp
 #LIBS=$(PREFIX)/lib/libz3.a
 LIBS=-lz3 #-lgmp
@@ -28,7 +28,6 @@ check: test
 
 test: test.cpp libraries
 	$(CXX) -fopenmp $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o $@ $< lib$(SMTA).a $(LIBS)
-
 
 clean:
 	rm -rf *.o *.a *.so test
