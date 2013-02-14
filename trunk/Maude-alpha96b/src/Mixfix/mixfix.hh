@@ -62,5 +62,6 @@ class Entity;
 class SyntaxContainer;
 class FreshVariableSource;
 class PrintAttribute;
+class StrategyExpression;
 
 #endif
