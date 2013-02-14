@@ -88,6 +88,7 @@
 #include "quotedIdentifierTerm.hh"
 #include "quotedIdentifierDagNode.hh"
 #include "maudemlBuffer.hh"
+#include "mixfixModule.hh"
 
 MaudemlBuffer::MaudemlBuffer(ostream& output)
   : XmlBuffer(output, 1)
@@ -346,6 +347,10 @@ MaudemlBuffer::generate(Rule* rule)
   int l = rule->getLabel().id();
   if (l != NONE)
     attributePair("label", Token::name(l));
+  PreEquation* pe = dynamic_cast<PreEquation *>(rule);
+  int metadata = dynamic_cast<MixfixModule *>(rule->getModule())->getMetadata(MixfixModule::RULE, pe);
+  if (metadata != NONE)
+    attributePair("metadata", Token::name(metadata));
   generate(rule->getLhs());
   generate(rule->getRhs());
   if (rule->hasCondition())

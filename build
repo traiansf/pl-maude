@@ -235,19 +235,17 @@ case "$target" in
 
     if [ $configure = true ] ; then
       cd $LOCAL/$Z3_DIR
-      PATH=$LOCAL/bin:$PATH autoconf
-      ./configure --prefix=$PREFIX --build=$PL_BUILD \
+      python scripts/mk_make.py --prefix=$PREFIX --build=$PL_BUILD --staticlib \
           CC=$PL_CC CXX=$PL_CXX \
           CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS" \
           LDFLAGS="$PL_CFLAGS"
-      python scripts/mk_make.py --staticlib
       # hack for install
-      sed -i -e '/python/d' build/Makefile
+      #sed -i '/python/d' build/Makefile
       cd -
     fi
 
-    make -C $LOCAL/$Z3_DIR/build $JOBS
-    make -C $LOCAL/$Z3_DIR/build install
+    make -C $LOCAL/$Z3_DIR/$PL_BUILD $JOBS
+    make -C $LOCAL/$Z3_DIR/$PL_BUILD install
     # hack for using libz3.a instead if libz3.so even when linking dynamically
     rm -f $PREFIX/lib/libz3.so $PREFIX/lib/libz3.dylib
   ;;
