@@ -1,0 +1,32 @@
+diff -ru Maude-2.6/src/Mixfix/maudemlBuffer.cc Maude-2.6-custom/src/Mixfix/maudemlBuffer.cc
+--- Maude-2.6/src/Mixfix/maudemlBuffer.cc	2006-07-20 20:39:40.000000000 -0500
++++ Maude-2.6-custom/src/Mixfix/maudemlBuffer.cc	2013-02-09 13:58:56.773758675 -0600
+@@ -88,6 +88,7 @@
+ #include "quotedIdentifierTerm.hh"
+ #include "quotedIdentifierDagNode.hh"
+ #include "maudemlBuffer.hh"
++#include "mixfixModule.hh"
+ 
+ MaudemlBuffer::MaudemlBuffer(ostream& output)
+   : XmlBuffer(output, 1)
+@@ -346,6 +347,10 @@
+   int l = rule->getLabel().id();
+   if (l != NONE)
+     attributePair("label", Token::name(l));
++  PreEquation* pe = dynamic_cast<PreEquation *>(rule);
++  int metadata = dynamic_cast<MixfixModule *>(rule->getModule())->getMetadata(MixfixModule::RULE, pe);
++  if (metadata != NONE)
++    attributePair("metadata", Token::name(metadata));
+   generate(rule->getLhs());
+   generate(rule->getRhs());
+   if (rule->hasCondition())
+diff -ru Maude-2.6/src/Mixfix/mixfix.hh Maude-2.6-custom/src/Mixfix/mixfix.hh
+--- Maude-2.6/src/Mixfix/mixfix.hh	2009-02-12 15:57:14.000000000 -0600
++++ Maude-2.6-custom/src/Mixfix/mixfix.hh	2013-02-09 13:55:46.525759545 -0600
+@@ -62,5 +62,6 @@
+ class SyntaxContainer;
+ class FreshVariableSource;
+ class PrintAttribute;
++class StrategyExpression;
+ 
+ #endif

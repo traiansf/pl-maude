@@ -1,0 +1,339 @@
+#!/bin/bash
+set -e
+set -o pipefail
+
+
+JOBS="-j 9"
+
+
+ROOT_DIR=$(pwd)
+LOCAL=$ROOT_DIR/local
+
+AUTOCONF_DIR=autoconf-2.61
+AUTOCONF_TAR=$AUTOCONF_DIR.tar.bz2
+AUTOCONF_MIRROR=http://ftp.gnu.org/gnu/autoconf/$AUTOCONF_TAR
+
+SIGSEGV_DIR=libsigsegv-2.6
+SIGSEGV_TAR=$SIGSEGV_DIR.tar.gz
+SIGSEGV_MIRROR=http://ftp.gnu.org/gnu/libsigsegv/$SIGSEGV_TAR
+
+TECLA_DIR=libtecla-1.6.1
+TECLA_TAR=$TECLA_DIR.tar.gz
+TECLA_MIRROR=http://www.astro.caltech.edu/~mcs/tecla/$TECLA_TAR
+
+BUDDY_DIR=buddy-2.4
+BUDDY_TAR=$BUDDY_DIR.tar.gz
+BUDDY_MIRROR="http://downloads.sourceforge.net/project/buddy/buddy/BuDDy%202.4/buddy-2.4.tar.gz?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fbuddy%2F&ts=1305827031&use_mirror=voxel"
+
+GMP_DIR=gmp-5.0.5
+GMP_TAR=$GMP_DIR.tar.bz2
+GMP_MIRROR=ftp://ftp.gnu.org/gnu/gmp/$GMP_TAR
+
+#CVC3_DIR=cvc3
+#CVC3_TAR=cvc3-latest.tar.gz
+
+Z3_DIR=z3
+Z3_REPO=https://git01.codeplex.com/z3
+
+SMTA_DIR=smta-0.1
+
+MAUDE_DIR=Maude-alpha96b
+
+
+############
+
+
+download=false
+configure=false
+
+while :; do
+  case "$1" in
+    --download) download=true; configure=true; shift;;
+    --configure) configure=true; shift;;
+    --linux) arch=linux; shift;;
+    --linux64) arch=linux64; shift;;
+    --darwin) arch=darwin; shift;;
+    autoconf) target=autoconf; break ;;
+    sigsegv) target=sigsegv; break ;;
+    tecla) target=tecla; break ;;
+    buddy) target=buddy; break ;;
+    gmp) target=gmp; break ;;
+    z3) target=z3; break ;;
+    smta) target=smta; break ;;
+    maude) target=maude; break ;;
+    *) echo "error: unexpected argument $1"; exit 1 ;;
+  esac
+done
+
+
+if [ "$arch" = "" -a "$target" != "autoconf" ] ; then
+  echo "error: select on of --linux, --linux64, --darwin" && exit 1
+fi
+
+case "$arch" in
+  linux)
+    PREFIX=$ROOT_DIR/linux
+    PL_BUILD=i686-pc-linux-gnu
+    PL_ABI=32
+    PL_CC=gcc
+    PL_CXX=g++
+    PL_CFLAGS="-O3 -m32 -mtune=i686 -march=i686"
+    PL_CXXFLAGS="$PL_CFLAGS"
+  ;;
+  linux64)
+    PREFIX=$ROOT_DIR/linux64
+    PL_BUILD=x86_64-pc-linux-gnu
+    PL_ABI=64
+    PL_CC=gcc
+    PL_CXX=g++
+    PL_CFLAGS="-O3 -m64 -mtune=k8 -march=k8"
+    PL_CXXFLAGS="$PL_CFLAGS"
+    PL_LDFLAGS="-static"
+  ;;
+  darwin)
+    PREFIX=$ROOT_DIR/darwin
+    PL_BUILD=x86_64-apple-darwin
+    PL_ABI=64
+    PL_CC=gcc #-mp-4.7
+    PL_CXX=g++ #-mp-4.7
+    #PL_CFLAGS="-O3 -m64 -mtune=core2 -march=core2 --sysroot=/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -no_compact_linkedit"
+    PL_CFLAGS="-O3 -m64 -mtune=core2 -march=core2 -mmacosx-version-min=10.6"
+    #PL_CFLAGS="-O3 -m64 -mtune=core2 -march=core2"
+    PL_CXXFLAGS="$PL_CFLAGS"
+  ;;
+esac
+
+PL_CPPFLAGS="$PL_CPPFLAGS -I$PREFIX/include"
+PL_LDFLAGS="$PL_LDFLAGS -L$PREFIX/lib"
+
+
+mkdir -p $LOCAL
+
+TARGET_DIR=`echo $target | tr '[:lower:]' '[:upper:]'`_DIR
+if [ ! -d $LOCAL/${!TARGET_DIR} ] ; then
+  download=true; configure=true;
+fi
+
+
+case "$target" in
+  autoconf)
+    if [ $download = true ] ; then
+      cd $LOCAL
+      rm -rf $AUTOCONF_DIR
+      wget $AUTOCONF_MIRROR
+      tar xvfj $AUTOCONF_TAR
+      rm $AUTOCONF_TAR
+      cd -
+    fi
+
+    if [ $configure = true ] ; then
+      cd $LOCAL/$AUTOCONF_DIR
+      ./configure --prefix=$LOCAL
+      cd -
+    fi
+
+    make -C $LOCAL/$AUTOCONF_DIR
+    make -C $LOCAL/$AUTOCONF_DIR install
+  ;;
+
+  sigsegv)
+    if [ $download = true ] ; then
+      cd $LOCAL
+      rm -rf $SIGSEGV_DIR
+      wget $SIGSEGV_MIRROR
+      tar xvfz $SIGSEGV_TAR
+      rm $SIGSEGV_TAR
+      cd -
+    fi
+
+    if [ $configure = true ] ; then
+      cd $LOCAL/$SIGSEGV_DIR
+      #./configure --prefix=$PREFIX --build=$PL_BUILD \
+      ./configure --prefix=$PREFIX \
+           CC=$PL_CC CXX=$PL_CXX \
+           CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS"
+      cd -
+    fi
+
+    make -C $LOCAL/$SIGSEGV_DIR $JOBS install
+  ;;
+
+  tecla)
+    if [ $download = true ] ; then
+      cd $LOCAL
+      rm -rf $TECLA_DIR
+      wget $TECLA_MIRROR 
+      tar xvfz $TECLA_TAR
+      rm $TECLA_TAR
+      mv libtecla $TECLA_DIR   
+      cd -
+    fi
+
+    if [ $configure = true ] ; then
+      cd $LOCAL/$TECLA_DIR
+      ./configure --prefix=$PREFIX --build=$PL_BUILD \
+          --with-man-pages=no \
+           CC=$PL_CC CXX=$PL_CXX \
+           CFLAGS="$PL_CFLAGS -D_POSIX_C_SOURCE=1" CXXFLAGS="$PL_CXXFLAGS"
+      cd -
+    fi
+
+    make -C $LOCAL/$TECLA_DIR TARGETS=normal TARGET_LIBS=static install
+  ;;
+
+  buddy)
+    if [ $download = true ] ; then
+      cd $LOCAL
+      rm -rf $BUDDY_DIR
+      wget -O $BUDDY_TAR $BUDDY_MIRROR
+      tar xvfz $BUDDY_TAR
+      rm $BUDDY_TAR
+      cd -
+    fi
+
+    if [ $configure = true ] ; then
+      cd $LOCAL/$BUDDY_DIR
+        ./configure --prefix=$PREFIX --build=$PL_BUILD \
+            --disable-shared \
+            CC=$PL_CC CXX=$PL_CXX \
+            CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS"
+      cd -
+    fi
+
+    make -C $LOCAL/$BUDDY_DIR $JOBS install
+  ;;
+
+  gmp)
+    if [ $download = true ] ; then
+      cd $LOCAL
+      rm -rf $GMP_DIR
+      wget $GMP_MIRROR
+      tar xvfj $GMP_TAR
+      rm $GMP_TAR
+      cd -
+    fi
+
+    if [ $configure = true ] ; then
+      cd $LOCAL/$GMP_DIR
+      ./configure --prefix=$PREFIX --build=$PL_BUILD \
+          --enable-cxx --disable-shared \
+          CC=$PL_CC CXX=$PL_CXX \
+          CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS" ABI="$PL_ABI"
+      cd -
+    fi
+
+    make -C $LOCAL/$GMP_DIR $JOBS install
+  ;;
+
+  z3)
+    if [ $download = true ] ; then
+      cd $LOCAL
+      rm -rf $Z3_DIR
+      git clone --branch unstable $Z3_REPO $Z3_DIR
+      cd -
+    fi
+
+    if [ $configure = true ] ; then
+      cd $LOCAL/$Z3_DIR
+      python scripts/mk_make.py --prefix=$PREFIX --build=$PL_BUILD --staticlib \
+          CC=$PL_CC CXX=$PL_CXX \
+          CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS" \
+          LDFLAGS="$PL_CFLAGS"
+      # hack for install
+      #sed -i '/python/d' build/Makefile
+      cd -
+    fi
+
+    make -C $LOCAL/$Z3_DIR/$PL_BUILD $JOBS
+    make -C $LOCAL/$Z3_DIR/$PL_BUILD install
+    # hack for using libz3.a instead if libz3.so even when linking dynamically
+    rm -f $PREFIX/lib/libz3.so $PREFIX/lib/libz3.dylib
+  ;;
+
+  smta)
+    make -C $SMTA_DIR CXXFLAGS="-Wall $PL_CXXFLAGS" PREFIX="$PREFIX" install
+  ;;
+
+  maude)
+    if [ $configure = true ] ; then
+      cd $MAUDE_DIR
+      # if z3 is not compiled with gmp then -lgmp is unnecessary
+      ./configure --prefix=$PREFIX --build=$PL_BUILD \
+          CC=$PL_CC CXX=$PL_CXX \
+          CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS" CPPFLAGS="$PL_CPPFLAGS" \
+          LDFLAGS="-fopenmp $PL_LDFLAGS" LIBS="-lsmta -lz3 -lgmp"
+      cd -
+    fi
+
+    PATH=$LOCAL/bin:$PATH make -C $MAUDE_DIR
+  ;;
+esac
+
+
+if [ "$arch" = "linux" -a "$target" = "maude" ] ; then
+  TARGET=i486-linux-gnu
+  COLLECT2_PATH=/usr/lib/gcc/$TARGET/4.4.5
+  COLLECT2_FLAGS="--eh-frame-hdr -m elf_i386 -dynamic-linker /lib/ld-linux.so.2"
+  LIB_PATH="-L$PREFIX/lib -L$COLLECT2_PATH -L$COLLECT2_PATH/../../../../lib
+            -L/lib -L/usr/lib -L$COLLECT2_PATH/../../.. -L/usr/lib/$TARGET"
+  LIBS="-lsmta -lz3 -lgmpxx -lgmp -lbdd -ltecla -lcurses -lgomp"
+  LIB_SIGSEGV=/usr/lib/libsigsegv.a
+  
+  MAUDE_PATH=$MAUDE_DIR/src/Main/
+  MAUDE_MAIN_OBJ=maude-main.o
+  MAUDE_LIBS="../Mixfix/libmixfix.a
+              ../StrategyLanguage/libstrategyLanguage.a
+              ../Meta/libmeta.a
+              ../ObjectSystem/libobjectSystem.a
+              ../BuiltIn/libbuiltIn.a
+              ../Higher/libhigher.a
+              ../FreeTheory/libfreeTheory.a
+              ../AU_Theory/libAU_Theory.a
+              ../AU_Persistent/libAU_Persistent.a
+              ../ACU_Theory/libACU_Theory.a
+              ../ACU_Persistent/libACU_Persistent.a
+              ../CUI_Theory/libCUI_Theory.a
+              ../S_Theory/libS_Theory.a
+              ../NA_Theory/libNA_Theory.a
+              ../Variable/libvariable.a
+              ../Interface/libinterface.a
+              ../Core/libcore.a
+              ../MSCP10/libmscp10.a
+              ../Temporal/libtemporal.a
+              ../IO_Stuff/libIO_Stuff.a
+              ../Utility/libutility.a"
+  MALLOC_LIB=../3rdParty/libdlmalloc.a
+  
+  cd $MAUDE_PATH
+  $COLLECT2_PATH/collect2 $COLLECT2_FLAGS -o maude \
+    $COLLECT2_PATH/../../../../lib/crt1.o \
+    $COLLECT2_PATH/../../../../lib/crti.o \
+    $COLLECT2_PATH/crtbegin.o \
+    $LIB_PATH $MAUDE_MAIN_OBJ $MAUDE_LIBS $MALLOC_LIB \
+    $LIBS $LIB_SIGSEGV \
+    -lnsl -Bstatic -lstdc++ -Bdynamic -lm -lc -lgcc_s -lgcc -lpthread \
+    $COLLECT2_PATH/crtend.o \
+    $COLLECT2_PATH/../../../../lib/crtn.o
+  cd -
+fi
+
+
+exit 0
+# cvc3
+#$WGET -O $CVC3_TAR http://goedel.cims.nyu.edu/cvc3-builds/latest.tar.gz
+#$TAR $CVC3_TAR
+#mv $(basename cvc3-*) $CVC3_DIR
+#rm $CVC3_TAR
+
+# cvc3
+#set -x
+#if [ $configure = true ] ; then
+#  cd $PREFIX/$CVC3_DIR
+#  ./configure --prefix=$PREFIX --build=$PL_BUILD \
+#      CC=$PL_CC CXX=$PL_CXX \
+#      CFLAGS="$PL_CFLAGS" CXXFLAGS="$PL_CXXFLAGS" CPPFLAGS="$PL_CPPFLAGS" \
+#      LDFLAGS="$PL_LDFLAGS" LIBS="-lgmp"
+#  cd -
+#fi
+#make -C $PREFIX/$CVC3_DIR $JOBS install
+
