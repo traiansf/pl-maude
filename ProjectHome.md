@@ -1,0 +1,1 @@
+This is a span of the Maude system (see http://maude.cs.uiuc.edu ) intended to allow the open source community to extend the functionality of Maude with programming-languages-specific features (such as integration with SMT solvers, file I/O, and so on).
